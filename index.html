@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Frozen V4 · Live Research Lab</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{
+  --bg:#070a10;--panel:#0f1520;--panel2:#121a28;--line:#253047;--text:#eef4ff;
+  --muted:#8d9ab0;--good:#56d6a4;--bad:#ff7d89;--warn:#f3c76b;--accent:#8cb8ff;--violet:#b59cff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#070a10,#0b111b 52%,#070a10);color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:1500px;margin:auto;padding:20px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+h1{font-size:clamp(27px,4vw,42px);margin:0 0 5px;letter-spacing:-.035em}
+h2{font-size:18px;margin:0 0 10px}
+.muted{color:var(--muted)} .tiny{font-size:11px;color:var(--muted)}
+.badge{border:1px solid #295342;background:#0d211b;color:var(--good);padding:7px 11px;border-radius:999px;font-size:12px;font-weight:760}
+.badge.warn{border-color:#5b4b25;background:#241d0d;color:var(--warn)}
+.badge.bad{border-color:#5b2930;background:#241014;color:var(--bad)}
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:9px;margin-top:16px}
+.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:16px;padding:15px;min-width:0}
+.label{font-size:10px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
+.value{font-size:25px;font-weight:780;margin:6px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.small{font-size:12px;color:var(--muted);line-height:1.45}
+.tabs{display:flex;gap:7px;overflow:auto;margin:15px 0;padding-bottom:2px}
+.tabs button,.range button,.laneBtn{border:1px solid #2a354b;background:#111826;color:#cdd7e8;padding:8px 12px;border-radius:10px;white-space:nowrap;cursor:pointer}
+.tabs button.active,.range button.active,.laneBtn.active{background:#1b2c49;border-color:#557bc0;color:#fff}
+.panel{display:none}.panel.on{display:block}
+.section{margin-top:12px}.chart{height:420px}.chart.smallchart{height:300px}
+.two{display:grid;grid-template-columns:1.3fr .7fr;gap:12px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.statusgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.status{border:1px solid #202b3e;background:#0b101a;border-radius:12px;padding:12px}.status b{display:block;margin-top:4px;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}
+th:first-child,td:first-child{text-align:left}th{color:var(--muted);position:sticky;top:0;background:#0f1520;z-index:2}
+td.wrapcell{text-align:left;white-space:normal;min-width:280px;line-height:1.45}
+.tablewrap{overflow:auto;max-height:620px}
+.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.accent{color:var(--accent)}
+.empty{border:1px dashed #2b374c;border-radius:13px;padding:34px 16px;text-align:center;color:var(--muted)}
+.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.6}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.flow>div{border:1px solid #263149;background:#0b111c;border-radius:12px;padding:11px}
+.flow b{display:block;margin-bottom:4px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:5px 0;border-bottom:1px solid #1c2637}.kv:last-child{border-bottom:0}
+.pill{display:inline-block;padding:3px 7px;border:1px solid #32415a;border-radius:999px;font-size:10px;font-weight:700}
+.pill.good{border-color:#2d5e4d;background:#10251e}.pill.bad{border-color:#65313a;background:#261116}.pill.warn{border-color:#5c4d29;background:#251e0e}
+@media(max-width:1180px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){.two,.twoequal{grid-template-columns:1fr}.statusgrid{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(2,1fr)}.chart{height:370px}}
+@media(max-width:560px){.wrap{padding:13px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:12px;border-radius:13px}.value{font-size:21px}.chart{height:330px}.flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="top">
+  <div>
+    <h1>Frozen V4 · Live Research Lab</h1>
+    <div class="muted">候选 → Frozen Gate → 正式入场 → 生命周期 → Forward OOS · 实盘验证工作台</div>
+  </div>
+  <div id="heroBadge" class="badge">LOADING</div>
+</div>
+
+<div class="grid" id="topCards"></div>
+
+<div class="tabs">
+  <button class="active" data-tab="live">实盘总览</button>
+  <button data-tab="candidates">每日候选</button>
+  <button data-tab="entries">正式入场</button>
+  <button data-tab="oos">Forward OOS</button>
+  <button data-tab="daily">日收益</button>
+  <button data-tab="trades">交易日志</button>
+  <button data-tab="historical">历史回测</button>
+  <button data-tab="system">系统</button>
+</div>
+
+<section id="live" class="panel on">
+  <div class="two">
+    <div class="card">
+      <div class="label">Forward OOS Equity · all lanes</div>
+      <div id="liveEquity" class="chart"></div>
+    </div>
+    <div class="card">
+      <div class="label">Current regime / engine snapshot</div>
+      <div id="regimeSnapshot" style="margin-top:8px"></div>
+      <div class="section note">MAIN-B 是正式主线；REGIME-COMBO50 只改变仓位，不允许改变选股、slot、re-entry 或退出路径。严格 Regime Forward OOS 只统计冻结日之后的 signal_date。</div>
+    </div>
+  </div>
+  <div class="section twoequal">
+    <div class="card">
+      <div class="label">Current model positions</div>
+      <div id="currentPositions" class="tablewrap"></div>
+    </div>
+    <div class="card">
+      <div class="label">Candidate → entry flow</div>
+      <div class="flow">
+        <div><b>1 · Base Candidate</b><span class="small">RSI、MACD、价格、ADV、DVR 基础触发。</span></div>
+        <div><b>2 · Eligible</b><span class="small">通过 Identity、DVR≤0.40 与市场门控。</span></div>
+        <div><b>3 · Selected</b><span class="small">次日 OPEN 根据 slot、ADV 排名、re-entry 决定。</span></div>
+        <div><b>4 · Lifecycle</b><span class="small">Stop、Day1、MACD 同步、profit protection 全程机械记录。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="candidates" class="panel">
+  <div class="two">
+    <div class="card">
+      <div class="label">Latest market-day candidates</div>
+      <div class="small" style="margin:5px 0 10px">这里显示当天所有 Strict V3 Base Candidate，并明确为什么进入候选、哪些 Frozen Gate 通过或失败。</div>
+      <div id="candidateTable" class="tablewrap"></div>
+    </div>
+    <div class="card">
+      <div class="label">Daily candidate count</div>
+      <div id="candidateCountChart" class="chart smallchart"></div>
+      <div id="candidateLegend" class="note section"></div>
+    </div>
+  </div>
+  <div class="section card">
+    <div class="label">Candidate ledger history</div>
+    <div id="candidateHistory" class="tablewrap"></div>
+  </div>
+</section>
+
+<section id="entries" class="panel">
+  <div class="two">
+    <div class="card">
+      <div class="label">MAIN-B formal entry ledger</div>
+      <div id="mainEntries" class="tablewrap"></div>
+    </div>
+    <div class="card">
+      <div class="label">Entry / selection state</div>
+      <div id="entryStats"></div>
+      <div class="section note">候选不等于正式进入。只有被 MAIN-B 在对应 OPEN 选中的 trade 才会出现在正式入场账本。</div>
+    </div>
+  </div>
+  <div class="section card">
+    <div class="label">All lanes entry ledger</div>
+    <div id="allEntries" class="tablewrap"></div>
+  </div>
+</section>
+
+<section id="oos" class="panel">
+  <div class="two">
+    <div class="card">
+      <div class="label">Forward OOS equity</div>
+      <div class="range" style="margin:10px 0" id="laneButtons"></div>
+      <div id="oosEquity" class="chart"></div>
+    </div>
+    <div class="card">
+      <div class="label">Selected lane metrics</div>
+      <div id="laneStats"></div>
+      <div class="section note">这部分只读 Forward OOS 不可变账本。历史回测不计入 Forward OOS 统计。</div>
+    </div>
+  </div>
+</section>
+
+<section id="daily" class="panel">
+  <div class="card">
+    <div class="label">Daily model return</div>
+    <div id="dailyReturnChart" class="chart"></div>
+  </div>
+  <div class="section card">
+    <div class="label">Daily equity / drawdown table</div>
+    <div id="dailyTable" class="tablewrap"></div>
+  </div>
+</section>
+
+<section id="trades" class="panel">
+  <div class="card">
+    <div class="label">Recent closed Forward OOS trades</div>
+    <div id="closedTrades" class="tablewrap"></div>
+  </div>
+</section>
+
+<section id="historical" class="panel">
+  <div class="card">
+    <div class="label">Frozen historical equity · exact daily curve</div>
+    <div class="range" style="margin:10px 0"><button data-r="1">1Y</button><button data-r="3">3Y</button><button class="active" data-r="all">ALL</button></div>
+    <div id="histEquity" class="chart"></div>
+  </div>
+  <div class="section twoequal">
+    <div class="card"><div class="label">Historical drawdown</div><div id="histDD" class="chart"></div></div>
+    <div class="card"><div class="label">$100,000 model account</div><div id="capitalChart" class="chart"></div></div>
+  </div>
+  <div class="section card"><div class="label">Historical summary</div><div id="histSummary" class="tablewrap"></div></div>
+</section>
+
+<section id="system" class="panel">
+  <div class="card">
+    <div class="statusgrid" id="systemGrid"></div>
+    <div class="section note" id="systemNote"></div>
+  </div>
+</section>
+</div>
+
+<script>
+const LANES=["MAIN-B","BENCH-A","SHADOW-3S","SHADOW-SAT20","REGIME-COMBO50"];
+const HIST_LANES=["MAIN-B","BENCH-A","SHADOW-3S","SHADOW-SAT20"];
+const META={
+ "MAIN-B":{total:12.7238633100,cagr:.4357371978,mdd:-.3631208387,trades:272,label:"Official main"},
+ "BENCH-A":{total:10.7352349144,cagr:.4050342449,mdd:-.3738110375,trades:268,label:"Benchmark"},
+ "SHADOW-3S":{total:11.6842297961,cagr:.4202034167,mdd:-.3383818688,trades:365,label:"Shadow"},
+ "SHADOW-SAT20":{total:13.0053382814,cagr:.4397680396,mdd:-.3631208387,trades:284,label:"Shadow"},
+ "REGIME-COMBO50":{total:17.224028,cagr:.493081,mdd:-.234036,trades:272,label:"Historical research overlay"}
+};
+const common={
+ paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)",font:{color:"#cdd7e8"},
+ margin:{l:54,r:18,t:22,b:44},hovermode:"x unified",legend:{orientation:"h",y:1.08,x:0},
+ xaxis:{gridcolor:"#172034"},yaxis:{gridcolor:"#172034"}
+};
+function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}
+function pct(v,d=2){return v==null||Number.isNaN(Number(v))?"—":(Number(v)*100).toFixed(d)+"%"}
+function num(v,d=2){return v==null||Number.isNaN(Number(v))?"—":Number(v).toFixed(d)}
+function money(v){return v==null||Number.isNaN(Number(v))?"—":"$"+Math.round(Number(v)).toLocaleString()}
+function boolBadge(v,yes="YES",no="NO"){return Number(v)===1||v===true?'<span class="pill good">'+yes+'</span>':'<span class="pill bad">'+no+'</span>'}
+function table(rows,cols){
+ if(!rows?.length)return '<div class="empty">暂无数据</div>';
+ return '<table><thead><tr>'+cols.map(c=>'<th>'+c[0]+'</th>').join('')+'</tr></thead><tbody>'+
+ rows.map(r=>'<tr>'+cols.map(c=>'<td class="'+(c[2]||"")+'">'+(c[3]?c[1](r):esc(c[1](r)))+'</td>').join('')+'</tr>').join('')+
+ '</tbody></table>';
+}
+function statusClass(s){
+ s=String(s||"").toUpperCase();
+ if(s.includes("OK")||s==="EXACT"||s==="PASS"||s==="SUCCESS")return "good";
+ if(s.includes("PARTIAL")||s.includes("NO_FORWARD")||s.includes("NOT_RUN")||s.includes("DISABLED"))return "warn";
+ return "bad";
+}
+function kv(k,v,cls=""){return '<div class="kv"><span class="small">'+esc(k)+'</span><b class="'+cls+'">'+esc(v)+'</b></div>'}
+
+(async()=>{
+ const [hist,live]=await Promise.all([
+   fetch("data/historical.json").then(r=>r.json()),
+   fetch("data/live.json?x="+Date.now()).then(r=>r.json())
+ ]);
+ const st=live.statuses||{}, main=live.lanes?.["MAIN-B"]||{}, reg=st.regime_shadow||{}, prev=st.market_preview||{}, eod=st.eod_replay||{};
+ const current=live.current_candidates||[];
+ const eligible=current.filter(x=>Number(x.eligible)===1).length;
+
+ const hero=document.getElementById("heroBadge");
+ hero.textContent=(eod.status||"NOT RUN")+" · "+(eod.market_date||"—");
+ hero.className="badge "+(statusClass(eod.status)==="good"?"":statusClass(eod.status));
+
+ const regimeText=reg.combo50_flag?"50% CAP":"FULL SIZE";
+ document.getElementById("topCards").innerHTML=[
+   ["Latest EOD",eod.market_date||"—",eod.status||"NOT RUN"],
+   ["MAIN-B OOS",main.latest_equity==null?"—":main.latest_equity.toFixed(4)+"x","累计 "+pct(main.cumulative_return)],
+   ["Latest Daily",pct(main.latest_daily_return),"MAIN-B"],
+   ["Open Positions",main.open_positions||0,"Target exposure "+pct(main.active_target_exposure)],
+   ["Base Candidates",current.length,prev.signal_date||"—"],
+   ["Eligible",eligible,"Frozen gates passed"],
+   ["Regime",regimeText,"CALM_CROWDED "+(reg.calm_crowded?"ON":"OFF")+" · DUAL "+(reg.regime_dual_drain?"ON":"OFF")],
+   ["Pure Regime OOS",reg.strict_pure_oos?"YES":"NO","Freeze "+(reg.freeze_date||"2026-09-21")]
+ ].map(x=>'<div class="card"><div class="label">'+esc(x[0])+'</div><div class="value">'+esc(x[1])+'</div><div class="small">'+esc(x[2])+'</div></div>').join("");
+
+ const equityTraces=LANES.map(l=>{
+   const c=live.lanes?.[l]?.curve||{};
+   return {x:c.date||[],y:c.equity||[],name:l,type:"scatter",mode:"lines"};
+ }).filter(t=>t.x.length);
+ if(equityTraces.some(t=>t.x.length>1)){
+   Plotly.newPlot("liveEquity",equityTraces,{...common,yaxis:{...common.yaxis,title:"Equity multiple"}},{responsive:true,displaylogo:false});
+ }else{
+   document.getElementById("liveEquity").innerHTML='<div class="empty">Forward OOS 刚启动，等正式 EOD 账本积累第二个净值点后曲线会自动出现。</div>';
+ }
+
+ document.getElementById("regimeSnapshot").innerHTML=
+   kv("Signal date",reg.signal_date||"—")+
+   kv("CALM_CROWDED",reg.calm_crowded?"TRUE":"FALSE",reg.calm_crowded?"warn":"good")+
+   kv("DUAL_DRAIN",reg.regime_dual_drain?"TRUE":"FALSE",reg.regime_dual_drain?"warn":"good")+
+   kv("Combo50",reg.combo50_flag?"ACTIVE":"OFF",reg.combo50_flag?"warn":"good")+
+   kv("Target multiplier",reg.target_multiplier==null?"—":Number(reg.target_multiplier).toFixed(2)+"x")+
+   kv("Net Liquidity 4w",pct(reg.net_liq_4w_pct))+
+   kv("Reserves 4w",pct(reg.reserves_4w_pct))+
+   kv("Macro as-of",reg.regime_macro_asof||"—")+
+   kv("Macro complete",reg.macro_data_complete?"YES":"NO",reg.macro_data_complete?"good":"warn");
+
+ document.getElementById("currentPositions").innerHTML=table(live.current_positions,[
+   ["Lane",r=>r.shadow_version],["Symbol",r=>r.symbol],["Entry",r=>r.entry_date],["Slot",r=>r.slot],
+   ["Weight",r=>pct(r.model_target_weight)],["Day1",r=>r.day1_failed?"FAILED":"OK"],["State",r=>r.status]
+ ]);
+
+ document.getElementById("candidateTable").innerHTML=table(current,[
+   ["Symbol",r=>r.symbol],["Stage",r=>r.candidate_stage],["Entry",r=>r.entry_date],
+   ["RSI14",r=>num(r.rsi14)],["DVR",r=>num(r.dollarvol_ratio_prev20,3)],["MA20 dev",r=>pct(r.ma20_dev_pct)],
+   ["ADV20",r=>r.adv20_prior==null?"—":"$"+Math.round(r.adv20_prior/1e6)+"M"],
+   ["Q",r=>r.quality_score],["Regime x",r=>num(r.regime_target_multiplier,2)],
+   ["Why / Gate result",r=>r.candidate_reason,"wrapcell"]
+ ]);
+
+ const csum=[...(live.candidate_daily_summary||[])].reverse();
+ if(csum.length){
+   Plotly.newPlot("candidateCountChart",[
+     {x:csum.map(x=>x.signal_date),y:csum.map(x=>x.base_candidates),name:"Base candidates",type:"bar"},
+     {x:csum.map(x=>x.signal_date),y:csum.map(x=>x.eligible),name:"Eligible",type:"bar"}
+   ],{...common,barmode:"group",yaxis:{...common.yaxis,title:"Count"}},{responsive:true,displaylogo:false});
+ }else document.getElementById("candidateCountChart").innerHTML='<div class="empty">暂无候选历史</div>';
+ document.getElementById("candidateLegend").textContent="Base Candidate 代表基础触发已成立；Eligible 代表继续通过 Identity、DVR≤0.40 和市场门控。Selected 要到对应 OPEN 才能最终确定。";
+
+ document.getElementById("candidateHistory").innerHTML=table(live.candidate_history,[
+   ["Signal",r=>r.signal_date],["Entry",r=>r.entry_date],["Symbol",r=>r.symbol],["Stage",r=>r.candidate_stage],
+   ["Pending",r=>r.pending_status],["MAIN-B selected",r=>r.main_B_selected==null?"—":(String(r.main_B_selected)==="True"||r.main_B_selected===true||Number(r.main_B_selected)===1?"YES":"NO")],
+   ["RSI",r=>num(r.rsi14)],["DVR",r=>num(r.dollarvol_ratio_prev20,3)],["ADV20",r=>r.adv20_prior==null?"—":"$"+Math.round(r.adv20_prior/1e6)+"M"],
+   ["Why",r=>r.candidate_reason,"wrapcell"]
+ ]);
+
+ document.getElementById("mainEntries").innerHTML=table(live.main_entry_log,[
+   ["Signal",r=>r.signal_date],["Entry",r=>r.entry_date],["Symbol",r=>r.symbol],["Slot",r=>r.slot],
+   ["Target",r=>pct(r.model_target_weight)],["State",r=>r.status],["Exit",r=>r.exit_date||"—"],
+   ["Reason",r=>r.exit_reason||"—"],["Return",r=>pct(r.model_net_return)]
+ ]);
+ document.getElementById("allEntries").innerHTML=table(live.all_entry_log,[
+   ["Lane",r=>r.shadow_version],["Signal",r=>r.signal_date],["Entry",r=>r.entry_date],["Symbol",r=>r.symbol],
+   ["Slot",r=>r.slot],["Target",r=>pct(r.model_target_weight)],["State",r=>r.status],["Return",r=>pct(r.model_net_return)]
+ ]);
+ document.getElementById("entryStats").innerHTML=
+   '<div class="value">'+(main.open_positions||0)+'</div><div class="small">MAIN-B open / pending-exit</div>'+
+   '<div style="height:12px"></div><div class="value">'+(main.closed_trades||0)+'</div><div class="small">MAIN-B closed OOS trades</div>'+
+   '<div style="height:12px"></div><div class="value">'+(live.pending_summary?.rows||0)+'</div><div class="small">Pending candidate rows · eligible '+(live.pending_summary?.eligible_rows||0)+'</div>';
+
+ let selectedLane="MAIN-B";
+ document.getElementById("laneButtons").innerHTML=LANES.map(l=>'<button class="laneBtn '+(l===selectedLane?"active":"")+'" data-lane="'+l+'">'+l+'</button>').join("");
+ function renderLane(lane){
+   selectedLane=lane;
+   document.querySelectorAll(".laneBtn").forEach(b=>b.classList.toggle("active",b.dataset.lane===lane));
+   const d=live.lanes?.[lane]||{}, c=d.curve||{};
+   if(c.date?.length){
+     Plotly.react("oosEquity",[{x:c.date,y:c.equity,name:lane,type:"scatter",mode:"lines"}],
+       {...common,yaxis:{...common.yaxis,title:"Equity multiple"}},{responsive:true,displaylogo:false});
+   }else document.getElementById("oosEquity").innerHTML='<div class="empty">暂无该 Lane 的 OOS 曲线</div>';
+   document.getElementById("laneStats").innerHTML=
+     kv("Latest equity",d.latest_equity==null?"—":Number(d.latest_equity).toFixed(5)+"x")+
+     kv("Cumulative",pct(d.cumulative_return))+
+     kv("Latest daily",pct(d.latest_daily_return))+
+     kv("Current DD",pct(d.latest_drawdown))+
+     kv("Max DD",pct(d.max_drawdown))+
+     kv("Closed trades",d.closed_trades??0)+
+     kv("Open positions",d.open_positions??0)+
+     kv("Active target exposure",pct(d.active_target_exposure))+
+     kv("Win rate",pct(d.win_rate))+
+     kv("Mean trade",pct(d.mean_trade_return))+
+     kv("Profit factor",d.profit_factor==null?"—":num(d.profit_factor,2));
+ }
+ document.querySelectorAll(".laneBtn").forEach(b=>b.onclick=()=>renderLane(b.dataset.lane));
+ renderLane(selectedLane);
+
+ const dailyTraces=LANES.map(l=>{
+   const c=live.lanes?.[l]?.curve||{};
+   return {x:c.date||[],y:(c.daily_return||[]).map(v=>v==null?null:v*100),name:l,type:"scatter",mode:"lines+markers"};
+ }).filter(t=>t.x.length);
+ if(dailyTraces.length)Plotly.newPlot("dailyReturnChart",dailyTraces,{...common,yaxis:{...common.yaxis,title:"Daily return %",ticksuffix:"%"}},{responsive:true,displaylogo:false});
+ else document.getElementById("dailyReturnChart").innerHTML='<div class="empty">暂无日收益数据</div>';
+
+ const dailyRows=[];
+ LANES.forEach(l=>{
+   const c=live.lanes?.[l]?.curve||{};
+   (c.date||[]).forEach((d,i)=>dailyRows.push({lane:l,date:d,equity:c.equity?.[i],ret:c.daily_return?.[i],dd:c.drawdown?.[i]}));
+ });
+ dailyRows.sort((a,b)=>String(b.date).localeCompare(String(a.date))||a.lane.localeCompare(b.lane));
+ document.getElementById("dailyTable").innerHTML=table(dailyRows.slice(0,250),[
+   ["Date",r=>r.date],["Lane",r=>r.lane],["Equity",r=>num(r.equity,5)],["Daily",r=>pct(r.ret)],["DD",r=>pct(r.dd)]
+ ]);
+
+ document.getElementById("closedTrades").innerHTML=table(live.recent_trades,[
+   ["Lane",r=>r.shadow_version],["Symbol",r=>r.symbol],["Entry",r=>r.entry_date],["Exit",r=>r.exit_date],
+   ["Exit reason",r=>r.exit_reason],["Return",r=>pct(r.model_net_return)],["Weight",r=>pct(r.model_target_weight)],
+   ["Day1",r=>r.day1_failed?"FAILED":"OK"]
+ ]);
+
+ const histTraces=HIST_LANES.map(l=>({x:hist.dates,y:hist.equity[l],name:l,type:"scatter",mode:"lines"}));
+ Plotly.newPlot("histEquity",histTraces,{...common,yaxis:{...common.yaxis,title:"Equity multiple"}},{responsive:true,displaylogo:false});
+ const ddTraces=HIST_LANES.map(l=>{let peak=-Infinity;return{x:hist.dates,y:hist.equity[l].map(v=>{peak=Math.max(peak,v);return (v/peak-1)*100}),name:l,type:"scatter",mode:"lines"}});
+ Plotly.newPlot("histDD",ddTraces,{...common,yaxis:{...common.yaxis,title:"Drawdown %",ticksuffix:"%"}},{responsive:true,displaylogo:false});
+ Plotly.newPlot("capitalChart",HIST_LANES.map(l=>({x:hist.dates,y:hist.equity[l].map(v=>v*100000),name:l,type:"scatter",mode:"lines"})),
+   {...common,yaxis:{...common.yaxis,title:"Account value",tickprefix:"$"}},{responsive:true,displaylogo:false});
+ document.getElementById("histSummary").innerHTML=table(Object.entries(META).map(([lane,m])=>({lane,...m})),[
+   ["Lane",r=>r.lane],["Role",r=>r.label],["Total Return",r=>pct(r.total)],["CAGR",r=>pct(r.cagr)],
+   ["Max DD",r=>pct(r.mdd)],["Trades",r=>r.trades],["$100k →",r=>money((r.total+1)*100000)]
+ ]);
+
+ const statuses=[
+   ["Historical","EXACT"],["Market Preview",st.market_preview?.status||"NOT RUN"],["Free EOD",st.eod_replay?.status||"NOT RUN"],
+   ["Open Phase",st.open_phase?.status||"NOT RUN"],["Close Phase",st.close_phase?.status||"NOT RUN"],
+   ["Regime Shadow",st.regime_shadow?.status||"NOT RUN"],["Drift",st.drift?.status||"NO DATA"],
+   ["Ledger market date",st.eod_replay?.market_date||"—"]
+ ];
+ document.getElementById("systemGrid").innerHTML=statuses.map(x=>'<div class="status"><span class="label">'+esc(x[0])+'</span><b class="'+statusClass(x[1])+'">'+esc(x[1])+'</b></div>').join("");
+ const os=live.oos_summary||{};
+ document.getElementById("systemNote").textContent=
+   "Snapshot "+(live.generated_at_utc||"—")+" · latest preview "+(os.latest_preview_signal_date||"—")+
+   " · last EOD ledger "+(os.last_eod_market_date||"—")+" · finalized signal rows "+(os.signal_rows||0)+
+   " · Regime freeze "+(os.regime_freeze_date||"2026-09-21")+".";
+
+ document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+   document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+   document.querySelectorAll(".panel").forEach(x=>x.classList.remove("on"));
+   b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("on");
+   setTimeout(()=>window.dispatchEvent(new Event("resize")),40);
+ });
+ document.querySelectorAll(".range button[data-r]").forEach(b=>b.onclick=()=>{
+   document.querySelectorAll(".range button[data-r]").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+   const end=new Date(hist.dates.at(-1));let start=null;
+   if(b.dataset.r!=="all"){start=new Date(end);start.setFullYear(start.getFullYear()-Number(b.dataset.r))}
+   Plotly.relayout("histEquity",{"xaxis.range":start?[start.toISOString().slice(0,10),hist.dates.at(-1)]:null,"xaxis.autorange":!start});
+ });
+})().catch(e=>{
+ document.body.insertAdjacentHTML("beforeend",'<div style="padding:20px;color:#ff7d89">Dashboard load error: '+esc(e)+'</div>');
+});
+</script>
+</body>
+</html>
