@@ -6,4 +6,6 @@ Website target:
 
 https://galbbb2772.github.io/frozen-v4-dashboard/
 
+The dashboard now includes the Beta Hedge Forward OOS shadow tab and its exported status/history data.
+
 The public repository contains only dashboard assets and exported research/validation data. The private Frozen V4 strategy repository remains private.
