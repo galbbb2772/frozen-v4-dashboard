@@ -2,18 +2,18 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Frozen V4 · Intraday Live Monitor</title>
+<title>Frozen V4 · Realtime Intraday Monitor</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="realtime-config.js"></script>
 <style>
-:root{--bg:#070a10;--panel:#0f1520;--line:#253047;--text:#eef4ff;--muted:#8d9ab0;--good:#56d6a4;--bad:#ff7d89;--warn:#f3c76b;--accent:#8cb8ff}
-*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{padding:16px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.title{font-size:28px;font-weight:780;letter-spacing:-.03em}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.5}.badge{padding:7px 11px;border-radius:999px;border:1px solid #2d5e4d;background:#10251e;color:var(--good);font-size:12px;font-weight:750}.badge.warn{border-color:#5c4d29;background:#251e0e;color:var(--warn)}.badge.bad{border-color:#65313a;background:#261116;color:var(--bad)}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.label{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:22px;font-weight:780;margin:6px 0;overflow:hidden;text-overflow:ellipsis}.two{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:10px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.chart{height:390px}.chart.smallchart{height:315px}.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.55}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#0f1520;color:var(--muted);z-index:2}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:6px 0;border-bottom:1px solid #1c2637}.empty{border:1px dashed #2b374c;border-radius:13px;padding:30px 14px;text-align:center;color:var(--muted)}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.two,.twoequal{grid-template-columns:1fr}.chart{height:350px}}@media(max-width:560px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.value{font-size:19px}.chart{height:320px}}
+:root{--bg:#070a10;--panel:#0f1520;--line:#253047;--text:#eef4ff;--muted:#8d9ab0;--good:#56d6a4;--bad:#ff7d89;--warn:#f3c76b;--accent:#8cb8ff}*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{padding:16px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.title{font-size:28px;font-weight:780;letter-spacing:-.03em}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.5}.badge{padding:7px 11px;border-radius:999px;border:1px solid #2d5e4d;background:#10251e;color:var(--good);font-size:12px;font-weight:750}.badge.warn{border-color:#5c4d29;background:#251e0e;color:var(--warn)}.badge.bad{border-color:#65313a;background:#261116;color:var(--bad)}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.label{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:22px;font-weight:780;margin:6px 0;overflow:hidden;text-overflow:ellipsis}.two{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:10px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.chart{height:390px}.chart.smallchart{height:315px}.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.55}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#0f1520;color:var(--muted);z-index:2}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:6px 0;border-bottom:1px solid #1c2637}.empty{border:1px dashed #2b374c;border-radius:13px;padding:30px 14px;text-align:center;color:var(--muted)}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.two,.twoequal{grid-template-columns:1fr}.chart{height:350px}}@media(max-width:560px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.value{font-size:19px}.chart{height:320px}}
 </style></head>
 <body><div class="wrap">
-<div class="top"><div><div class="title">Intraday Live Monitor</div><div class="muted">Free IEX · backend target every 10 minutes · display auto-refresh every 60 seconds · research only</div></div><div id="health" class="badge warn">SETUP</div></div>
+<div class="top"><div><div class="title">Intraday Realtime Monitor</div><div class="muted">Alpaca IEX WebSocket · target 1–2s live updates · automatic 10-minute JSON fallback · research only</div></div><div id="health" class="badge warn">CONNECTING</div></div>
 <div id="cards" class="grid"></div>
 <div class="two">
   <div class="card"><div class="label">Projected MAIN-B intraday equity</div><div id="equityChart" class="chart"></div></div>
-  <div class="card"><div class="label">Current reference</div><div id="reference"></div><div class="note" style="margin-top:10px">盘中页只做监控。Official EOD 仍由 Massive Basic 在完整收盘数据可用后写入正式 OOS 账本；这里不会修改 MAIN-B、Beta Hedge、Sector Exposure 或任何正式交易状态。</div></div>
+  <div class="card"><div class="label">Current reference</div><div id="reference"></div><div class="note" style="margin-top:10px">Realtime 页只做监控。Official EOD 仍由 Massive Basic 写入正式 Forward OOS；WebSocket 层不会修改 MAIN-B、Beta Hedge、Sector Exposure 或正式交易状态。</div></div>
 </div>
 <div class="twoequal">
   <div class="card"><div class="label">MAIN-B vs SPY / QQQ · intraday</div><div id="returnChart" class="chart smallchart"></div></div>
@@ -21,7 +21,7 @@
 </div>
 <div class="twoequal">
   <div class="card"><div class="label">Projected session positions</div><div id="positions" class="tablewrap"></div></div>
-  <div class="card"><div class="label">Recent 10-minute snapshots</div><div id="historyTable" class="tablewrap"></div></div>
+  <div class="card"><div class="label">Recent live snapshots</div><div id="historyTable" class="tablewrap"></div></div>
 </div>
 <div class="card" style="margin-top:10px"><div class="label">Data / execution semantics</div><div id="protocol" class="small" style="margin-top:8px"></div></div>
 </div>
@@ -33,47 +33,64 @@ function num(v,d=3){return v==null||Number.isNaN(Number(v))?"—":Number(v).toFi
 function kv(k,v,cls=""){return '<div class="kv"><span class="muted">'+esc(k)+'</span><b class="'+cls+'">'+esc(v)+'</b></div>'}
 function table(rows,cols){if(!rows?.length)return '<div class="empty">暂无数据</div>';return '<table><thead><tr>'+cols.map(c=>'<th>'+esc(c[0])+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cols.map(c=>'<td>'+esc(c[1](r))+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
 function card(label,value,sub){return '<div class="card"><div class="label">'+esc(label)+'</div><div class="value">'+esc(value)+'</div><div class="small">'+esc(sub||"")+'</div></div>'}
-async function load(){
- try{
-  const r=await fetch('data/intraday.json?t='+Date.now(),{cache:'no-store'}); if(!r.ok)throw new Error('intraday.json '+r.status); const d=await r.json();
-  const c=d.current||{}, h=d.history||[], p=d.protocol||{};
-  const cadence=c.backend_cadence_minutes||p.backend_cadence_minutes||10;
-  const ok=c.status==='INTRADAY_MONITOR_OK'; const hb=document.getElementById('health'); hb.textContent=ok?'LIVE / IEX':'SETUP / WAITING'; hb.className='badge '+(ok?'':'warn');
-  document.getElementById('cards').innerHTML=[
-   ['Backend',ok?cadence+' MIN':'WAITING',c.data_source||p.data_source||'Alpaca Basic / IEX'],
-   ['Market date',c.market_date||'—','NY regular session'],
-   ['Projected equity',c.projected_main_b_equity==null?'—':num(c.projected_main_b_equity,5)+'x','monitor only'],
-   ['Intraday MAIN-B',pct(c.intraday_return_vs_last_eod), 'vs last official EOD'],
-   ['SPY',pct(c.spy?.return_vs_prev_close),c.spy?.price==null?'—':'$'+num(c.spy.price,2)],
-   ['QQQ',pct(c.qqq?.return_vs_prev_close),c.qqq?.price==null?'—':'$'+num(c.qqq.price,2)],
-   ['Positions',(c.projected_main_b_positions||[]).length, 'projected after frozen open logic'],
-   ['Mark coverage',pct(c.position_mark_coverage),c.oldest_quote_age_seconds==null?'quote age —':'oldest quote '+Math.round(c.oldest_quote_age_seconds)+'s']
-  ].map(x=>card(...x)).join('');
+let ws=null,wsReady=false,retryMs=1000,heartbeat=null,lastMode='fallback';
+const qs=new URLSearchParams(location.search);const qws=qs.get('ws');if(qws){localStorage.setItem('FROZEN_V4_REALTIME_WS',qws)}
+const wsUrl=qws||window.FROZEN_V4_REALTIME_WS||localStorage.getItem('FROZEN_V4_REALTIME_WS')||'';
 
-  if(h.length){
-   Plotly.react('equityChart',[{x:h.map(x=>x.generated_at_utc),y:h.map(x=>x.projected_main_b_equity),name:'Projected MAIN-B',type:'scatter',mode:'lines+markers'}],{...common,yaxis:{...common.yaxis,title:'Equity multiple'}},{responsive:true,displaylogo:false});
-   Plotly.react('returnChart',[
-    {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.intraday_return_vs_last_eod??null)*100),name:'MAIN-B',type:'scatter',mode:'lines+markers'},
-    {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.spy_return_vs_prev_close??null)*100),name:'SPY',type:'scatter',mode:'lines'},
-    {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.qqq_return_vs_prev_close??null)*100),name:'QQQ',type:'scatter',mode:'lines'}
-   ],{...common,yaxis:{...common.yaxis,title:'Return %',ticksuffix:'%'}},{responsive:true,displaylogo:false});
-  }else{
-   document.getElementById('equityChart').innerHTML='<div class="empty">交易时段内目标每10分钟自动积累；如果显示 WAITING，请检查 Alpaca GitHub secrets。</div>';
-   document.getElementById('returnChart').innerHTML='<div class="empty">暂无盘中快照</div>';
-  }
-  const sm=c.sector_moves||[];
-  if(sm.length)Plotly.react('sectorChart',[{x:sm.map(x=>x.symbol),y:sm.map(x=>(x.return_vs_prev_close??0)*100),type:'bar',name:'Sector ETFs'}],{...common,yaxis:{...common.yaxis,title:'Today %',ticksuffix:'%'}},{responsive:true,displaylogo:false});
-  else document.getElementById('sectorChart').innerHTML='<div class="empty">暂无行业ETF盘中数据</div>';
-
-  document.getElementById('positions').innerHTML=table(c.projected_main_b_positions||[],[
-   ['Symbol',x=>x.symbol],['Weight',x=>pct(x.target_weight)],['Price',x=>x.price==null?'—':'$'+num(x.price,2)],['vs prev',x=>pct(x.return_vs_prev_close)],['vs open',x=>pct(x.return_vs_open)],['New today',x=>x.new_today?'YES':'NO']
-  ]);
-  const rev=[...h].reverse().slice(0,120);
-  document.getElementById('historyTable').innerHTML=table(rev,[['UTC',x=>x.generated_at_utc],['Equity',x=>num(x.projected_main_b_equity,5)],['MAIN-B',x=>pct(x.intraday_return_vs_last_eod)],['SPY',x=>pct(x.spy_return_vs_prev_close)],['QQQ',x=>pct(x.qqq_return_vs_prev_close)]]);
-  const b=c.latest_beta_reference||{}, s=c.latest_sector_reference||{};
-  document.getElementById('reference').innerHTML=kv('Last official EOD',c.last_official_eod_date||'—')+kv('Official EOD equity',c.last_official_eod_equity==null?'—':num(c.last_official_eod_equity,5)+'x')+kv('Beta as-of',b.market_date||'—')+kv('Portfolio beta',num(b.portfolio_beta,3))+kv('Beta coverage',pct(b.beta_coverage))+kv('Sector as-of',s.market_date||'—')+kv('Shared sector',s.shared_sector_concentration?(s.shared_sector_etf||'YES'):'NO')+kv('Sector mapping coverage',pct(s.mapping_coverage));
-  document.getElementById('protocol').innerHTML='数据源：<b>Alpaca Basic / IEX</b>。后端目标频率：<b>'+cadence+'分钟</b>；页面每60秒检查一次最新JSON。GitHub Actions 的计划任务可能有少量排队延迟，因此“10分钟”是目标 cadence，不承诺严格逐秒。IEX是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中持仓使用 Frozen V4 开盘逻辑的内存副本做 projected session state；Beta 与 Sector regression 继续使用前一完整 EOD 参考，不用未完成盘中K线重新拟合。<br><br>最后生成：'+esc(d.generated_at_utc||'—');
- }catch(e){document.getElementById('health').textContent='WAITING';document.getElementById('health').className='badge warn';document.getElementById('cards').innerHTML=card('Setup','Alpaca keys required','Infrastructure is installed; add two GitHub secrets to activate free intraday data.');}
+function render(d,mode){
+ const c=d.current||{},h=d.history||[],p=d.protocol||{};lastMode=mode;
+ const live=(mode==='websocket'&&c.status==='REALTIME_OK'); const fallback=(mode==='fallback'&&c.status==='INTRADAY_MONITOR_OK');
+ const hb=document.getElementById('health');
+ if(live){hb.textContent='LIVE · '+(c.broadcast_interval_seconds||1.5)+'s';hb.className='badge'}
+ else if(c.status==='MARKET_CLOSED'){hb.textContent='MARKET CLOSED';hb.className='badge warn'}
+ else if(fallback){hb.textContent='10 MIN FALLBACK';hb.className='badge warn'}
+ else if(c.status==='REALTIME_ERROR'){hb.textContent='REALTIME ERROR';hb.className='badge bad'}
+ else{hb.textContent=wsUrl?'RECONNECTING':'10 MIN MODE';hb.className='badge warn'}
+ const cadence=live?((c.broadcast_interval_seconds||1.5)+' SEC'):(c.backend_cadence_minutes||p.backend_cadence_minutes||10)+' MIN';
+ document.getElementById('cards').innerHTML=[
+  ['Mode',live?'WEBSOCKET':fallback?'FALLBACK':'WAITING',c.transport||c.data_source||'Alpaca Basic / IEX'],
+  ['Update',cadence,live?'push from realtime relay':'GitHub snapshot cadence'],
+  ['Market date',c.market_date||'—','NYSE regular session'],
+  ['Projected equity',c.projected_main_b_equity==null?'—':num(c.projected_main_b_equity,5)+'x','monitor only'],
+  ['Intraday MAIN-B',pct(c.intraday_return_vs_last_eod),'vs last official EOD'],
+  ['SPY',pct(c.spy?.return_vs_prev_close),c.spy?.price==null?'—':'$'+num(c.spy.price,2)],
+  ['QQQ',pct(c.qqq?.return_vs_prev_close),c.qqq?.price==null?'—':'$'+num(c.qqq.price,2)],
+  ['Positions',(c.projected_main_b_positions||[]).length,c.oldest_quote_age_seconds==null?'quote age —':'oldest '+Math.round(c.oldest_quote_age_seconds)+'s']
+ ].map(x=>card(...x)).join('');
+ if(h.length){
+  Plotly.react('equityChart',[{x:h.map(x=>x.generated_at_utc),y:h.map(x=>x.projected_main_b_equity),name:'Projected MAIN-B',type:'scatter',mode:'lines'}],{...common,yaxis:{...common.yaxis,title:'Equity multiple'}},{responsive:true,displaylogo:false});
+  Plotly.react('returnChart',[
+   {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.intraday_return_vs_last_eod??null)*100),name:'MAIN-B',type:'scatter',mode:'lines'},
+   {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.spy_return_vs_prev_close??null)*100),name:'SPY',type:'scatter',mode:'lines'},
+   {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.qqq_return_vs_prev_close??null)*100),name:'QQQ',type:'scatter',mode:'lines'}
+  ],{...common,yaxis:{...common.yaxis,title:'Return %',ticksuffix:'%'}},{responsive:true,displaylogo:false});
+ }else{
+  document.getElementById('equityChart').innerHTML='<div class="empty">等待盘中实时数据</div>';
+  document.getElementById('returnChart').innerHTML='<div class="empty">暂无盘中快照</div>';
+ }
+ const sm=c.sector_moves||[];
+ if(sm.length)Plotly.react('sectorChart',[{x:sm.map(x=>x.symbol),y:sm.map(x=>(x.return_vs_prev_close??0)*100),type:'bar',name:'Sector ETFs'}],{...common,yaxis:{...common.yaxis,title:'Today %',ticksuffix:'%'}},{responsive:true,displaylogo:false});
+ else document.getElementById('sectorChart').innerHTML='<div class="empty">暂无行业ETF盘中数据</div>';
+ document.getElementById('positions').innerHTML=table(c.projected_main_b_positions||[],[
+  ['Symbol',x=>x.symbol],['Weight',x=>pct(x.target_weight)],['Price',x=>x.price==null?'—':'$'+num(x.price,2)],['vs prev',x=>pct(x.return_vs_prev_close)],['vs open',x=>pct(x.return_vs_open)],['New today',x=>x.new_today?'YES':'NO']
+ ]);
+ const rev=[...h].reverse().slice(0,150);
+ document.getElementById('historyTable').innerHTML=table(rev,[['UTC',x=>x.generated_at_utc],['Equity',x=>num(x.projected_main_b_equity,5)],['MAIN-B',x=>pct(x.intraday_return_vs_last_eod)],['SPY',x=>pct(x.spy_return_vs_prev_close)],['QQQ',x=>pct(x.qqq_return_vs_prev_close)]]);
+ const b=c.latest_beta_reference||{},s=c.latest_sector_reference||{};
+ document.getElementById('reference').innerHTML=kv('Last official EOD',c.last_official_eod_date||'—')+kv('Official EOD equity',c.last_official_eod_equity==null?'—':num(c.last_official_eod_equity,5)+'x')+kv('Beta as-of',b.market_date||'—')+kv('Portfolio beta',num(b.portfolio_beta,3))+kv('Beta coverage',pct(b.beta_coverage))+kv('Sector as-of',s.market_date||'—')+kv('Shared sector',s.shared_sector_concentration?(s.shared_sector_etf||'YES'):'NO')+kv('Sector mapping coverage',pct(s.mapping_coverage));
+ document.getElementById('protocol').innerHTML='当前模式：<b>'+esc(live?'WebSocket realtime':'10-minute fallback')+'</b>。实时模式由 Alpaca Basic / IEX trade stream 驱动，目标约1–2秒刷新；断线会指数退避重连，并自动退回 GitHub JSON。IEX 是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中状态只在内存里投影 Frozen V4 开盘逻辑；Official EOD、Beta 与 Sector 的正式参考仍由 Massive Basic 完整日线决定。<br><br>最后更新：'+esc(c.generated_at_utc||d.generated_at_utc||'—');
 }
-load();setInterval(load,60000);
+
+async function loadFallback(){
+ try{const r=await fetch('data/intraday.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('intraday.json '+r.status);const d=await r.json();if(!wsReady)render(d,'fallback')}catch(e){if(!wsReady){render({current:{status:'WAITING'},history:[]},'fallback')}}
+}
+function connectRealtime(){
+ if(!wsUrl){loadFallback();return}
+ try{ws=new WebSocket(wsUrl)}catch(e){setTimeout(connectRealtime,retryMs);return}
+ ws.onopen=()=>{wsReady=true;retryMs=1000;clearInterval(heartbeat);heartbeat=setInterval(()=>{try{ws.send('ping')}catch(e){}},10000)};
+ ws.onmessage=(ev)=>{try{const m=JSON.parse(ev.data);if(m.type==='snapshot'){render({current:m.current||{},history:m.history||[],protocol:{transport:'Alpaca IEX WebSocket'}},'websocket')}}catch(e){}};
+ ws.onerror=()=>{};
+ ws.onclose=()=>{wsReady=false;clearInterval(heartbeat);loadFallback();setTimeout(connectRealtime,retryMs);retryMs=Math.min(retryMs*2,30000)};
+}
+loadFallback();connectRealtime();setInterval(loadFallback,60000);
 </script></body></html>
