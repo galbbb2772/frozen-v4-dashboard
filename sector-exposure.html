@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Frozen V4 · Sector Exposure Shadow</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{--bg:#070a10;--panel:#0f1520;--line:#253047;--text:#eef4ff;--muted:#8d9ab0;--good:#56d6a4;--bad:#ff7d89;--warn:#f3c76b;--accent:#8cb8ff}
+*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{padding:16px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.title{font-size:28px;font-weight:780;letter-spacing:-.03em}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.5}.badge{padding:7px 11px;border-radius:999px;border:1px solid #2d5e4d;background:#10251e;color:var(--good);font-size:12px;font-weight:750}.badge.warn{border-color:#5c4d29;background:#251e0e;color:var(--warn)}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.label{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:22px;font-weight:780;margin:6px 0;overflow:hidden;text-overflow:ellipsis}.two{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:10px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.chart{height:390px}.chart.smallchart{height:310px}.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.55}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#0f1520;color:var(--muted);z-index:2}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:6px 0;border-bottom:1px solid #1c2637}.empty{border:1px dashed #2b374c;border-radius:13px;padding:30px 14px;text-align:center;color:var(--muted)}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.two,.twoequal{grid-template-columns:1fr}.chart{height:350px}}@media(max-width:560px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.value{font-size:19px}.chart{height:320px}}
+</style></head>
+<body><div class="wrap">
+<div class="top"><div><div class="title">Sector Exposure Shadow</div><div class="muted">Forward-only · sector residual concentration diagnostic · research only</div></div><div id="health" class="badge">LOADING</div></div>
+<div class="grid" id="cards"></div>
+<div class="two">
+  <div class="card"><div class="label">MAIN-B Forward OOS equity · sector concentration events</div><div id="equity" class="chart"></div></div>
+  <div class="card"><div class="label">Current diagnostic</div><div id="snapshot" style="margin-top:8px"></div><div class="note" style="margin-top:10px">Sector Shadow 只记录风险结构，不下单、不改变 MAIN-B / Beta Hedge B / COMBO_MIN50。事件必须在冻结日之后才算 Pure OOS。</div></div>
+</div>
+<div class="twoequal">
+  <div class="card"><div class="label">Concentration / theoretical sector hedge notional</div><div id="stateChart" class="chart smallchart"></div></div>
+  <div class="card"><div class="label">Mapping coverage / gross exposure</div><div id="coverageChart" class="chart smallchart"></div></div>
+</div>
+<div class="twoequal">
+  <div class="card"><div class="label">Position mapping quality · residual R²</div><div id="r2Chart" class="chart smallchart"></div></div>
+  <div class="card"><div class="label">Forward OOS evidence</div><div id="evidence"></div></div>
+</div>
+<div class="twoequal">
+  <div class="card"><div class="label">Current position mapping</div><div id="currentTable" class="tablewrap"></div></div>
+  <div class="card"><div class="label">Concentration event log</div><div id="eventTable" class="tablewrap"></div></div>
+</div>
+<div class="card" style="margin-top:10px"><div class="label">Mapping history</div><div id="historyTable" class="tablewrap"></div></div>
+<div class="card" style="margin-top:10px"><div class="label">Protocol</div><div id="protocol" class="small" style="margin-top:8px"></div></div>
+</div>
+<script>
+const common={paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)",font:{color:"#cdd7e8"},margin:{l:54,r:18,t:24,b:44},hovermode:"x unified",legend:{orientation:"h",y:1.08,x:0},xaxis:{gridcolor:"#172034"},yaxis:{gridcolor:"#172034"}};
+function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}
+function pct(v,d=2){return v==null||Number.isNaN(Number(v))?"—":(Number(v)*100).toFixed(d)+"%"}
+function num(v,d=3){return v==null||Number.isNaN(Number(v))?"—":Number(v).toFixed(d)}
+function kv(k,v,c=""){return '<div class="kv"><span class="muted">'+esc(k)+'</span><b class="'+c+'">'+esc(v)+'</b></div>'}
+function table(rows,cols){if(!rows?.length)return '<div class="empty">暂无数据</div>';return '<table><thead><tr>'+cols.map(c=>'<th>'+esc(c[0])+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cols.map(c=>'<td>'+esc(c[1](r))+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+(async()=>{
+ const d=await fetch('data/sector_exposure.json?ts='+Date.now()).then(r=>{if(!r.ok)throw new Error('sector_exposure.json '+r.status);return r.json()});
+ const c=d.current||{}, s=d.summary||{}, h=d.health||{}, hist=d.history||[], ph=d.position_history||[], events=d.concentration_events||[], curve=d.main_b_curve||{};
+ const hb=document.getElementById('health');hb.textContent=(h.status||'WARN')+' · '+(h.aligned_with_eod?'EOD ALIGNED':'DATE CHECK');hb.className='badge '+(h.status==='OK'?'':'warn');
+ document.getElementById('cards').innerHTML=[
+  ['Market date',c.market_date||'—','Freeze '+(s.freeze_date||'2026-09-24')],
+  ['Pure OOS rows',s.pure_oos_rows??0,(s.first_pure_oos_date||'not started')+' → '+(s.last_pure_oos_date||'—')],
+  ['Open positions',c.open_position_count??0,'Gross '+pct(c.gross_target_exposure)],
+  ['Concentration',c.shared_sector_concentration?'YES':'NO',c.shared_sector_etf||'No shared sector'],
+  ['Diagnostic short',pct(c.diagnostic_candidate_short_sector_nav),'Informational only'],
+  ['Mapping coverage',pct(c.mapping_coverage),'health threshold 80%'],
+  ['OOS event days',s.concentration_days_pure_oos??0,'rate '+pct(s.concentration_rate_pure_oos)],
+  ['Shadow version','V1','research-only']
+ ].map(x=>'<div class="card"><div class="label">'+esc(x[0])+'</div><div class="value">'+esc(x[1])+'</div><div class="small">'+esc(x[2])+'</div></div>').join('');
+ document.getElementById('snapshot').innerHTML=
+  kv('Status',c.status||'—',String(c.status||'').includes('OK')?'good':'warn')+
+  kv('Market date',c.market_date||'—')+kv('Shared sector',c.shared_sector_name||'NONE',c.shared_sector_concentration?'warn':'good')+
+  kv('Sector ETF',c.shared_sector_etf||'—')+kv('Candidate hedge',pct(c.diagnostic_candidate_short_sector_nav))+
+  kv('Mapping coverage',pct(c.mapping_coverage))+kv('Strict Pure OOS',c.strict_pure_oos?'YES':'NO',c.strict_pure_oos?'good':'warn');
+ const eventX=events.map(x=>x.market_date), eventY=events.map(x=>x.model_equity);
+ const eqTr=[{x:curve.date||[],y:curve.equity||[],name:'MAIN-B',type:'scatter',mode:'lines'}];
+ if(eventX.length)eqTr.push({x:eventX,y:eventY,name:'Sector concentration',type:'scatter',mode:'markers',marker:{size:10,symbol:'diamond'}});
+ if((curve.date||[]).length)Plotly.newPlot('equity',eqTr,{...common,yaxis:{...common.yaxis,title:'Equity multiple'}},{responsive:true,displaylogo:false});else document.getElementById('equity').innerHTML='<div class="empty">等待 MAIN-B Forward OOS 曲线</div>';
+ if(hist.length)Plotly.newPlot('stateChart',[
+  {x:hist.map(x=>x.market_date),y:hist.map(x=>x.diagnostic_candidate_short_sector_nav??0),name:'Diagnostic short NAV',type:'scatter',mode:'lines+markers'},
+  {x:hist.map(x=>x.market_date),y:hist.map(x=>x.shared_sector_concentration?1:0),name:'Concentration flag',type:'scatter',mode:'lines',line:{shape:'hv'},yaxis:'y2'}
+ ],{...common,yaxis:{...common.yaxis,title:'NAV'},yaxis2:{title:'Flag',overlaying:'y',side:'right',range:[-.05,1.05],gridcolor:'rgba(0,0,0,0)'}},{responsive:true,displaylogo:false});else document.getElementById('stateChart').innerHTML='<div class="empty">等待历史数据</div>';
+ if(hist.length)Plotly.newPlot('coverageChart',[
+  {x:hist.map(x=>x.market_date),y:hist.map(x=>(x.mapping_coverage??0)*100),name:'Mapping coverage %',type:'scatter',mode:'lines+markers'},
+  {x:hist.map(x=>x.market_date),y:hist.map(x=>(x.gross_target_exposure??0)*100),name:'Gross exposure %',type:'scatter',mode:'lines+markers'}
+ ],{...common,yaxis:{...common.yaxis,title:'Percent',ticksuffix:'%'}},{responsive:true,displaylogo:false});else document.getElementById('coverageChart').innerHTML='<div class="empty">等待历史数据</div>';
+ if(ph.length)Plotly.newPlot('r2Chart',[{x:ph.map(x=>x.market_date),y:ph.map(x=>(x.sector_residual_r2??0)*100),text:ph.map(x=>(x.symbol||'')+' → '+(x.mapped_sector_etf||'')),name:'Residual R²',type:'scatter',mode:'markers'}],{...common,yaxis:{...common.yaxis,title:'Residual R² %',ticksuffix:'%'}},{responsive:true,displaylogo:false});else document.getElementById('r2Chart').innerHTML='<div class="empty">等待 mapping history</div>';
+ document.getElementById('evidence').innerHTML=
+  kv('Pure OOS rows',s.pure_oos_rows??0)+kv('Concentration days',s.concentration_days_pure_oos??0)+kv('Concentration rate',pct(s.concentration_rate_pure_oos))+
+  kv('Mean mapping coverage',pct(s.mean_mapping_coverage_pure_oos))+kv('Mean hedge NAV on events',pct(s.mean_candidate_short_nav_on_events))+
+  kv('Next-session return · event',s.next_session_event_n?pct(s.next_session_return_after_concentration):'insufficient')+
+  kv('Next-session return · control',s.next_session_control_n?pct(s.next_session_return_without_concentration):'insufficient')+
+  '<div class="note" style="margin-top:10px">'+esc(s.evidence_note||'Forward OOS descriptive evidence only.')+'</div>';
+ document.getElementById('currentTable').innerHTML=table(d.current_positions||[],[
+  ['Symbol',r=>r.symbol],['Weight',r=>pct(r.weight)],['Sector',r=>(r.mapped_sector_etf||'—')+' '+(r.mapped_sector_name||'')],['SPY β',r=>num(r.stock_spy_beta)],['Residual β',r=>num(r.sector_residual_beta)],['Residual R²',r=>pct(r.sector_residual_r2)],['R² margin',r=>pct(r.r2_margin)]
+ ]);
+ document.getElementById('eventTable').innerHTML=table(events,[['Date',r=>r.market_date],['Sector',r=>(r.shared_sector_etf||'—')+' '+(r.shared_sector_name||'')],['Short NAV',r=>pct(r.diagnostic_candidate_short_sector_nav)],['Coverage',r=>pct(r.mapping_coverage)],['MAIN-B equity',r=>num(r.model_equity,5)]]);
+ document.getElementById('historyTable').innerHTML=table([...ph].reverse().slice(0,250),[
+  ['Date',r=>r.market_date],['Symbol',r=>r.symbol],['Weight',r=>pct(r.weight)],['Mapped sector',r=>(r.mapped_sector_etf||'—')+' '+(r.mapped_sector_name||'')],['SPY β',r=>num(r.stock_spy_beta)],['Residual β',r=>num(r.sector_residual_beta)],['R²',r=>pct(r.sector_residual_r2)],['2nd R²',r=>pct(r.second_best_r2)],['Margin',r=>pct(r.r2_margin)],['Obs',r=>r.observations??'—']
+ ]);
+ const p=d.protocol||{}, prm=p.parameters||{};document.getElementById('protocol').innerHTML=esc('Freeze '+(p.freeze_date||'—')+' · '+(p.shadow_version||'—')+' · '+(p.execution||'—')+' · window '+(prm.window??'—')+' / min '+(prm.min_periods??'—')+' · stock return clip '+(prm.stock_return_clip??'—')+' · concentration rule: '+(prm.concentration_rule||'—'));
+})().catch(e=>{document.body.insertAdjacentHTML('beforeend','<div style="padding:20px;color:#ff7d89">Sector dashboard error: '+esc(e)+'</div>')});
+</script></body></html>
