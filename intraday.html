@@ -9,7 +9,7 @@
 *{box-sizing:border-box}body{margin:0;background:transparent;color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{padding:16px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.title{font-size:28px;font-weight:780;letter-spacing:-.03em}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.5}.badge{padding:7px 11px;border-radius:999px;border:1px solid #2d5e4d;background:#10251e;color:var(--good);font-size:12px;font-weight:750}.badge.warn{border-color:#5c4d29;background:#251e0e;color:var(--warn)}.badge.bad{border-color:#65313a;background:#261116;color:var(--bad)}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.label{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:22px;font-weight:780;margin:6px 0;overflow:hidden;text-overflow:ellipsis}.two{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:10px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.chart{height:390px}.chart.smallchart{height:315px}.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.55}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#0f1520;color:var(--muted);z-index:2}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:6px 0;border-bottom:1px solid #1c2637}.empty{border:1px dashed #2b374c;border-radius:13px;padding:30px 14px;text-align:center;color:var(--muted)}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.two,.twoequal{grid-template-columns:1fr}.chart{height:350px}}@media(max-width:560px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.value{font-size:19px}.chart{height:320px}}
 </style></head>
 <body><div class="wrap">
-<div class="top"><div><div class="title">Intraday Live Monitor</div><div class="muted">Free IEX · backend target every 5 minutes · display auto-refresh every 60 seconds · research only</div></div><div id="health" class="badge warn">SETUP</div></div>
+<div class="top"><div><div class="title">Intraday Live Monitor</div><div class="muted">Free IEX · backend target every 10 minutes · display auto-refresh every 60 seconds · research only</div></div><div id="health" class="badge warn">SETUP</div></div>
 <div id="cards" class="grid"></div>
 <div class="two">
   <div class="card"><div class="label">Projected MAIN-B intraday equity</div><div id="equityChart" class="chart"></div></div>
@@ -21,7 +21,7 @@
 </div>
 <div class="twoequal">
   <div class="card"><div class="label">Projected session positions</div><div id="positions" class="tablewrap"></div></div>
-  <div class="card"><div class="label">Recent 5-minute snapshots</div><div id="historyTable" class="tablewrap"></div></div>
+  <div class="card"><div class="label">Recent 10-minute snapshots</div><div id="historyTable" class="tablewrap"></div></div>
 </div>
 <div class="card" style="margin-top:10px"><div class="label">Data / execution semantics</div><div id="protocol" class="small" style="margin-top:8px"></div></div>
 </div>
@@ -37,7 +37,7 @@ async function load(){
  try{
   const r=await fetch('data/intraday.json?t='+Date.now(),{cache:'no-store'}); if(!r.ok)throw new Error('intraday.json '+r.status); const d=await r.json();
   const c=d.current||{}, h=d.history||[], p=d.protocol||{};
-  const cadence=c.backend_cadence_minutes||p.backend_cadence_minutes||5;
+  const cadence=c.backend_cadence_minutes||p.backend_cadence_minutes||10;
   const ok=c.status==='INTRADAY_MONITOR_OK'; const hb=document.getElementById('health'); hb.textContent=ok?'LIVE / IEX':'SETUP / WAITING'; hb.className='badge '+(ok?'':'warn');
   document.getElementById('cards').innerHTML=[
    ['Backend',ok?cadence+' MIN':'WAITING',c.data_source||p.data_source||'Alpaca Basic / IEX'],
@@ -58,7 +58,7 @@ async function load(){
     {x:h.map(x=>x.generated_at_utc),y:h.map(x=>(x.qqq_return_vs_prev_close??null)*100),name:'QQQ',type:'scatter',mode:'lines'}
    ],{...common,yaxis:{...common.yaxis,title:'Return %',ticksuffix:'%'}},{responsive:true,displaylogo:false});
   }else{
-   document.getElementById('equityChart').innerHTML='<div class="empty">交易时段内目标每5分钟自动积累；如果显示 WAITING，请检查 Alpaca GitHub secrets。</div>';
+   document.getElementById('equityChart').innerHTML='<div class="empty">交易时段内目标每10分钟自动积累；如果显示 WAITING，请检查 Alpaca GitHub secrets。</div>';
    document.getElementById('returnChart').innerHTML='<div class="empty">暂无盘中快照</div>';
   }
   const sm=c.sector_moves||[];
@@ -72,7 +72,7 @@ async function load(){
   document.getElementById('historyTable').innerHTML=table(rev,[['UTC',x=>x.generated_at_utc],['Equity',x=>num(x.projected_main_b_equity,5)],['MAIN-B',x=>pct(x.intraday_return_vs_last_eod)],['SPY',x=>pct(x.spy_return_vs_prev_close)],['QQQ',x=>pct(x.qqq_return_vs_prev_close)]]);
   const b=c.latest_beta_reference||{}, s=c.latest_sector_reference||{};
   document.getElementById('reference').innerHTML=kv('Last official EOD',c.last_official_eod_date||'—')+kv('Official EOD equity',c.last_official_eod_equity==null?'—':num(c.last_official_eod_equity,5)+'x')+kv('Beta as-of',b.market_date||'—')+kv('Portfolio beta',num(b.portfolio_beta,3))+kv('Beta coverage',pct(b.beta_coverage))+kv('Sector as-of',s.market_date||'—')+kv('Shared sector',s.shared_sector_concentration?(s.shared_sector_etf||'YES'):'NO')+kv('Sector mapping coverage',pct(s.mapping_coverage));
-  document.getElementById('protocol').innerHTML='数据源：<b>Alpaca Basic / IEX</b>。后端目标频率：<b>'+cadence+'分钟</b>；页面每60秒检查一次最新JSON。GitHub Actions 的计划任务可能有少量排队延迟，因此“5分钟”是目标 cadence，不承诺严格逐秒。IEX是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中持仓使用 Frozen V4 开盘逻辑的内存副本做 projected session state；Beta 与 Sector regression 继续使用前一完整 EOD 参考，不用未完成盘中K线重新拟合。<br><br>最后生成：'+esc(d.generated_at_utc||'—');
+  document.getElementById('protocol').innerHTML='数据源：<b>Alpaca Basic / IEX</b>。后端目标频率：<b>'+cadence+'分钟</b>；页面每60秒检查一次最新JSON。GitHub Actions 的计划任务可能有少量排队延迟，因此“10分钟”是目标 cadence，不承诺严格逐秒。IEX是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中持仓使用 Frozen V4 开盘逻辑的内存副本做 projected session state；Beta 与 Sector regression 继续使用前一完整 EOD 参考，不用未完成盘中K线重新拟合。<br><br>最后生成：'+esc(d.generated_at_utc||'—');
  }catch(e){document.getElementById('health').textContent='WAITING';document.getElementById('health').className='badge warn';document.getElementById('cards').innerHTML=card('Setup','Alpaca keys required','Infrastructure is installed; add two GitHub secrets to activate free intraday data.');}
 }
 load();setInterval(load,60000);
