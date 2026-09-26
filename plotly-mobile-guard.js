@@ -59,19 +59,36 @@
     return originalReact(gd, data, safeLayout, normalizeConfig(config));
   };
 
-  function resetAllPlots() {
+  function isVisiblePlot(el) {
+    if (!el || !el.isConnected) return false;
+    const rect = el.getBoundingClientRect();
+    const style = getComputedStyle(el);
+    return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
+  }
+
+  function resetVisiblePlots() {
     document.querySelectorAll('.js-plotly-plot').forEach((el) => {
+      if (!isVisiblePlot(el)) return;
       const defs = el.__frozenAxisDefaults || {};
       const patch = {};
       Object.entries(defs).forEach(([axis, state]) => {
         if (state.range) {
-          patch[`${axis}.range`] = state.range;
+          patch[`${axis}.range`] = [...state.range];
           patch[`${axis}.autorange`] = false;
         } else {
           patch[`${axis}.autorange`] = true;
         }
       });
-      if (Object.keys(patch).length) Plotly.relayout(el, patch).catch(() => {});
+      const finish = () => {
+        requestAnimationFrame(() => {
+          try { Plotly.Plots.resize(el); } catch (_) {}
+        });
+      };
+      if (Object.keys(patch).length) {
+        Promise.resolve(Plotly.relayout(el, patch)).then(finish).catch(finish);
+      } else {
+        finish();
+      }
     });
   }
 
@@ -97,8 +114,8 @@
     btn.id = 'frozenPlotReset';
     btn.type = 'button';
     btn.textContent = '↺ 重置图表';
-    btn.title = TOUCH_UI ? '手机端已锁定误触缩放；点此恢复所有图表视图' : '恢复所有图表的默认视图';
-    btn.addEventListener('click', resetAllPlots);
+    btn.title = TOUCH_UI ? '只恢复当前可见图表，隐藏标签页不会被改动' : '恢复当前可见图表的默认视图';
+    btn.addEventListener('click', resetVisiblePlots);
     document.body.appendChild(btn);
     loadBo50ExactOverlay();
   }
