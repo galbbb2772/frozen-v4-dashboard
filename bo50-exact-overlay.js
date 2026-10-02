@@ -89,6 +89,70 @@
     return {mode:"SHADOW", detail:"SAT20 shadow lane", status:"FORWARD OOS", statusDetail:"Separate ledger"};
   }
 
+  function ensureLanePositionPanels() {
+    const oos = document.getElementById("oos");
+    if (!oos || document.getElementById("lanePositionPanels")) return;
+    const section = document.createElement("div");
+    section.id = "lanePositionPanels";
+    section.className = "section twoequal";
+    section.innerHTML = `
+      <div class="card">
+        <div class="label" id="laneCurrentTitle">Selected lane · current positions</div>
+        <div class="small" style="margin:5px 0 10px">当前仍在持有 / 等待退出的实际 Forward OOS 仓位。</div>
+        <div id="laneCurrentPositions" class="tablewrap"></div>
+      </div>
+      <div class="card">
+        <div class="label" id="laneHistoryTitle">Selected lane · entry history</div>
+        <div class="small" style="margin:5px 0 10px">该 Lane 自 Forward OOS 启动以来进入过的全部仓位，包含当前与已退出记录。</div>
+        <div id="lanePositionHistory" class="tablewrap"></div>
+      </div>`;
+    oos.appendChild(section);
+  }
+
+  function miniTable(rows, columns) {
+    if (!rows?.length) return '<div class="empty">暂无记录</div>';
+    return '<table><thead><tr>' + columns.map(c => '<th>' + esc(c[0]) + '</th>').join('') + '</tr></thead><tbody>' +
+      rows.map(r => '<tr>' + columns.map(c => '<td>' + esc(c[1](r)) + '</td>').join('') + '</tr>').join('') +
+      '</tbody></table>';
+  }
+
+  function renderLanePositions(lane) {
+    if (!livePayload) return;
+    ensureLanePositionPanels();
+    const currentHost = document.getElementById("laneCurrentPositions");
+    const historyHost = document.getElementById("lanePositionHistory");
+    if (!currentHost || !historyHost) return;
+
+    const current = (livePayload.current_positions || [])
+      .filter(r => r.shadow_version === lane)
+      .sort((a,b) => String(b.entry_date || "").localeCompare(String(a.entry_date || "")));
+    const history = (livePayload.all_entry_log || [])
+      .filter(r => r.shadow_version === lane)
+      .sort((a,b) => String(b.entry_date || "").localeCompare(String(a.entry_date || "")) || String(b.recorded_at_utc || "").localeCompare(String(a.recorded_at_utc || "")));
+
+    document.getElementById("laneCurrentTitle").textContent = `${lane} · CURRENT POSITIONS`;
+    document.getElementById("laneHistoryTitle").textContent = `${lane} · ENTRY HISTORY`;
+
+    currentHost.innerHTML = miniTable(current, [
+      ["Symbol", r => r.symbol || "—"],
+      ["Entry", r => r.entry_date || "—"],
+      ["Slot", r => r.slot ?? "—"],
+      ["Weight", r => pct(r.model_target_weight)],
+      ["State", r => r.status || "OPEN"]
+    ]);
+
+    historyHost.innerHTML = miniTable(history, [
+      ["Symbol", r => r.symbol || "—"],
+      ["Entry", r => r.entry_date || "—"],
+      ["Slot", r => r.slot ?? "—"],
+      ["Weight", r => pct(r.model_target_weight)],
+      ["State", r => r.status || "—"],
+      ["Exit", r => r.exit_date || "—"],
+      ["Return", r => pct(r.model_net_return)],
+      ["Reason", r => r.exit_reason || "—"]
+    ]);
+  }
+
   function renderTopForLane(lane) {
     if (!livePayload) return;
     const host = document.getElementById("topCards");
@@ -120,6 +184,7 @@
       '<div class="card"><div class="label">' + esc(x[0]) + '</div><div class="value">' + esc(x[1]) + '</div><div class="small">' + esc(x[2]) + '</div></div>'
     ).join("");
     host.dataset.selectedLane = lane;
+    renderLanePositions(lane);
   }
 
   async function loadLaneSummary() {
@@ -127,7 +192,8 @@
       const r = await fetch("data/live.json?lane_ui=" + Date.now(), {cache:"no-store"});
       if (!r.ok) throw new Error("HTTP " + r.status);
       livePayload = await r.json();
-      renderTopForLane("MAIN-B");
+      const activeLane = document.querySelector('.laneBtn.active[data-lane]')?.dataset.lane || "MAIN-B";
+      renderTopForLane(activeLane);
     } catch (e) {
       console.warn("Lane summary sync unavailable", e);
     }
