@@ -6,11 +6,13 @@
 <title>Late Survival Shadow · Frozen V4</title>
 <style>
 :root{--bg:#070a10;--panel:#101722;--line:#263248;--text:#edf4ff;--muted:#8e9db2;--good:#57d69f;--bad:#ff7d89;--warn:#f0c96c;--accent:#8db8ff}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#070a10,#0b111b);color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1180px;margin:auto;padding:22px 16px 55px}.top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}h1{font-size:30px;margin:5px 0 7px}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.55}.badge{border:1px solid #5b4b25;background:#241d0d;color:var(--warn);padding:8px 11px;border-radius:999px;font-size:12px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.card{border:1px solid var(--line);background:linear-gradient(180deg,#121927,#0e141f);border-radius:15px;padding:15px}.label{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.value{font-size:25px;font-weight:800;margin:6px 0}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.accent{color:var(--accent)}.section{margin-top:13px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.note{border-left:3px solid #496c9c;background:#0b111b;border-radius:0 10px 10px 0;padding:11px 12px;line-height:1.65;color:#aeb9ca}.kv{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:7px 0;border-bottom:1px solid #1f2a3d}.kv:last-child{border-bottom:0}.tablewrap{overflow:auto;max-height:520px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 8px;border-bottom:1px solid #202b3e;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--muted)}.empty{padding:32px;text-align:center;color:var(--muted);border:1px dashed #2d394f;border-radius:12px}.barrow{display:grid;grid-template-columns:65px 1fr 70px;gap:10px;align-items:center;margin:9px 0}.track{height:10px;border-radius:999px;background:#1d2736;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:999px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding:14px 11px 45px}h1{font-size:25px}}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#070a10,#0b111b);color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1180px;margin:auto;padding:22px 16px 55px}.top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}h1{font-size:30px;margin:5px 0 7px}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.55}.badge{border:1px solid #5b4b25;background:#241d0d;color:var(--warn);padding:8px 11px;border-radius:999px;font-size:12px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.card{border:1px solid var(--line);background:linear-gradient(180deg,#121927,#0e141f);border-radius:15px;padding:15px}.label{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.value{font-size:25px;font-weight:800;margin:6px 0}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.accent{color:var(--accent)}.section{margin-top:13px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.note{border-left:3px solid #496c9c;background:#0b111b;border-radius:0 10px 10px 0;padding:11px 12px;line-height:1.65;color:#aeb9ca}.kv{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:7px 0;border-bottom:1px solid #1f2a3d}.kv:last-child{border-bottom:0}.tablewrap{overflow:auto;max-height:520px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 8px;border-bottom:1px solid #202b3e;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--muted)}.empty{padding:32px;text-align:center;color:var(--muted);border:1px dashed #2d394f;border-radius:12px}.barrow{display:grid;grid-template-columns:65px 1fr 70px;gap:10px;align-items:center;margin:9px 0}.track{height:10px;border-radius:999px;background:#1d2736;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:999px}.armtabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 4px}.armtabs button{border:1px solid #2a354b;background:#111826;color:#cdd7e8;padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700}.armtabs button.on{background:#1b2c49;border-color:#557bc0;color:white}.armfocus{display:none}.armfocus.on{display:block}.armgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.cta{display:inline-block;margin-top:10px;padding:8px 11px;border:1px solid #486a9c;border-radius:9px;color:#a9c7ff;text-decoration:none}.cta:hover{background:#122039}.armname{font-size:20px;font-weight:800;margin:5px 0}.armrule{color:#b9c5d6;line-height:1.55}@media(max-width:900px){.armgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:520px){.grid,.armgrid{grid-template-columns:1fr}.wrap{padding:14px 11px 45px}h1{font-size:25px}}
 </style>
 </head>
 <body><div class="wrap">
 <div class="top"><div><div class="label">Frozen V4 · Forward OOS Shadow</div><h1>Late Survival Shadow V1</h1><div class="muted">观察“活过20个完整 post-entry 交易日”后的晚期存活信息。只观察，不影响 MAIN-B。</div></div><div id="badge" class="badge">LOADING</div></div>
+<div class="armtabs" id="armTabs"><button data-arm="overview" class="on">Overview</button><button data-arm="50">Late 50</button><button data-arm="67">Late 67</button></div>
+<div id="armFocus" class="armfocus"></div>
 <div class="grid">
   <div class="card"><div class="label">Mode</div><div id="mode" class="value">—</div><div class="small">execution effect 必须保持 NONE</div></div>
   <div class="card"><div class="label">Post-freeze MAIN-B</div><div id="postFreeze" class="value">—</div><div class="small">只统计 2026-10-03 之后的新信号</div></div>
@@ -31,8 +33,26 @@
 <script>
 const f=(x,d=2)=>x==null?'—':Number(x).toFixed(d);const pct=x=>x==null?'—':f(100*Number(x),1)+'%';
 function kv(k,v,c=''){return `<div class="kv"><span class="small">${k}</span><b class="${c}">${v}</b></div>`}
+let armBacktest=null;
+function selectArm(arm){
+  document.querySelectorAll('#armTabs button').forEach(b=>b.classList.toggle('on',b.dataset.arm===arm));
+  const host=document.getElementById('armFocus');
+  if(arm==='overview'){host.className='armfocus';host.innerHTML='';history.replaceState(null,'',location.pathname);return;}
+  const id=arm==='50'?'LATE-SURVIVAL-50':'LATE-SURVIVAL-67';
+  const s=armBacktest?.strategies?.[id];
+  if(!s){host.className='armfocus on';host.innerHTML='<div class="empty">Historical arm metrics unavailable.</div>';return;}
+  const initial=arm==='50'?'50%':'66.7%';
+  const matched=arm==='50'?'26.34%':'32.17%';
+  host.className='armfocus on';
+  host.innerHTML=`<div class="card"><div class="label">Focused arm</div><div class="armname">${id}</div><div class="armrule">初始使用正常 MAIN-B 目标仓位的 <b>${initial}</b>；若交易完整存活20个 post-entry session 且 Day1 quarantine 未触发，则在下一有效开盘补到 <b>100%</b>。选股、止损、退出均保持 MAIN-B 不变。</div><div class="armgrid section"><div><div class="label">Historical CAGR</div><div class="value">${f(s.cagr_pct)}%</div></div><div><div class="label">Max DD</div><div class="value">${f(s.max_drawdown_pct)}%</div></div><div><div class="label">Ending multiple</div><div class="value">${f(s.ending_multiple,3)}×</div></div><div><div class="label">$100k end</div><div class="value" style="font-size:20px">$${Math.round(s.capital_100k_end).toLocaleString()}</div></div><div><div class="label">Matched-control CAGR</div><div class="value">${matched}</div></div></div><a class="cta" href="historical-backtests.html?strategy=${id}">打开 ${arm==='50'?'Late 50':'Late 67'} 完整历史回测 →</a></div>`;
+  history.replaceState(null,'',location.pathname+'?arm='+arm);
+}
 async function main(){
- const d=await fetch('data/late_survival.json?ts='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});
+ const [d,bt]=await Promise.all([
+   fetch('data/late_survival.json?ts='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}),
+   fetch('data/new_shadow_backtest.json?ts='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+ ]);
+ armBacktest=bt;
  const s=d.status||{},h=d.historical_reference||{};
  document.getElementById('badge').textContent=(s.mode||'UNKNOWN')+' · MAIN-B unchanged';
  document.getElementById('mode').textContent=s.mode||'—';document.getElementById('mode').className='value '+(s.mode==='OBSERVE_ONLY'?'good':'warn');
@@ -43,7 +63,8 @@ async function main(){
  if(!states.length) cur='<div class="empty">目前没有 freeze 后、正在等待 checkpoint 的 MAIN-B 交易。</div>';
  else cur=states.map(x=>kv((x.symbol||'')+' · '+(x.signal_date||''),`${x.post_entry_bars??'—'} / 20 bars · ${x.state||x.status||'tracking'}`)).join('');
  document.getElementById('currentState').innerHTML=cur;
- const arms=s.shadow_arms||{};document.getElementById('arms').innerHTML=Object.entries(arms).map(([k,v])=>kv(k,`${Math.round(100*(v.initial_normal_target_fraction||0))}% → ${Math.round(100*(v.eligible_fraction_after_promotion||0))}%`,'accent')).join('');
+ const arms=s.shadow_arms||{};document.getElementById('arms').innerHTML=Object.entries(arms).map(([k,v])=>`<div class="kv"><span class="small">${k}</span><span><b class="accent">${Math.round(100*(v.initial_normal_target_fraction||0))}% → ${Math.round(100*(v.eligible_fraction_after_promotion||0))}%</b> <button data-openarm="${k.endsWith('50')?'50':'67'}" style="margin-left:8px;border:1px solid #31415d;background:#111826;color:#a9c7ff;border-radius:7px;padding:3px 7px;cursor:pointer">查看</button></span></div>`).join('');
+ document.querySelectorAll('[data-openarm]').forEach(b=>b.onclick=()=>selectArm(b.dataset.openarm));
  const rt=h.survival_right_tail_rate_pct||{};const max=Math.max(...Object.values(rt).map(Number),1);document.getElementById('survivalBars').innerHTML=Object.entries(rt).map(([k,v])=>`<div class="barrow"><div class="small">${k==='baseline'?'Baseline':k+' bars'}</div><div class="track"><div class="fill" style="width:${100*Number(v)/max}%"></div></div><b>${f(v,1)}%</b></div>`).join('');
  const c=h.checkpoint20||{},b=h.baseline||{};document.getElementById('histRef').innerHTML=
    kv('Historical eligible add-ons',c.eligible_addon_n??'—')+kv('Add-on mean',c.addon_mean_pct==null?'—':`+${f(c.addon_mean_pct)}%`,'good')+kv('Add-on median',c.addon_median_pct==null?'—':`${f(c.addon_median_pct)}%`,'good')+kv('Baseline MAIN-B CAGR',b.cagr_pct==null?'—':`${f(b.cagr_pct)}%`)+kv('50/50 vs matched control CAGR',c.staged_50?`${f(c.staged_50.cagr_pct)}% vs ${f(c.staged_50.matched_control_cagr_pct)}%`:'—')+kv('2/3+1/3 vs matched control CAGR',c.staged_67?`${f(c.staged_67.cagr_pct)}% vs ${f(c.staged_67.matched_control_cagr_pct)}%`:'—');
@@ -51,6 +72,8 @@ async function main(){
    const cols=['symbol','signal_date','entry_date','promotion_date','promotion_open_price','base_status','exit_date','exit_reason','addon_net_return','staged_50_simple_return','staged_67_simple_return'];
    document.getElementById('history').innerHTML='<table><thead><tr>'+cols.map(x=>`<th>${x}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+cols.map(c=>`<td>${r[c]??''}</td>`).join('')+'</tr>').join('')+'</tbody></table>';
  }
+ document.querySelectorAll('#armTabs button').forEach(b=>b.onclick=()=>selectArm(b.dataset.arm));
+ const qp=new URLSearchParams(location.search).get('arm'); selectArm(qp==='50'||qp==='67'?qp:'overview');
 }
 main().catch(e=>{document.getElementById('badge').textContent='LOAD FAILED';document.getElementById('currentState').innerHTML='<div class="empty">'+e.message+'</div>'});
 </script>
