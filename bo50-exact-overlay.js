@@ -1,7 +1,4 @@
 (() => {
-  let historicalUpgraded = false;
-  let readinessPoll = null;
-
   function bindStandaloneTab(btn, section) {
     btn.addEventListener('click', ev => {
       ev.preventDefault();
@@ -26,10 +23,22 @@
     const section = document.createElement('section');
     section.id = 'late-survival';
     section.className = 'panel';
-    section.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="late-survival.html" title="Late Survival Shadow V1" style="display:block;width:100%;height:2050px;border:0;background:transparent"></iframe></div>`;
+    section.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="late-survival.html?v=20261003fix4" title="Late Survival Shadow V1" style="display:block;width:100%;height:2050px;border:0;background:transparent"></iframe></div>`;
     const system = document.getElementById('system');
     if (system) wrap.insertBefore(section, system); else wrap.appendChild(section);
     bindStandaloneTab(btn, section);
+  }
+
+  function wireHistoricalLink() {
+    const btn = document.querySelector('[data-tab="historical"]');
+    if (!btn || btn.dataset.historicalStandalone === '1') return;
+    btn.dataset.historicalStandalone = '1';
+    btn.textContent = '历史回测 · 8 Strategies';
+    btn.addEventListener('click', ev => {
+      ev.preventDefault();
+      ev.stopImmediatePropagation();
+      window.location.href = 'historical-backtests.html?v=20261003fix4';
+    }, true);
   }
 
   function removeOldNewShadowTab() {
@@ -39,53 +48,19 @@
     if (panel) panel.remove();
   }
 
-  function dashboardHistoricalIsReady() {
-    const histEq = document.getElementById('histEquity');
-    const histSummary = document.getElementById('histSummary');
-    const systemNote = document.getElementById('systemNote');
-    const hasPlot = !!histEq && Array.isArray(histEq.data) && histEq.data.length > 0;
-    const hasSummary = !!histSummary && histSummary.innerHTML.trim().length > 0;
-    const mainRenderFinished = !!systemNote && systemNote.textContent.trim().length > 0;
-    return hasPlot && hasSummary && mainRenderFinished;
-  }
-
-  function upgradeHistoricalCenterWhenSafe() {
-    if (historicalUpgraded) return true;
-    const btn = document.querySelector('[data-tab="historical"]');
-    const panel = document.getElementById('historical');
-    if (!btn || !panel) return false;
-    if (!dashboardHistoricalIsReady()) return false;
-
-    historicalUpgraded = true;
-    btn.textContent = '历史回测 · 8 Strategies';
-    panel.dataset.eightStrategyCenter = '1';
-    panel.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="historical-backtests.html" title="8 Strategies Historical Backtest Center" style="display:block;width:100%;height:2450px;border:0;background:transparent"></iframe></div>`;
-    return true;
-  }
-
-  function installNonDestructiveParts() {
+  function install() {
+    // Never remove or replace #historical/#histEquity. The dashboard's own
+    // async Plotly render must always retain its original DOM on every browser.
     removeOldNewShadowTab();
     injectLateSurvivalTab();
+    wireHistoricalLink();
   }
 
-  function startSafeUpgradePoll() {
-    if (readinessPoll || historicalUpgraded) return;
-    let tries = 0;
-    readinessPoll = setInterval(() => {
-      tries += 1;
-      installNonDestructiveParts();
-      if (upgradeHistoricalCenterWhenSafe() || tries >= 120) {
-        clearInterval(readinessPoll);
-        readinessPoll = null;
-      }
-    }, 250);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', install, {once:true});
+  } else {
+    install();
   }
-
-  // Important: never replace #historical during DOMContentLoaded. The main dashboard
-  // still renders Plotly into #histEquity asynchronously and would throw if that node
-  // disappears early. Only swap after the dashboard has rendered its historical chart,
-  // summary and system note successfully.
-  installNonDestructiveParts();
-  if (document.readyState === 'complete') startSafeUpgradePoll();
-  else window.addEventListener('load', startSafeUpgradePoll, {once:true});
+  window.addEventListener('load', install, {once:true});
+  setTimeout(install, 800);
 })();
