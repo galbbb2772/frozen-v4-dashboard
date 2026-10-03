@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New Shadow Historical Backtest · Frozen V4</title>
+<style>
+:root{--bg:#070a10;--panel:#101722;--line:#263248;--text:#edf4ff;--muted:#8e9db2;--good:#57d69f;--bad:#ff7d89;--warn:#f0c96c;--accent:#8db8ff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#070a10,#0b111b);color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1250px;margin:auto;padding:22px 16px 55px}h1{font-size:30px;margin:6px 0}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.card{border:1px solid var(--line);background:linear-gradient(180deg,#121927,#0e141f);border-radius:15px;padding:15px}.label{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.value{font-size:25px;font-weight:800;margin:6px 0}.section{margin-top:14px}.note{border-left:3px solid #496c9c;background:#0b111b;border-radius:0 10px 10px 0;padding:11px 12px;line-height:1.65;color:#aeb9ca}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:10px 9px;border-bottom:1px solid #202b3e;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--muted)}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.accent{color:var(--accent)}.bars{display:grid;gap:8px}.barrow{display:grid;grid-template-columns:75px 1fr 80px;gap:10px;align-items:center}.track{height:13px;border-radius:999px;background:#1d2736;overflow:hidden;position:relative}.fill{height:100%;background:var(--accent);border-radius:999px}.fill.neg{background:var(--bad)}.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:var(--accent)}.dot.b{background:var(--good)}.dot.c{background:var(--warn)}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding:14px 11px 45px}h1{font-size:25px}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="label">Frozen V4 · Historical Research</div><h1>New Shadow Historical Backtest</h1>
+<div class="muted">2019-01 → 2026-03 · 使用 Frozen V4 同一历史数据与冻结执行逻辑。2026 仅包含 1–3 月。</div>
+<div class="grid" id="cards"></div>
+<div class="section card"><div class="label">Core comparison</div><div id="summary" class="tablewrap" style="margin-top:8px"></div></div>
+<div class="section card"><div class="label">Annual return comparison</div><div id="annual" style="margin-top:12px"></div><div class="legend"><span><i class="dot"></i>MAIN-B</span><span><i class="dot b"></i>Late 50→100</span><span><i class="dot c"></i>Late 66.7→100</span></div></div>
+<div class="section card"><div class="label">Nasdaq Balance Shadow</div><div id="balance" style="margin-top:9px"></div></div>
+<div class="section note" id="note"></div>
+</div>
+<script>
+const f=(x,d=2)=>x==null?'—':Number(x).toFixed(d);const money=x=>'$'+Math.round(Number(x)).toLocaleString();
+function tableRow(name,s){return `<tr><td>${name}</td><td>${f(s.ending_multiple,3)}×</td><td>${f(s.total_return_pct,1)}%</td><td>${f(s.cagr_pct,2)}%</td><td>${f(s.max_drawdown_pct,2)}%</td><td>${f(s.calmar_like,3)}</td><td>${f(s.mean_gross_exposure_pct,1)}%</td><td>${money(s.capital_100k_end)}</td></tr>`}
+function yearlyMap(s){return Object.fromEntries((s.annual||[]).map(x=>[x.year,x.return_pct]))}
+async function main(){const d=await fetch('data/new_shadow_backtest.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json());const s=d.strategies,b=s['MAIN-B'],a=s['LATE-SURVIVAL-50'],c=s['LATE-SURVIVAL-67'];
+ document.getElementById('cards').innerHTML=`<div class="card"><div class="label">MAIN-B Total Return</div><div class="value">${f(b.total_return_pct,1)}%</div><div class="small">Ending ${f(b.ending_multiple,3)}×</div></div><div class="card"><div class="label">Late 50→100</div><div class="value">${f(a.total_return_pct,1)}%</div><div class="small">CAGR ${f(a.cagr_pct,2)}% · MDD ${f(a.max_drawdown_pct,2)}%</div></div><div class="card"><div class="label">Late 66.7→100</div><div class="value">${f(c.total_return_pct,1)}%</div><div class="small">CAGR ${f(c.cagr_pct,2)}% · MDD ${f(c.max_drawdown_pct,2)}%</div></div><div class="card"><div class="label">Dataset SHA verified</div><div class="value" style="font-size:18px">5bb5be0b…cff07</div><div class="small">${d.dataset.file}</div></div>`;
+ document.getElementById('summary').innerHTML=`<table><thead><tr><th>Strategy</th><th>Ending</th><th>Total return</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Mean exposure</th><th>$100k end</th></tr></thead><tbody>${tableRow('MAIN-B',b)}${tableRow('Late Survival 50→100',a)}${tableRow('Late Survival 66.7→100',c)}</tbody></table>`;
+ const maps=[yearlyMap(b),yearlyMap(a),yearlyMap(c)], years=[...new Set((b.annual||[]).map(x=>x.year))];
+ document.getElementById('annual').innerHTML='<div class="bars">'+years.map(y=>{const vals=maps.map(m=>Number(m[y]||0));const max=Math.max(...vals.map(x=>Math.abs(x)),1);return `<div><div class="small" style="margin-bottom:5px">${y}${y===2026?' (Jan–Mar)':''}</div>${vals.map((v,i)=>`<div class="barrow"><div class="small">${['MAIN-B','Late 50','Late 67'][i]}</div><div class="track"><div class="fill ${v<0?'neg':''}" style="width:${Math.max(1,100*Math.abs(v)/max)}%"></div></div><b class="${v<0?'bad':''}">${v>=0?'+':''}${f(v,1)}%</b></div>`).join('')}</div>`}).join('')+'</div>';
+ const nb=s['NASDAQ-BALANCE-SHADOW'],h=nb.historical_diagnostic;document.getElementById('balance').innerHTML=`<div class="note"><b>当前冻结定义没有独立账户收益曲线。</b> execution_effect = NONE，所以账户收益等同 MAIN-B；它只是给 MAIN-B 交易打路径不对称标签。历史 272 笔 MAIN-B 中 64 笔满足 Nasdaq D1：Positive Consensus 23 笔平均 ${f(h.positive_consensus_mean_return_pct,2)}%，Negative Consensus 32 笔平均 ${f(h.negative_consensus_mean_return_pct,2)}%，Mixed 9 笔平均 ${f(h.mixed_mean_return_pct,2)}%。原预设 sizing 假设结果：<b class="bad">FAILED</b>。</div>`;
+ document.getElementById('note').innerHTML=`<b>口径：</b> Late Survival 两条账户回放保留 MAIN-B 的选股、2-slot、Quality sizing、Day1 25% quarantine、stop、sync-break/time-stop、profit protection 与 5bps/side 成本，只改变初始目标仓位与第20日存活后的补足动作。Nasdaq Balance 不人为添加未冻结的加减仓规则。`;
+}
+main().catch(e=>document.getElementById('note').textContent='LOAD FAILED: '+e.message);
+</script></body></html>
