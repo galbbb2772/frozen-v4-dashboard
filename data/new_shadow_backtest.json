@@ -8,10 +8,91 @@
     "frozen_ohlc_sha256": "3fefebfa41bd60e93d5f6a92a4a903d6664fa8f8757db301f8cd4b38d637e310"
   },
   "strategies": {
-    "MAIN-B": {"label":"MAIN-B baseline","ending_multiple":13.723863310038624,"total_return_pct":1272.3863310038623,"cagr_pct":43.57371977589004,"max_drawdown_pct":-36.3120838715085,"calmar_like":1.1999784955905333,"mean_gross_exposure_pct":48.26403323152642,"modeled_transaction_cost_nav":0.9905005743162162,"capital_100k_end":1372386.3310038624,"annual":[{"year":2019,"return_pct":9.95588342640476,"ending_multiple":1.0995588342640477},{"year":2020,"return_pct":0.48100813520575003,"ending_multiple":1.1048478017082313},{"year":2021,"return_pct":186.70669692981002,"ending_multiple":3.1676726383792877},{"year":2022,"return_pct":-3.8623085246752704,"ending_multiple":3.045327348033358},{"year":2023,"return_pct":179.9410477538443,"ending_multiple":8.525121285618942},{"year":2024,"return_pct":54.123117667217734,"ending_multiple":13.139182710307509},{"year":2025,"return_pct":2.65311179581271,"ending_multiple":13.48777991666806},{"year":2026,"return_pct":1.75035027876466,"ending_multiple":13.723863310038624}]},
-    "LATE-SURVIVAL-50": {"label":"Late Survival 50→100","ending_multiple":5.5065802600374285,"total_return_pct":450.65802600374286,"cagr_pct":26.563634519656258,"max_drawdown_pct":-20.76631864087315,"calmar_like":1.279169167103725,"mean_gross_exposure_pct":29.41239376827734,"modeled_transaction_cost_nav":0.2768696313029304,"capital_100k_end":550658.0260037428,"annual":[{"year":2019,"return_pct":3.97499192997736,"ending_multiple":1.0397499192997737},{"year":2020,"return_pct":0.80554633793452,"ending_multiple":1.04812558669837},{"year":2021,"return_pct":89.40913692160429,"ending_multiple":1.985245627619884},{"year":2022,"return_pct":-2.28312219536529,"ending_multiple":1.9399200440631756},{"year":2023,"return_pct":118.60273180947378,"ending_multiple":4.240718211241649},{"year":2024,"return_pct":29.763259818568947,"ending_multiple":5.502894190626871},{"year":2025,"return_pct":1.2751851179517402,"ending_multiple":5.573066278402377},{"year":2026,"return_pct":-1.19298811540435,"ending_multiple":5.5065802600374285}],"rule":"Use 50% of normal target initially; if trade survives 20 complete post-entry sessions and Day1 quarantine did not trigger, restore to 100% at next open."},
-    "LATE-SURVIVAL-67": {"label":"Late Survival 66.7→100","ending_multiple":7.627608639757425,"total_return_pct":662.7608639757425,"cagr_pct":32.38831815080831,"max_drawdown_pct":-26.384401727283368,"calmar_like":1.227555526389536,"mean_gross_exposure_pct":35.7858325835427,"modeled_transaction_cost_nav":0.4454859077132319,"capital_100k_end":762760.8639757425,"annual":[{"year":2019,"return_pct":6.05492786778301,"ending_multiple":1.06054927867783},{"year":2020,"return_pct":0.71998577039702,"ending_multiple":1.068185082572359},{"year":2021,"return_pct":118.83014373208356,"ending_multiple":2.337510951517769},{"year":2022,"return_pct":-2.33761080686212,"ending_multiple":2.282869042903504},{"year":2023,"return_pct":138.66637610755316,"ending_multiple":5.448440815978975},{"year":2024,"return_pct":37.70269091857818,"ending_multiple":7.502649616709187},{"year":2025,"return_pct":1.85134312936579,"ending_multiple":7.641549404908521},{"year":2026,"return_pct":-0.18243375017822,"ending_multiple":7.627608639757425}],"rule":"Use 2/3 of normal target initially; if trade survives 20 complete post-entry sessions and Day1 quarantine did not trigger, restore to 100% at next open."},
-    "NASDAQ-BALANCE-SHADOW": {"label":"Nasdaq Balance Shadow","execution_effect":"NONE","account_curve":"identical_to_MAIN-B_under_current_frozen_definition","historical_diagnostic":{"main_b_trades":272,"eligible_nasdaq_D1":64,"positive_consensus_n":23,"positive_consensus_mean_return_pct":0.40543988536162995,"negative_consensus_n":32,"negative_consensus_mean_return_pct":1.7033812748931798,"mixed_n":9,"mixed_mean_return_pct":6.156312186132653,"intended_sizing_hypothesis":"FAILED"}}
+    "MAIN-B": {
+      "label": "MAIN-B baseline",
+      "ending_multiple": 13.723863310038624,
+      "total_return_pct": 1272.3863310038623,
+      "cagr_pct": 43.57371977589004,
+      "max_drawdown_pct": -36.3120838715085,
+      "calmar_like": 1.1999784955905333,
+      "mean_gross_exposure_pct": 48.26403323152642,
+      "modeled_transaction_cost_nav": 0.9905005743162162,
+      "capital_100k_end": 1372386.3310038624,
+      "annual": [
+        {"year": 2019, "return_pct": 9.95588342640476, "ending_multiple": 1.0995588342640477},
+        {"year": 2020, "return_pct": 0.48100813520575003, "ending_multiple": 1.1048478017082313},
+        {"year": 2021, "return_pct": 186.70669692981002, "ending_multiple": 3.1676726383792877},
+        {"year": 2022, "return_pct": -3.8623085246752704, "ending_multiple": 3.045327348033358},
+        {"year": 2023, "return_pct": 179.9410477538443, "ending_multiple": 8.525121285618942},
+        {"year": 2024, "return_pct": 54.123117667217734, "ending_multiple": 13.139182710307509},
+        {"year": 2025, "return_pct": 2.65311179581271, "ending_multiple": 13.48777991666806},
+        {"year": 2026, "return_pct": 1.75035027876466, "ending_multiple": 13.723863310038624}
+      ]
+    },
+    "LATE-SURVIVAL-50": {
+      "label": "Late Survival 50→100",
+      "ending_multiple": 5.5065802600374285,
+      "total_return_pct": 450.65802600374286,
+      "cagr_pct": 26.563634519656258,
+      "max_drawdown_pct": -20.76631864087315,
+      "calmar_like": 1.279169167103725,
+      "mean_gross_exposure_pct": 29.41239376827734,
+      "modeled_transaction_cost_nav": 0.2768696313029304,
+      "capital_100k_end": 550658.0260037428,
+      "annual": [
+        {"year": 2019, "return_pct": 3.97499192997736, "ending_multiple": 1.0397499192997737},
+        {"year": 2020, "return_pct": 0.80554633793452, "ending_multiple": 1.04812558669837},
+        {"year": 2021, "return_pct": 89.40913692160429, "ending_multiple": 1.985245627619884},
+        {"year": 2022, "return_pct": -2.28312219536529, "ending_multiple": 1.9399200440631756},
+        {"year": 2023, "return_pct": 118.60273180947378, "ending_multiple": 4.240718211241649},
+        {"year": 2024, "return_pct": 29.763259818568947, "ending_multiple": 5.502894190626871},
+        {"year": 2025, "return_pct": 1.2751851179517402, "ending_multiple": 5.573066278402377},
+        {"year": 2026, "return_pct": -1.19298811540435, "ending_multiple": 5.5065802600374285}
+      ],
+      "rule": "Use 50% of normal target initially; if trade survives 20 complete post-entry sessions and Day1 quarantine did not trigger, restore to 100% at next open."
+    },
+    "LATE-SURVIVAL-67": {
+      "label": "Late Survival 66.7→100",
+      "ending_multiple": 7.627608639757425,
+      "total_return_pct": 662.7608639757425,
+      "cagr_pct": 32.38831815080831,
+      "max_drawdown_pct": -26.384401727283368,
+      "calmar_like": 1.227555526389536,
+      "mean_gross_exposure_pct": 35.7858325835427,
+      "modeled_transaction_cost_nav": 0.4454859077132319,
+      "capital_100k_end": 762760.8639757425,
+      "annual": [
+        {"year": 2019, "return_pct": 6.05492786778301, "ending_multiple": 1.06054927867783},
+        {"year": 2020, "return_pct": 0.71998577039702, "ending_multiple": 1.068185082572359},
+        {"year": 2021, "return_pct": 118.83014373208356, "ending_multiple": 2.337510951517769},
+        {"year": 2022, "return_pct": -2.33761080686212, "ending_multiple": 2.282869042903504},
+        {"year": 2023, "return_pct": 138.66637610755316, "ending_multiple": 5.448440815978975},
+        {"year": 2024, "return_pct": 37.70269091857818, "ending_multiple": 7.502649616709187},
+        {"year": 2025, "return_pct": 1.85134312936579, "ending_multiple": 7.641549404908521},
+        {"year": 2026, "return_pct": -0.18243375017822, "ending_multiple": 7.627608639757425}
+      ],
+      "rule": "Use 2/3 of normal target initially; if trade survives 20 complete post-entry sessions and Day1 quarantine did not trigger, restore to 100% at next open."
+    },
+    "NASDAQ-BALANCE-SHADOW": {
+      "label": "Nasdaq Balance Shadow",
+      "execution_effect": "NONE",
+      "account_curve": "identical_to_MAIN-B_under_current_frozen_definition",
+      "historical_diagnostic": {
+        "main_b_trades": 272,
+        "eligible_nasdaq_D1": 64,
+        "positive_consensus_n": 23,
+        "positive_consensus_mean_return_pct": 0.40543988536162995,
+        "negative_consensus_n": 32,
+        "negative_consensus_mean_return_pct": 1.7033812748931798,
+        "mixed_n": 9,
+        "mixed_mean_return_pct": 6.156312186132653,
+        "intended_sizing_hypothesis": "FAILED"
+      }
+    }
   },
-  "notes": ["2026 is partial through March.","Late Survival account replays preserve frozen MAIN-B candidate selection, quality sizing, 2 slots, Day1 quarantine, stops, sync-break/time-stop, profit protection and 5 bps per-side modeled cost.","Nasdaq Balance remains observe-only; no separate account return is claimed because the frozen module has execution_effect=NONE."]
+  "notes": [
+    "2026 is partial through March.",
+    "Late Survival account replays preserve frozen MAIN-B candidate selection, quality sizing, 2 slots, Day1 quarantine, stops, sync-break/time-stop, profit protection and 5 bps per-side modeled cost.",
+    "Nasdaq Balance remains observe-only; no separate account return is claimed because the frozen module has execution_effect=NONE."
+  ]
 }
