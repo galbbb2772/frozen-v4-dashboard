@@ -46,6 +46,16 @@
     tries++;
   }
 
+  function bindStandaloneTab(btn, section) {
+    btn.addEventListener('click', ev => {
+      ev.preventDefault();
+      document.querySelectorAll('.tabs button').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
+      btn.classList.add('active');
+      section.classList.add('on');
+    });
+  }
+
   function injectLateSurvivalTab() {
     if (document.querySelector('[data-tab="late-survival"]')) return;
     const tabs = document.querySelector('.tabs');
@@ -64,27 +74,46 @@
     section.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="late-survival.html" title="Late Survival Shadow V1" style="display:block;width:100%;height:1850px;border:0;background:transparent"></iframe></div>`;
     const system = document.getElementById('system');
     if (system) wrap.insertBefore(section, system); else wrap.appendChild(section);
+    bindStandaloneTab(btn, section);
+  }
 
-    btn.addEventListener('click', ev => {
-      ev.preventDefault();
-      document.querySelectorAll('.tabs button').forEach(x => x.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(x => x.classList.remove('on'));
-      btn.classList.add('active');
-      section.classList.add('on');
-    });
+  function injectNewShadowBacktestTab() {
+    if (document.querySelector('[data-tab="new-shadow-backtest"]')) return;
+    const tabs = document.querySelector('.tabs');
+    const wrap = document.querySelector('.wrap');
+    if (!tabs || !wrap) return;
+
+    const btn = document.createElement('button');
+    btn.dataset.tab = 'new-shadow-backtest';
+    btn.textContent = 'New Shadows BT';
+    const historical = tabs.querySelector('[data-tab="historical"]');
+    if (historical) tabs.insertBefore(btn, historical); else tabs.appendChild(btn);
+
+    const section = document.createElement('section');
+    section.id = 'new-shadow-backtest';
+    section.className = 'panel';
+    section.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="new-shadow-backtest.html" title="New Shadow Historical Backtest" style="display:block;width:100%;height:1900px;border:0;background:transparent"></iframe></div>`;
+    const system = document.getElementById('system');
+    if (system) wrap.insertBefore(section, system); else wrap.appendChild(section);
+    bindStandaloneTab(btn, section);
+  }
+
+  function injectResearchTabs() {
+    injectLateSurvivalTab();
+    injectNewShadowBacktestTab();
   }
 
   async function load() {
-    injectLateSurvivalTab();
+    injectResearchTabs();
     try {
       const r = await fetch("data/upper_box50_exact.json?ts=" + Date.now(), {cache:"no-store"});
       if (!r.ok) throw new Error("HTTP " + r.status);
       payload = await r.json();
       apply();
-      const timer = setInterval(() => { apply(); injectLateSurvivalTab(); if (tries > 20) clearInterval(timer); }, 1000);
+      const timer = setInterval(() => { apply(); injectResearchTabs(); if (tries > 20) clearInterval(timer); }, 1000);
     } catch (e) {
       console.warn("BO50 exact overlay unavailable", e);
-      const timer = setInterval(() => { injectLateSurvivalTab(); tries++; if (tries > 20) clearInterval(timer); }, 1000);
+      const timer = setInterval(() => { injectResearchTabs(); tries++; if (tries > 20) clearInterval(timer); }, 1000);
     }
   }
 
@@ -96,7 +125,7 @@
       setTimeout(apply, 900);
     }
   });
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectLateSurvivalTab);
-  else injectLateSurvivalTab();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectResearchTabs);
+  else injectResearchTabs();
   load();
 })();
