@@ -1,0 +1,88 @@
+{
+  "schema": "LATE-SURVIVAL-DASHBOARD-V1",
+  "status": {
+    "version": "LATE-SURVIVAL-SHADOW-V1",
+    "freeze_date": "2026-10-03",
+    "mode": "OBSERVE_ONLY",
+    "execution_effect": "NONE",
+    "main_b_rules_modified": false,
+    "promotion_allowed_now": false,
+    "checkpoint_completed_post_entry_sessions": 20,
+    "promotion_timing": "next valid open (21st post-entry session)",
+    "prospective_evidence_rule": "MAIN-B signal_date > 2026-10-03",
+    "shadow_arms": {
+      "LATE-SURVIVAL-50": {
+        "initial_normal_target_fraction": 0.5,
+        "eligible_fraction_after_promotion": 1.0
+      },
+      "LATE-SURVIVAL-67": {
+        "initial_normal_target_fraction": 0.6666666666666666,
+        "eligible_fraction_after_promotion": 1.0
+      }
+    },
+    "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
+    "last_official_close_date": "2026-10-01",
+    "main_b_rows_seen": 5,
+    "pre_freeze_rows_excluded": 5,
+    "post_freeze_rows": 0,
+    "post_freeze_day1_failed_excluded": 0,
+    "awaiting_checkpoint_rows": 0,
+    "checkpoint_reached_missing_open_rows": 0,
+    "promotion_events": 0,
+    "settled_promotion_events": 0,
+    "addon_leg_summary": {
+      "n": 0,
+      "mean_net_return": null,
+      "win_rate": null
+    },
+    "current_trade_states": [],
+    "guardrails": [
+      "No MAIN-B entry change.",
+      "No MAIN-B sizing change.",
+      "No MAIN-B stop/exit change.",
+      "Historical observations are excluded from promotion evidence.",
+      "Do not select the historically better arm; both arms remain frozen prospectively.",
+      "Trade-level staged returns are diagnostic and are not an account-level substitute."
+    ],
+    "updated_at_utc": "2026-10-03T03:03:31.628522Z"
+  },
+  "history": [],
+  "historical_reference": {
+    "baseline": {
+      "ending_multiple": 13.723863310038734,
+      "cagr_pct": 43.5737,
+      "max_drawdown_pct": -36.3121,
+      "calmar": 1.2,
+      "mean_gross_exposure_pct": 48.264
+    },
+    "survival_right_tail_rate_pct": {
+      "baseline": 10.3,
+      "1": 16.6,
+      "3": 25.9,
+      "5": 31.5,
+      "10": 44.4,
+      "15": 55.3,
+      "20": 59.4
+    },
+    "checkpoint20": {
+      "eligible_addon_n": 23,
+      "addon_mean_pct": 5.04,
+      "addon_median_pct": 0.97,
+      "addon_win_rate_pct": 52.2,
+      "addon_profit_factor": 5.15,
+      "staged_50": {
+        "cagr_pct": 26.56,
+        "matched_control_cagr_pct": 26.34,
+        "max_drawdown_pct": -20.77,
+        "matched_control_max_drawdown_pct": -23.8
+      },
+      "staged_67": {
+        "cagr_pct": 32.39,
+        "matched_control_cagr_pct": 32.17,
+        "max_drawdown_pct": -26.38,
+        "matched_control_max_drawdown_pct": -28.25
+      }
+    },
+    "interpretation": "Checkpoint 20 is a historical shadow candidate only. It was the only preregistered checkpoint where both staged structures modestly improved CAGR and max drawdown versus exposure-matched controls, but historical sample size is small."
+  }
+}
