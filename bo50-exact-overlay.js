@@ -1,4 +1,7 @@
 (() => {
+  let historicalUpgraded = false;
+  let readinessPoll = null;
+
   function bindStandaloneTab(btn, section) {
     btn.addEventListener('click', ev => {
       ev.preventDefault();
@@ -29,15 +32,6 @@
     bindStandaloneTab(btn, section);
   }
 
-  function upgradeHistoricalCenter() {
-    const btn = document.querySelector('[data-tab="historical"]');
-    const panel = document.getElementById('historical');
-    if (!btn || !panel || panel.dataset.eightStrategyCenter === '1') return;
-    btn.textContent = '历史回测 · 8 Strategies';
-    panel.dataset.eightStrategyCenter = '1';
-    panel.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="historical-backtests.html" title="8 Strategies Historical Backtest Center" style="display:block;width:100%;height:2450px;border:0;background:transparent"></iframe></div>`;
-  }
-
   function removeOldNewShadowTab() {
     const btn = document.querySelector('[data-tab="new-shadow-backtest"]');
     if (btn) btn.remove();
@@ -45,14 +39,53 @@
     if (panel) panel.remove();
   }
 
-  function install() {
-    removeOldNewShadowTab();
-    injectLateSurvivalTab();
-    upgradeHistoricalCenter();
+  function dashboardHistoricalIsReady() {
+    const histEq = document.getElementById('histEquity');
+    const histSummary = document.getElementById('histSummary');
+    const systemNote = document.getElementById('systemNote');
+    const hasPlot = !!histEq && Array.isArray(histEq.data) && histEq.data.length > 0;
+    const hasSummary = !!histSummary && histSummary.innerHTML.trim().length > 0;
+    const mainRenderFinished = !!systemNote && systemNote.textContent.trim().length > 0;
+    return hasPlot && hasSummary && mainRenderFinished;
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(install, 0));
-  else setTimeout(install, 0);
-  setTimeout(install, 700);
-  setTimeout(install, 1800);
+  function upgradeHistoricalCenterWhenSafe() {
+    if (historicalUpgraded) return true;
+    const btn = document.querySelector('[data-tab="historical"]');
+    const panel = document.getElementById('historical');
+    if (!btn || !panel) return false;
+    if (!dashboardHistoricalIsReady()) return false;
+
+    historicalUpgraded = true;
+    btn.textContent = '历史回测 · 8 Strategies';
+    panel.dataset.eightStrategyCenter = '1';
+    panel.innerHTML = `<div class="card" style="padding:0;overflow:hidden"><iframe src="historical-backtests.html" title="8 Strategies Historical Backtest Center" style="display:block;width:100%;height:2450px;border:0;background:transparent"></iframe></div>`;
+    return true;
+  }
+
+  function installNonDestructiveParts() {
+    removeOldNewShadowTab();
+    injectLateSurvivalTab();
+  }
+
+  function startSafeUpgradePoll() {
+    if (readinessPoll || historicalUpgraded) return;
+    let tries = 0;
+    readinessPoll = setInterval(() => {
+      tries += 1;
+      installNonDestructiveParts();
+      if (upgradeHistoricalCenterWhenSafe() || tries >= 120) {
+        clearInterval(readinessPoll);
+        readinessPoll = null;
+      }
+    }, 250);
+  }
+
+  // Important: never replace #historical during DOMContentLoaded. The main dashboard
+  // still renders Plotly into #histEquity asynchronously and would throw if that node
+  // disappears early. Only swap after the dashboard has rendered its historical chart,
+  // summary and system note successfully.
+  installNonDestructiveParts();
+  if (document.readyState === 'complete') startSafeUpgradePoll();
+  else window.addEventListener('load', startSafeUpgradePoll, {once:true});
 })();
