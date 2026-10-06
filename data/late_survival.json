@@ -21,7 +21,7 @@
       }
     },
     "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
-    "last_official_close_date": "2026-10-02",
+    "last_official_close_date": "2026-10-05",
     "main_b_rows_seen": 6,
     "pre_freeze_rows_excluded": 6,
     "post_freeze_rows": 0,
@@ -44,7 +44,7 @@
       "Do not select the historically better arm; both arms remain frozen prospectively.",
       "Trade-level staged returns are diagnostic and are not an account-level substitute."
     ],
-    "updated_at_utc": "2026-10-03T13:24:01.661999Z"
+    "updated_at_utc": "2026-10-06T15:13:39.056322Z"
   },
   "history": [],
   "historical_reference": {
