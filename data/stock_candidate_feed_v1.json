@@ -1,6 +1,6 @@
 {
   "schema": "STOCK-CANDIDATE-FEED-V1",
-  "generated_at": "2026-10-07T08:09:53.171803+00:00",
+  "generated_at": "2026-10-07T08:37:49.810109+00:00",
   "source_name": "frozen-v4",
   "source_version": "FROZEN-V4-STRICT-V3-MASSIVE-EOD-V1",
   "source_contract": "BASE_GENERATOR_CONTRACT.md",
@@ -2734,17 +2734,17 @@
     {
       "as_of_market_date": "2026-10-06",
       "entry_date": "2026-10-07",
-      "first_published_at": "2026-10-07T08:09:52.574576Z",
+      "first_published_at": "2026-10-07T08:37:49.124675Z",
       "candidate_count": 9,
       "frozen_gate_eligible_count": 1,
-      "snapshot_sha256": "b9b48df42ccaafd6fbe18e3f949d5d5dabf13341d14c6bb79e738025e7cf0c4b",
+      "snapshot_sha256": "b657efdc86c2f45cc894c15a05585fb4a2e6eea60fc23c3f16fc307c5594e37e",
       "candidates": [
         {
           "symbol": "OBX",
           "candidate_id": "15dd65aafdfa22c0e2fcaa58",
           "security_id": "BBG02451DM26",
           "continuous_segment_id": "BBG02451DM26:2026-08-04",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 1,
           "selection_rank": 1,
           "trigger_reasons": [
@@ -2779,7 +2779,7 @@
           "candidate_id": "a79db62017a93e5077446749",
           "security_id": "BBG001S5VBK4",
           "continuous_segment_id": "BBG001S5VBK4:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 2,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2812,7 +2812,7 @@
           "candidate_id": "3ca524d4ebfe41f455fe64e1",
           "security_id": "CIK:0000077360:CS",
           "continuous_segment_id": "CIK:0000077360:CS:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 3,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2845,7 +2845,7 @@
           "candidate_id": "ff912c7b6df3a4ddc0e26d51",
           "security_id": "BBG00NSGPJF8",
           "continuous_segment_id": "BBG00NSGPJF8:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 4,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2878,7 +2878,7 @@
           "candidate_id": "53803199dd469005c44a1e13",
           "security_id": "BBG01RMP2XX8",
           "continuous_segment_id": "BBG01RMP2XX8:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 5,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2911,7 +2911,7 @@
           "candidate_id": "8e98f517ba18a0d8c8361f8f",
           "security_id": "BBG001SM71W3",
           "continuous_segment_id": "BBG001SM71W3:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 6,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2944,7 +2944,7 @@
           "candidate_id": "047d4adbd1a15fa547b899ec",
           "security_id": "BBG01J7X4PP0",
           "continuous_segment_id": "BBG01J7X4PP0:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 7,
           "selection_rank": null,
           "trigger_reasons": [
@@ -2977,7 +2977,7 @@
           "candidate_id": "be90fbda653d28363b75af8c",
           "security_id": "BBG00FDMGR42",
           "continuous_segment_id": "BBG00FDMGR42:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 8,
           "selection_rank": null,
           "trigger_reasons": [
@@ -3010,7 +3010,7 @@
           "candidate_id": "9cbc1270588deefe751cf2eb",
           "security_id": "BBG001SF91V7",
           "continuous_segment_id": "BBG001SF91V7:2026-05-14",
-          "first_seen_at": "2026-10-07T08:09:52.574576Z",
+          "first_seen_at": "2026-10-07T08:37:49.124675Z",
           "rank": 9,
           "selection_rank": null,
           "trigger_reasons": [
