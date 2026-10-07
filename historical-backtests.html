@@ -10,7 +10,33 @@ function ddFrom(eq){let p=-Infinity;return eq.map(v=>{p=Math.max(p,v);return 100
 function annualFrom(dates,eq){const last={};dates.forEach((d,i)=>last[d.slice(0,4)]={e:eq[i],d});let prev=1;return Object.keys(last).sort().map(y=>{const r=100*(last[y].e/prev-1);prev=last[y].e;return {year:y,return_pct:r}})}
 function epochDayToDate(v){return new Date(Number(v)*86400000).toISOString().slice(0,10)}
 let D={},selected='ALL',REG={entries:[],excluded_falsified:[]};
-async function load(){const [h,u,r,l,n,reg]=await Promise.all(['data/historical.json','data/upper_box50_exact.json','data/regime_combo50_exact.json','data/late_survival_monthly.json','data/new_shadow_backtest.json','data/strategy_registry.json'].map(x=>fetch(x+'?t='+Date.now(),{cache:'no-store'}).then(res=>{if(!res.ok)throw new Error(x+' HTTP '+res.status);return res.json()})));REG=reg;['MAIN-B','BENCH-A','SHADOW-3S','SHADOW-SAT20'].forEach(id=>D[id]={dates:h.dates,equity:h.equity[id],drawdown:ddFrom(h.equity[id]),annual:annualFrom(h.dates,h.equity[id]),resolution:'frozen curve'});const rd=r.day.map(epochDayToDate);D['REGIME-COMBO50']={dates:rd,equity:r.equity,drawdown:ddFrom(r.equity),annual:r.annual.map(a=>({year:String(a.year),return_pct:a.return_pct})),resolution:'exact daily replay · 1821 sessions'};D['UPPER-BOX50']={dates:u.dates,equity:u.equity,drawdown:(u.drawdown||ddFrom(u.equity)).map(x=>100*x),annual:annualFrom(u.dates,u.equity),resolution:'exact daily'};['LATE-SURVIVAL-50','LATE-SURVIVAL-67'].forEach(id=>{const x=l.strategies[id];D[id]={dates:x.dates,equity:x.equity,drawdown:x.drawdown.map(v=>100*v),annual:n.strategies[id].annual.map(a=>({year:String(a.year),return_pct:a.return_pct})),resolution:'monthly display from exact daily replay'}});const q=new URLSearchParams(location.search).get('strategy');if(q&&IDS.includes(q))selected=q;build();render();wireRegistry();renderRegistry()}
+async function fetchJson(path){const res=await fetch(path+'?t='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error(path+' HTTP '+res.status);return res.json()}
+async function load(){
+  const [h,u,r,l,n]=await Promise.all([
+    'data/historical.json',
+    'data/upper_box50_exact.json',
+    'data/regime_combo50_exact.json',
+    'data/late_survival_monthly.json',
+    'data/new_shadow_backtest.json'
+  ].map(fetchJson));
+  ['MAIN-B','BENCH-A','SHADOW-3S','SHADOW-SAT20'].forEach(id=>D[id]={dates:h.dates,equity:h.equity[id],drawdown:ddFrom(h.equity[id]),annual:annualFrom(h.dates,h.equity[id]),resolution:'frozen curve'});
+  const rd=r.day.map(epochDayToDate);
+  D['REGIME-COMBO50']={dates:rd,equity:r.equity,drawdown:ddFrom(r.equity),annual:r.annual.map(a=>({year:String(a.year),return_pct:a.return_pct})),resolution:'exact daily replay · 1821 sessions'};
+  D['UPPER-BOX50']={dates:u.dates,equity:u.equity,drawdown:(u.drawdown||ddFrom(u.equity)).map(x=>100*x),annual:annualFrom(u.dates,u.equity),resolution:'exact daily'};
+  ['LATE-SURVIVAL-50','LATE-SURVIVAL-67'].forEach(id=>{const x=l.strategies[id];D[id]={dates:x.dates,equity:x.equity,drawdown:x.drawdown.map(v=>100*v),annual:n.strategies[id].annual.map(a=>({year:String(a.year),return_pct:a.return_pct})),resolution:'monthly display from exact daily replay'}});
+  const q=new URLSearchParams(location.search).get('strategy');
+  if(q&&IDS.includes(q))selected=q;
+  build();
+  render();
+  wireRegistry();
+  try{
+    REG=await fetchJson('data/strategy_registry.json');
+    renderRegistry();
+  }catch(e){
+    document.getElementById('registryMeta').textContent='Strategy registry temporarily unavailable: '+e.message;
+    document.getElementById('registryTable').innerHTML='<div class="note">核心 8 条历史曲线已正常加载；策略总账稍后刷新即可。</div>';
+  }
+}
 function build(){const b=document.getElementById('buttons');b.innerHTML=['ALL',...IDS].map(id=>`<button class="${id===selected?'on':''}" data-id="${id}">${id==='ALL'?'ALL 8':LABEL[id]}</button>`).join('');b.querySelectorAll('button').forEach(x=>x.onclick=()=>{selected=x.dataset.id;b.querySelectorAll('button').forEach(y=>y.classList.toggle('on',y===x));render()})}
 function traces(ids,key){return ids.map(id=>({x:D[id].dates,y:key==='capital'?D[id].equity.map(v=>v*100000):D[id][key],name:LABEL[id],type:'scatter',mode:'lines'}))}
 function render(){const ids=selected==='ALL'?IDS:[selected];const focus=selected==='ALL'?null:META[selected];document.getElementById('cards').innerHTML=selected==='ALL'?`<div class="card"><div class="k">Strategies</div><div class="v">8</div><div class="m">统一历史中心</div></div><div class="card"><div class="k">Best ending multiple</div><div class="v">${f(Math.max(...IDS.map(i=>META[i].ending)),2)}×</div><div class="m">仅描述，不作策略排名</div></div><div class="card"><div class="k">Period</div><div class="v">2019–26</div><div class="m">2026 through Mar</div></div>`:`<div class="card"><div class="k">Ending multiple</div><div class="v">${f(focus.ending,3)}×</div><div class="m">Total ${pct((focus.ending-1)*100)}</div></div><div class="card"><div class="k">CAGR</div><div class="v">${f(focus.cagr,2)}%</div></div><div class="card"><div class="k">Max drawdown</div><div class="v">${f(focus.mdd,2)}%</div></div><div class="card"><div class="k">Calmar</div><div class="v">${f(focus.cagr/Math.abs(focus.mdd),3)}</div></div><div class="card"><div class="k">Trades</div><div class="v">${focus.trades}</div></div><div class="card"><div class="k">Curve resolution</div><div class="v" style="font-size:15px">${D[selected].resolution}</div></div>`;
@@ -70,5 +96,5 @@ function renderRegistry(){
   document.getElementById('registryTable').innerHTML=table;
 }
 
-load().catch(e=>document.getElementById('note').textContent='LOAD FAILED: '+e.message);
+load().catch(e=>{document.getElementById('note').textContent='CORE DATA LOAD FAILED: '+e.message;document.getElementById('cards').innerHTML='<div class="card"><div class="k">Load error</div><div class="v" style="font-size:15px;color:#ff7d89">'+e.message+'</div><div class="m">请刷新页面；若持续出现则数据文件需要修复。</div></div>';});
 </script></body></html>
