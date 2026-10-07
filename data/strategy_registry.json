@@ -1,0 +1,531 @@
+{
+  "schema": "FROZEN-V4-STRATEGY-REGISTRY-V2",
+  "updated_at": "2026-10-07",
+  "policy": {
+    "visible": "Retained, benchmark, legacy/superseded, shadow, research-signal and forward-observer strategy lines only.",
+    "excluded": "Items explicitly REJECTED / failed holdout / falsified are omitted from the visible registry.",
+    "curve_note": "Only lanes with standardized account-equity data are placed on the unified equity chart. Summary-only/observer lines remain in the same registry without inventing a comparable curve."
+  },
+  "entries": [
+    {
+      "id": "MAIN-B",
+      "label": "Frozen V4-B / MAIN-B",
+      "family": "Frozen V4 Core",
+      "type": "ACCOUNT",
+      "status": "PRODUCTION_FROZEN",
+      "curve_id": "MAIN-B",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 13.72386331,
+        "total_return_pct": 1272.386331,
+        "cagr_pct": 43.57372,
+        "max_dd_pct": -36.31208,
+        "trades": 272
+      },
+      "note": "正式主策略。"
+    },
+    {
+      "id": "BENCH-A",
+      "label": "Frozen V4-A / BENCH-A",
+      "family": "Frozen V4 Core",
+      "type": "ACCOUNT",
+      "status": "BENCHMARK_FROZEN",
+      "curve_id": "BENCH-A",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 11.73523491,
+        "total_return_pct": 1073.523491,
+        "cagr_pct": 40.50342,
+        "max_dd_pct": -37.3811,
+        "trades": 268
+      },
+      "note": "3-calendar-day re-entry benchmark。"
+    },
+    {
+      "id": "SHADOW-3S",
+      "label": "3-slot Quality",
+      "family": "Frozen V4 Core",
+      "type": "ACCOUNT",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "SHADOW-3S",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 12.6842298,
+        "total_return_pct": 1168.42298,
+        "cagr_pct": 42.02034,
+        "max_dd_pct": -33.83819,
+        "trades": 365
+      },
+      "note": "第三槽资本配置 Shadow。"
+    },
+    {
+      "id": "SHADOW-SAT20",
+      "label": "Q3 Satellite 20%",
+      "family": "Frozen V4 Core",
+      "type": "ACCOUNT",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "SHADOW-SAT20",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 14.00533828,
+        "total_return_pct": 1300.533828,
+        "cagr_pct": 43.9768,
+        "max_dd_pct": -36.31208,
+        "trades": 284
+      },
+      "note": "Q3 20% 卫星仓 Shadow。"
+    },
+    {
+      "id": "CALM-50",
+      "label": "CALM 50% Sizing",
+      "family": "Regime / Environment",
+      "type": "ACCOUNT_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 16.4927777581,
+        "total_return_pct": 1549.277776,
+        "cagr_pct": 47.264138,
+        "max_dd_pct": -36.312084,
+        "trades": 272
+      },
+      "note": "CALM 环境半仓历史 Shadow；不改 MAIN-B。"
+    },
+    {
+      "id": "CALM-CROWD-50",
+      "label": "CALM_CROWDED 50%",
+      "family": "Regime / Environment",
+      "type": "ACCOUNT_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 17.318433,
+        "total_return_pct": 1631.843342,
+        "cagr_pct": 48.260878,
+        "max_dd_pct": -36.312084,
+        "trades": 272
+      },
+      "note": "Signal-breadth crowding lifetime sizing Shadow。"
+    },
+    {
+      "id": "DUAL-DRAIN-50",
+      "label": "DUAL_DRAIN Entry 50%",
+      "family": "Regime / Environment",
+      "type": "ACCOUNT_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 15.240179,
+        "total_return_pct": 1424.017898,
+        "cagr_pct": 45.666596,
+        "max_dd_pct": -24.259562,
+        "trades": 272
+      },
+      "note": "仅入场状态 sizing；不是全账户刹车。"
+    },
+    {
+      "id": "REGIME-COMBO50",
+      "label": "Regime Combo50",
+      "family": "Regime / Environment",
+      "type": "ACCOUNT_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "REGIME-COMBO50",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 18.22402843845408,
+        "total_return_pct": 1722.402844,
+        "cagr_pct": 49.308081,
+        "max_dd_pct": -23.403647,
+        "trades": 272
+      },
+      "note": "CALM_CROWDED + DUAL_DRAIN frozen combo。"
+    },
+    {
+      "id": "UPPER-BOX50",
+      "label": "Upper Box 50%",
+      "family": "Box / Market Model",
+      "type": "ACCOUNT_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "UPPER-BOX50",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 14.70073589,
+        "total_return_pct": 1370.073589,
+        "cagr_pct": 44.94349,
+        "max_dd_pct": -36.31208,
+        "trades": 272
+      },
+      "note": "Upper-box lifetime 50% sizing Shadow。"
+    },
+    {
+      "id": "LATE-SURVIVAL-50",
+      "label": "Late Survival 50→100",
+      "family": "Right Tail / Survival",
+      "type": "ACCOUNT_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "LATE-SURVIVAL-50",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 5.50658026,
+        "total_return_pct": 450.658026,
+        "cagr_pct": 26.56363,
+        "max_dd_pct": -20.76632,
+        "trades": 272
+      },
+      "note": "bar20 后恢复满目标；Forward-only promotion evidence。"
+    },
+    {
+      "id": "LATE-SURVIVAL-67",
+      "label": "Late Survival 66.7→100",
+      "family": "Right Tail / Survival",
+      "type": "ACCOUNT_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "curve_id": "LATE-SURVIVAL-67",
+      "period": "2019-01 → 2026-03",
+      "metrics": {
+        "ending": 7.62760864,
+        "total_return_pct": 662.760864,
+        "cagr_pct": 32.38832,
+        "max_dd_pct": -26.3844,
+        "trades": 272
+      },
+      "note": "2/3 初始仓，bar20 后恢复满目标。"
+    },
+    {
+      "id": "BETA-HEDGE-A",
+      "label": "Beta Hedge A · Binary MA200",
+      "family": "Hedge / Risk",
+      "type": "RISK_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward freeze 2026-09-24",
+      "metrics": {},
+      "note": "固定 control；单独 Beta Hedge 页有 Forward 状态。",
+      "link": "beta-hedge.html"
+    },
+    {
+      "id": "BETA-HEDGE-B",
+      "label": "Beta Hedge B · MA200 1% Hysteresis",
+      "family": "Hedge / Risk",
+      "type": "RISK_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward freeze 2026-09-24",
+      "metrics": {},
+      "note": "Primary beta-hedge shadow。",
+      "link": "beta-hedge.html"
+    },
+    {
+      "id": "BETA-HEDGE-C",
+      "label": "Beta Hedge C · Staged MA200",
+      "family": "Hedge / Risk",
+      "type": "RISK_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward freeze 2026-09-24",
+      "metrics": {},
+      "note": "固定 staged control。",
+      "link": "beta-hedge.html"
+    },
+    {
+      "id": "SECTOR-HEDGE",
+      "label": "Sector Hedge Shadow",
+      "family": "Hedge / Risk",
+      "type": "RISK_OVERLAY",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward freeze 2026-09-24",
+      "metrics": {},
+      "note": "行业 ETF 对冲经济性 Forward Shadow。"
+    },
+    {
+      "id": "IMMEDIATE-STOP-RISK",
+      "label": "Immediate-Stop Risk Shadow",
+      "family": "Failure / Intraday",
+      "type": "RISK_OBSERVER",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS",
+      "metrics": {},
+      "note": "历史 OOS AUC≈0.667；只做风险观察，不直接改仓。"
+    },
+    {
+      "id": "INTRADAY-REGIME-CONFIRM",
+      "label": "Intraday Regime Confirmation",
+      "family": "Failure / Intraday",
+      "type": "EXECUTION_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS",
+      "metrics": {},
+      "note": "ret60>0 confirmation execution shadow。"
+    },
+    {
+      "id": "D1-ENTRY-SHADOW",
+      "label": "Task1/4 D+1 Entry",
+      "family": "Task 1&4 / Market State",
+      "type": "RESEARCH_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS from 2026-10-02",
+      "metrics": {},
+      "note": "D+1 vs D0 paired entry challenger。"
+    },
+    {
+      "id": "RMD3-SHADOW",
+      "label": "RMD3 Residual Mean-Reversion Distance",
+      "family": "Task 1&4 / Market State",
+      "type": "RESEARCH_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS",
+      "metrics": {},
+      "note": "未来 5–10D 上行空间诊断，不是路径安全指标。"
+    },
+    {
+      "id": "DUAL-SEVERITY-HAZARD",
+      "label": "DUAL Severity Hazard",
+      "family": "Task 1&4 / Market State",
+      "type": "RISK_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS",
+      "metrics": {},
+      "note": "再破位风险 challenger。"
+    },
+    {
+      "id": "LARGE-ONLY-SHADOW",
+      "label": "Pure Box · Large Only",
+      "family": "Independent Box",
+      "type": "FORWARD_SHADOW",
+      "status": "FORWARD_OOS_PENDING",
+      "period": "Frozen 2026-10-07",
+      "metrics": {},
+      "note": "Candidate V1 失败后发现的 post-hoc Large-vs-Small 假设，只允许未来验证。"
+    },
+    {
+      "id": "ENTRY-GREEN-DAY1-PASS",
+      "label": "Entry Green × Day1 Pass",
+      "family": "Right Tail / Exit Path",
+      "type": "FORWARD_OBSERVER",
+      "status": "FORWARD_OOS_PENDING",
+      "period": "Freeze 2026-10-07",
+      "metrics": {},
+      "note": "右尾/exit-engine interaction observer；不是独立短期 Alpha。"
+    },
+    {
+      "id": "NEXT-FACTOR-SHADOWS",
+      "label": "Next-Factor Prospective Shadows",
+      "family": "Next Factor",
+      "type": "FORWARD_OBSERVER",
+      "status": "FORWARD_OOS_PENDING",
+      "period": "Forward only",
+      "metrics": {},
+      "note": "Sector-relative / path 候选的 prospective ledger；历史 best bucket 不晋级。"
+    },
+    {
+      "id": "TASK14-MAINB-INTERSECTION",
+      "label": "Task1/4 × MAIN-B Intersection",
+      "family": "Task 1&4 / Market State",
+      "type": "FORWARD_OBSERVER",
+      "status": "FORWARD_OOS_PENDING",
+      "period": "Forward only",
+      "metrics": {},
+      "note": "只统计未来交集事件；历史 backfill 不算。"
+    },
+    {
+      "id": "MARKET-FACTOR-MAP-V2",
+      "label": "Market Factor Map V2",
+      "family": "Indicators / Macro",
+      "type": "FACTOR_SHADOW",
+      "status": "SHADOW_FROZEN",
+      "period": "Forward OOS",
+      "metrics": {},
+      "note": "Source-invariant factor representatives frozen for future validation。"
+    },
+    {
+      "id": "SPX-DIVERGENCE",
+      "label": "SPX Divergence · Robust Regime Research Signal",
+      "family": "Market Structure",
+      "type": "RESEARCH_SIGNAL",
+      "status": "RESEARCH_COMPLETE",
+      "period": "Historical/OOS research",
+      "metrics": {},
+      "note": "背离 + regime 研究信号；选择不够稳定，不生产化。"
+    },
+    {
+      "id": "SPX-PATTERN-FDR",
+      "label": "SPX Pattern Purged/FDR Survivor",
+      "family": "Historical Pattern",
+      "type": "RESEARCH_SIGNAL",
+      "status": "RESEARCH_COMPLETE",
+      "period": "Historical/OOS research",
+      "metrics": {},
+      "note": "至少一个 purged/FDR survivor；仍为研究级信号。"
+    },
+    {
+      "id": "SECTOR-ROTATION-CONTRARIAN",
+      "label": "Sector Rotation Contrarian",
+      "family": "Sector Rotation",
+      "type": "RESEARCH_SIGNAL",
+      "status": "RESEARCH_COMPLETE",
+      "period": "Historical research",
+      "metrics": {},
+      "note": "5d/10d 行业动量 IC 偏负，轻微反转方向较稳。"
+    },
+    {
+      "id": "RISK-V1",
+      "label": "Legacy Risk V1",
+      "family": "Legacy Mean Reversion",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_SUPERSEDED",
+      "period": "2019-10 → 2026",
+      "metrics": {
+        "ending": 2.0107,
+        "total_return_pct": 101.07,
+        "cagr_pct": 10.78,
+        "max_dd_pct": -10.33
+      },
+      "note": "旧账户级均值回归；已被 Frozen V4 架构取代，但按要求保留历史。"
+    },
+    {
+      "id": "RISK-V1-3M",
+      "label": "Legacy Risk V1 + 3M Treasury",
+      "family": "Legacy Mean Reversion",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_SUPERSEDED",
+      "period": "2019-10 → 2026",
+      "metrics": {
+        "ending": 2.2798,
+        "total_return_pct": 127.98,
+        "cagr_pct": 12.82,
+        "max_dd_pct": -9.65
+      },
+      "note": "旧现金袖套版本；已 superseded。"
+    },
+    {
+      "id": "RISK-V1-100",
+      "label": "Legacy Risk V1 · 100% Exposure",
+      "family": "Legacy Mean Reversion",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_SUPERSEDED",
+      "period": "2019-10 → 2026",
+      "metrics": {
+        "ending": 1.9369,
+        "total_return_pct": 93.69,
+        "cagr_pct": 10.31,
+        "max_dd_pct": -24.13
+      },
+      "note": "旧全股票暴露对照；已 superseded。"
+    },
+    {
+      "id": "STRICT-V3-RANK9-3SLOT",
+      "label": "Strict V3 · Rank≥9 · 3-slot",
+      "family": "Legacy Mean Reversion",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_RESEARCH",
+      "period": "Historical",
+      "metrics": {
+        "ending": 1.819,
+        "total_return_pct": 81.9,
+        "cagr_pct": 14.8,
+        "max_dd_pct": -8.2,
+        "trades": 89
+      },
+      "note": "旧 3-slot 账户实现；DD 为当时 realized 口径。"
+    },
+    {
+      "id": "SIX-CONDITION-T5",
+      "label": "Six-Condition Mean Reversion · T+5 Signal Index",
+      "family": "Legacy Mean Reversion",
+      "type": "LEGACY_SIGNAL_INDEX",
+      "status": "LEGACY_RESEARCH",
+      "period": "2019-10-30 → 2026-09-11",
+      "metrics": {
+        "ending": 7.094,
+        "total_return_pct": 609.4
+      },
+      "note": "信号指数，不是资本约束账户曲线；保留历史，不与账户策略直接排名。"
+    },
+    {
+      "id": "DEA-LONG-ONLY",
+      "label": "DEA/MACD Slope · Long Only",
+      "family": "Legacy Trend",
+      "type": "RESEARCH_SIGNAL",
+      "status": "RESEARCH_COMPLETE",
+      "period": "Historical",
+      "metrics": {
+        "trades": 358586,
+        "pf": 1.066
+      },
+      "note": "Raw mean +0.184%/trade，但 1% tail-trim 后转负；右尾依赖明显。"
+    },
+    {
+      "id": "DIF-DEA-SYNC",
+      "label": "DIF+DEA Sync Long",
+      "family": "Legacy Trend",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_RESEARCH",
+      "period": "Historical",
+      "metrics": {
+        "ending": 1.3594,
+        "total_return_pct": 35.94,
+        "max_dd_pct": -44.04,
+        "trades": 1117,
+        "pf": 1.087
+      },
+      "note": "同步上行、任一转弱退出；未成为 Frozen 主线。"
+    },
+    {
+      "id": "EXECUTION-V0.7",
+      "label": "Execution V0.7",
+      "family": "Legacy Execution",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_RESEARCH",
+      "period": "2024-09 → 2026",
+      "metrics": {
+        "ending": 1.367,
+        "total_return_pct": 36.7,
+        "max_dd_pct": -14,
+        "trades": 17,
+        "pf": 4.04
+      },
+      "note": "分钟执行层旧版，小样本；不视为 Forward OOS。"
+    },
+    {
+      "id": "FINAL-COMBINED-2SLOT",
+      "label": "Final Combined · 2-slot",
+      "family": "Legacy Execution",
+      "type": "LEGACY_ACCOUNT",
+      "status": "LEGACY_RESEARCH",
+      "period": "2024-09 → 2026",
+      "metrics": {
+        "ending": 1.253,
+        "total_return_pct": 25.3,
+        "cagr_pct": 12.1,
+        "max_dd_pct": -8.2,
+        "trades": 12,
+        "pf": 4.3
+      },
+      "note": "环境过滤+09:35 执行旧研究，小样本 12 笔；保留历史。"
+    }
+  ],
+  "excluded_falsified": [
+    "Trend V1 long/short",
+    "DEA/MACD symmetric long-short",
+    "Two-stop half-size",
+    "Two-stop lockout",
+    "Global DUAL portfolio brake",
+    "Residual seasonality",
+    "No-box skip",
+    "Early survival staged sizing 1/3/5/10",
+    "Entry-open damage",
+    "60m fail-fast exit",
+    "Post-60m continuation",
+    "RV20 interaction terms",
+    "Factor Hedge SPY+QQQ residual screen",
+    "Three-index Up/Down V1/V2",
+    "Up/Down short V1/V2/V3",
+    "Entry Heat DCA",
+    "Entry Heat delayed DCA",
+    "Continuous KNN analog",
+    "Interaction-tree validation",
+    "Naive 20-day box",
+    "Box V2 strict formation/support",
+    "Market State × Box V1 hard gate",
+    "Box + Sentiment",
+    "Pure Box Candidate V1 all-scale holdout",
+    "Small-box retained-valid-strategy status"
+  ]
+}
