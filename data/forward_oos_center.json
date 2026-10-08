@@ -1,6 +1,6 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-10-08T01:50:06.105161Z",
+  "generated_at_utc": "2026-10-08T01:57:38.190794Z",
   "latest_private_market_date": "2026-10-05",
   "account_lanes": [
     {
@@ -720,6 +720,7 @@
     "market_structure": {
       "repo": "galbbb2772/market-structure-lab",
       "current_strategies": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_current_strategies_v2.json",
+      "matched_control": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/matched_control_relative_state_forward_oos_v1.json",
       "evaluation": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_forward_oos_evaluation_v1.json",
       "challengers": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_challenger_forward_oos_v1.json",
       "paper_stock": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_stage4_stock_paper_execution_v1.json"
