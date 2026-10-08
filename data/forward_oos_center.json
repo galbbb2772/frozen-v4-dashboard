@@ -1,0 +1,738 @@
+{
+  "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
+  "generated_at_utc": "2026-10-08T01:50:06.105161Z",
+  "latest_private_market_date": "2026-10-05",
+  "account_lanes": [
+    {
+      "id": "MAIN-B",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 4,
+      "open": 2,
+      "equity": 1.0617899965453117,
+      "return_pct": 6.17899965453117,
+      "latest_drawdown_pct": -0.14695471515809,
+      "max_drawdown_pct": -4.63063548731482,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.097951024487742,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-18",
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0,
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0633294766887569,
+          1.052714108021674,
+          1.045008943967746,
+          1.032160191137667,
+          1.0141126585332554,
+          1.0480222616135946,
+          1.0617899965453117
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          -2.178647405826073e-05,
+          -0.0100047105143891,
+          -0.0172508147130281,
+          -0.0293340618934501,
+          -0.0463063548731482,
+          -0.0144170251281996,
+          -0.0014695471515809
+        ]
+      }
+    },
+    {
+      "id": "BENCH-A",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 3,
+      "open": 1,
+      "equity": 1.0408101645010164,
+      "return_pct": 4.081016450101638,
+      "latest_drawdown_pct": -2.85255165075953,
+      "max_drawdown_pct": -2.85255165075953,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.097951024487747,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-18",
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0,
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0633294766887569,
+          1.052714108021674,
+          1.0655616726252783,
+          1.0713715925500722,
+          1.0524179300700875,
+          1.0503930382141076,
+          1.0408101645010164
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          -2.178647405826073e-05,
+          -0.0100047105143891,
+          0.0,
+          0.0,
+          -0.017691025795141,
+          -0.0195810253714414,
+          -0.0285255165075953
+        ]
+      }
+    },
+    {
+      "id": "SHADOW-3S",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 4,
+      "open": 2,
+      "equity": 1.0587417982476932,
+      "return_pct": 5.874179824769321,
+      "latest_drawdown_pct": -0.43361392615046,
+      "max_drawdown_pct": -1.8769463952559198,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.0979510244877373,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-18",
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0,
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0633294766887569,
+          1.052714108021674,
+          1.0564454970527242,
+          1.0620835459910034,
+          1.043394084284503,
+          1.0601719158052378,
+          1.0587417982476932
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          -2.178647405826073e-05,
+          -0.0100047105143891,
+          -0.0064956309496437,
+          -0.001193486855389,
+          -0.0187694639525592,
+          -0.0029912255431537,
+          -0.0043361392615046
+        ]
+      }
+    },
+    {
+      "id": "SHADOW-SAT20",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 4,
+      "open": 2,
+      "equity": 1.0617899965453117,
+      "return_pct": 6.17899965453117,
+      "latest_drawdown_pct": -0.14695471515809,
+      "max_drawdown_pct": -4.63063548731482,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.097951024487742,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-18",
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0,
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0633294766887569,
+          1.052714108021674,
+          1.045008943967746,
+          1.032160191137667,
+          1.0141126585332554,
+          1.0480222616135946,
+          1.0617899965453117
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          -2.178647405826073e-05,
+          -0.0100047105143891,
+          -0.0172508147130281,
+          -0.0293340618934501,
+          -0.0463063548731482,
+          -0.0144170251281996,
+          -0.0014695471515809
+        ]
+      }
+    },
+    {
+      "id": "REGIME-COMBO50",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 4,
+      "open": 2,
+      "equity": 1.0617899965453117,
+      "return_pct": 6.17899965453117,
+      "latest_drawdown_pct": -0.14695471515809,
+      "max_drawdown_pct": -4.63063548731482,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.097951024487742,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-18",
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0,
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0633294766887569,
+          1.052714108021674,
+          1.045008943967746,
+          1.032160191137667,
+          1.0141126585332554,
+          1.0480222616135946,
+          1.0617899965453117
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          -2.178647405826073e-05,
+          -0.0100047105143891,
+          -0.0172508147130281,
+          -0.0293340618934501,
+          -0.0463063548731482,
+          -0.0144170251281996,
+          -0.0014695471515809
+        ]
+      }
+    },
+    {
+      "id": "UPPER-BOX50",
+      "type": "ACCOUNT_LANE",
+      "status": "LIVE_FORWARD_LEDGER",
+      "latest_date": "2026-10-05",
+      "closed": 4,
+      "open": 2,
+      "equity": 1.0709962379923397,
+      "return_pct": 7.099623799233967,
+      "latest_drawdown_pct": 0.0,
+      "max_drawdown_pct": -2.9952685363902902,
+      "win_rate_pct": 0.0,
+      "mean_trade_pct": -2.097951024487742,
+      "profit_factor": 0.0,
+      "curve": {
+        "date": [
+          "2026-09-21",
+          "2026-09-22",
+          "2026-09-23",
+          "2026-09-24",
+          "2026-09-25",
+          "2026-09-28",
+          "2026-09-29",
+          "2026-09-30",
+          "2026-10-01",
+          "2026-10-02",
+          "2026-10-05"
+        ],
+        "equity": [
+          1.012281995474031,
+          1.0633526433935367,
+          1.0555261037511685,
+          1.0599347241826291,
+          1.0695384743429428,
+          1.0588611203734706,
+          1.056708125012528,
+          1.049829102930083,
+          1.03750292493636,
+          1.0619155216676386,
+          1.0709962379923397
+        ],
+        "drawdown": [
+          0.0,
+          0.0,
+          -0.0073602484472046,
+          -0.0032142857142855,
+          0.0,
+          -0.009983141537785,
+          -0.0119961550128403,
+          -0.0184279218426134,
+          -0.0299526853639029,
+          -0.0071273290846196,
+          0.0
+        ]
+      }
+    }
+  ],
+  "extra_account_lanes": [
+    {
+      "id": "PURE-BOX-FROZEN-V1",
+      "label": "Pure Box Frozen V1",
+      "type": "ACCOUNT_FORWARD",
+      "status": "INITIALIZED",
+      "freeze_date": "2026-10-06",
+      "latest_date": "2026-10-05",
+      "curve": {
+        "date": [
+          "2026-10-05"
+        ],
+        "equity": [
+          1.0
+        ]
+      }
+    }
+  ],
+  "validators": [
+    {
+      "id": "REGIME-COMBO50",
+      "family": "Frozen V4 / Regime",
+      "type": "SIZING_SHADOW",
+      "status": "REGIME_SHADOW_OK",
+      "freeze_date": "2026-09-21",
+      "latest_date": "2026-10-05",
+      "observations": 8,
+      "matured": null,
+      "closed": 4,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "target_multiplier": 1.0
+      },
+      "note": "Forward sizing overlay; MAIN-B selection/exit unchanged.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "UPPER-BOX50",
+      "family": "Frozen V4 / Box",
+      "type": "SIZING_SHADOW",
+      "status": "UPPER_BOX_OK",
+      "freeze_date": "2026-09-22",
+      "latest_date": "2026-10-05",
+      "observations": 8,
+      "matured": null,
+      "closed": 4,
+      "triggered": 6,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "shadow_return_pct": 0.7188,
+        "relative_advantage_pct": 0.867,
+        "shadow_mdd_pct": -2.9953,
+        "closed_triggered_mean_pct": -2.098
+      },
+      "note": "Upper-box fixed-selection sizing shadow.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "BETA-HEDGE-B",
+      "family": "Hedge / Risk",
+      "type": "HEDGE_SHADOW",
+      "status": "BETA_HEDGE_SHADOW_OK",
+      "freeze_date": "2026-09-24",
+      "latest_date": "2026-10-05",
+      "observations": 7,
+      "matured": null,
+      "closed": null,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "portfolio_beta120": 0.43238432398000815,
+        "beta_coverage": 0.5,
+        "target_short_spy_nav": 0.0
+      },
+      "note": "Primary beta-hedge forward shadow; A/C remain fixed controls.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "SECTOR-EXPOSURE",
+      "family": "Hedge / Risk",
+      "type": "DIAGNOSTIC_SHADOW",
+      "status": "SECTOR_EXPOSURE_SHADOW_OK",
+      "freeze_date": "2026-09-24",
+      "latest_date": "2026-10-05",
+      "observations": 7,
+      "matured": null,
+      "closed": 5,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "mapping_coverage": 0.5,
+        "mapping_stability_rate": 0.6666666666666667,
+        "base_net_return_pct": 0.0
+      },
+      "note": "Sector mapping + next-open hedge economics; research-only.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "LATE-SURVIVAL-50",
+      "family": "Right Tail / Survival",
+      "type": "STAGED_SIZING_SHADOW",
+      "status": "OBSERVE_ONLY",
+      "freeze_date": "2026-10-03",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "n": 0,
+        "mean_net_return": null,
+        "win_rate": null
+      },
+      "note": "Checkpoint-20 staged-sizing shadow; Day1 quarantine remains authoritative.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "LATE-SURVIVAL-67",
+      "family": "Right Tail / Survival",
+      "type": "STAGED_SIZING_SHADOW",
+      "status": "OBSERVE_ONLY",
+      "freeze_date": "2026-10-03",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FROZEN_SHADOW",
+      "metrics": {
+        "n": 0,
+        "mean_net_return": null,
+        "win_rate": null
+      },
+      "note": "Checkpoint-20 staged-sizing shadow; Day1 quarantine remains authoritative.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "IMMEDIATE-STOP-RISK",
+      "family": "Failure / Intraday",
+      "type": "RISK_OBSERVER",
+      "status": "IMMEDIATE_STOP_FORWARD_RISK_SHADOW_OK",
+      "freeze_date": "2026-10-02",
+      "latest_date": "2026-10-07T02:45:01.298504Z",
+      "observations": 2,
+      "matured": 0,
+      "closed": 0,
+      "triggered": null,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OBSERVER",
+      "metrics": {
+        "mean_feature_coverage": 0.6428571428571428,
+        "low": 0,
+        "mid": 1,
+        "high": 1
+      },
+      "note": "Append-only immediate-stop risk score; observation-only.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "NEXT-FACTOR-SHADOWS",
+      "family": "Next Factor",
+      "type": "FORWARD_OBSERVER",
+      "status": "NEXT_FACTOR_FORWARD_SHADOWS_OK",
+      "freeze_date": "2026-10-02",
+      "latest_date": "2026-10-06T06:13:35.448831Z",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": null,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OBSERVER",
+      "metrics": {
+        "checkpoints": {
+          "day1": 0,
+          "day2": 0,
+          "day3": 0
+        }
+      },
+      "note": "Sector-relative and post-entry path prospective evidence only.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "ENTRY-GREEN-DAY1-PASS",
+      "family": "Right Tail / Exit Path",
+      "type": "FORWARD_OBSERVER",
+      "status": "ENTRY_GREEN_DAY1_PASS_FORWARD_V1_OK",
+      "freeze_date": "2026-10-07",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OBSERVER",
+      "metrics": {
+        "primary_day1_pass_comparison": {
+          "green": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "pf": null,
+            "positive_rate": null,
+            "right10_rate": null,
+            "right20_rate": null
+          },
+          "non_green": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "pf": null,
+            "positive_rate": null,
+            "right10_rate": null,
+            "right20_rate": null
+          }
+        }
+      },
+      "note": "Exit-engine/right-tail interaction observer; not a short-horizon alpha rule.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "REENTRY-EPISODE",
+      "family": "Re-entry",
+      "type": "FORWARD_OBSERVER",
+      "status": "OK",
+      "freeze_date": "2026-10-03",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": null,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OBSERVER",
+      "metrics": {
+        "active_waiting": 0,
+        "active_reclaimed": 1
+      },
+      "note": "Prospective re-entry episode monitor; no execution effect.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "NASDAQ-BALANCE",
+      "family": "Market Structure",
+      "type": "DESCRIPTIVE_OBSERVER",
+      "status": "NO_ELIGIBLE_FORWARD_OBSERVATIONS",
+      "freeze_date": "2026-09-19",
+      "latest_date": "2026-09-19",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": null,
+      "ready": false,
+      "promotion_eligible": false,
+      "priority": "DESCRIPTIVE_ONLY",
+      "metrics": {},
+      "note": "Historical intended sizing hypothesis failed; kept only as prospective diagnostic.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "TASK14-MAINB-INTERSECTION",
+      "family": "Task 1/4",
+      "type": "FORWARD_OBSERVER",
+      "status": "AWAITING_TASK14_FORWARD_EVENT",
+      "freeze_date": "2026-10-02",
+      "latest_date": "2026-10-06T05:43:40.315226+00:00",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OBSERVER",
+      "metrics": {
+        "minimum_events": 20,
+        "minimum_months": 12
+      },
+      "note": "Exact-date Task1/4 × MAIN-B prospective intersection.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "PURE-BOX-FROZEN-V1",
+      "family": "Independent Box",
+      "type": "FORWARD_ACCOUNT",
+      "status": "INITIALIZED",
+      "freeze_date": "2026-10-06",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": null,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OOS_PENDING",
+      "metrics": {},
+      "note": "No historical forward trades were created.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "PURE-BOX-SIMPLE-CORE",
+      "family": "Independent Box",
+      "type": "FORWARD_ACCOUNT",
+      "status": "AWAITING_ANCHOR",
+      "freeze_date": "2026-10-07",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": null,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OOS_PENDING",
+      "metrics": {
+        "promotion_trade_gate": 100,
+        "promotion_month_gate": 12
+      },
+      "note": "Observer code passed smoke validation. No historical or pre-freeze trades have been created. Official EOD cache must reach the freeze anchor before initialization.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "GAP-RETEST-LIFT",
+      "family": "Independent Box",
+      "type": "FORWARD_OBSERVER",
+      "status": "FORWARD_OOS_PENDING",
+      "freeze_date": "2026-10-07",
+      "latest_date": "2026-10-05",
+      "observations": 0,
+      "matured": 0,
+      "closed": 0,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": true,
+      "priority": "FORWARD_OOS_PENDING",
+      "metrics": {
+        "event_status_counts": {
+          "CLOSED": 0,
+          "ENTRY_INELIGIBLE": 0,
+          "OPEN": 0,
+          "PENDING_OPEN": 0
+        }
+      },
+      "note": "Post-discovery Retest-Lift observer; forward evidence only.",
+      "source": "frozen-v4"
+    }
+  ],
+  "remote_sources": {
+    "market_structure": {
+      "repo": "galbbb2772/market-structure-lab",
+      "current_strategies": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_current_strategies_v2.json",
+      "evaluation": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_forward_oos_evaluation_v1.json",
+      "challengers": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_challenger_forward_oos_v1.json",
+      "paper_stock": "https://raw.githubusercontent.com/galbbb2772/market-structure-lab/main/docs/data/pruned16_v2/task14_stage4_stock_paper_execution_v1.json"
+    },
+    "market_indicators": {
+      "repo": "galbbb2772/market-indicators-v1",
+      "representatives": "https://raw.githubusercontent.com/galbbb2772/market-indicators-v1/main/docs/data/source_invariant_representatives_oos_v1.json"
+    }
+  },
+  "governance": {
+    "historical_backfill_counts_as_forward": false,
+    "observer_without_equity_curve_must_not_be_rendered_as_account_curve": true,
+    "automatic_promotion": false,
+    "note": "Forward evidence only. Production MAIN-B is unchanged by research observers."
+  }
+}
