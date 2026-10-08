@@ -1,6 +1,6 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-10-08T01:57:38.190794Z",
+  "generated_at_utc": "2026-10-08T01:59:37.943216Z",
   "latest_private_market_date": "2026-10-05",
   "account_lanes": [
     {
@@ -418,6 +418,29 @@
       "source": "frozen-v4"
     },
     {
+      "id": "BETA-HEDGE-A",
+      "family": "Hedge / Risk",
+      "type": "HEDGE_CONTROL",
+      "status": "BETA_HEDGE_SHADOW_OK",
+      "freeze_date": "2026-09-24",
+      "latest_date": "2026-10-05",
+      "observations": 7,
+      "matured": null,
+      "closed": null,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": false,
+      "priority": "FIXED_FORWARD_CONTROL",
+      "metrics": {
+        "portfolio_beta120": 0.43238432398000815,
+        "beta_coverage": 0.5,
+        "target_short_spy_nav": 0.0,
+        "regime_multiplier": 0.0
+      },
+      "note": "Fixed preregistered beta-hedge control; not optimized or promoted independently.",
+      "source": "frozen-v4"
+    },
+    {
       "id": "BETA-HEDGE-B",
       "family": "Hedge / Risk",
       "type": "HEDGE_SHADOW",
@@ -434,9 +457,33 @@
       "metrics": {
         "portfolio_beta120": 0.43238432398000815,
         "beta_coverage": 0.5,
-        "target_short_spy_nav": 0.0
+        "target_short_spy_nav": 0.0,
+        "regime_multiplier": 0.0
       },
-      "note": "Primary beta-hedge forward shadow; A/C remain fixed controls.",
+      "note": "Primary beta-hedge forward shadow.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "BETA-HEDGE-C",
+      "family": "Hedge / Risk",
+      "type": "HEDGE_CONTROL",
+      "status": "BETA_HEDGE_SHADOW_OK",
+      "freeze_date": "2026-09-24",
+      "latest_date": "2026-10-05",
+      "observations": 7,
+      "matured": null,
+      "closed": null,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": false,
+      "priority": "FIXED_FORWARD_CONTROL",
+      "metrics": {
+        "portfolio_beta120": 0.43238432398000815,
+        "beta_coverage": 0.5,
+        "target_short_spy_nav": 0.0,
+        "regime_multiplier": 0.0
+      },
+      "note": "Fixed preregistered beta-hedge control; not optimized or promoted independently.",
       "source": "frozen-v4"
     },
     {
@@ -458,7 +505,30 @@
         "mapping_stability_rate": 0.6666666666666667,
         "base_net_return_pct": 0.0
       },
-      "note": "Sector mapping + next-open hedge economics; research-only.",
+      "note": "Sector exposure mapping/concentration diagnostic.",
+      "source": "frozen-v4"
+    },
+    {
+      "id": "SECTOR-HEDGE-ECONOMICS",
+      "family": "Hedge / Risk",
+      "type": "PAPER_ECONOMICS",
+      "status": "SECTOR_HEDGE_ECONOMICS_OK",
+      "freeze_date": "2026-09-24",
+      "latest_date": "2026-10-01",
+      "observations": 7,
+      "matured": 5,
+      "closed": 5,
+      "triggered": 0,
+      "ready": false,
+      "promotion_eligible": false,
+      "priority": "FIXED_FORWARD_CONTROL",
+      "metrics": {
+        "pending_intervals": 2,
+        "gross_return_pct": 0.0,
+        "base_net_return_pct": 0.0,
+        "stress_net_return_pct": 0.0
+      },
+      "note": "Next-open paper hedge economics; no order routing.",
       "source": "frozen-v4"
     },
     {
