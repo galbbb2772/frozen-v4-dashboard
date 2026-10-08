@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Forward OOS Center · Frozen V4</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="plotly-mobile-guard.js"></script>
+<style>
+:root{--bg:#070b12;--p:#101824;--p2:#0c121d;--line:#26344a;--t:#eef5ff;--m:#8d9cb2;--g:#58d8a1;--r:#ff7d89;--w:#efc766;--a:#8db8ff;--v:#bd9cff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#070b12,#0a1019);color:var(--t);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:1500px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.eyebrow{font-size:10px;color:var(--m);letter-spacing:.11em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,46px);letter-spacing:-.04em;margin:5px 0}.muted{color:var(--m);line-height:1.55}.links a{color:#a8c7ff;text-decoration:none;margin-left:12px}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin:16px 0}.card{background:linear-gradient(180deg,#111a29,#0e1521);border:1px solid var(--line);border-radius:16px;padding:14px;min-width:0}
+.k{font-size:10px;color:var(--m);letter-spacing:.09em;text-transform:uppercase}.v{font-size:24px;font-weight:800;margin:5px 0}.section{margin-top:12px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}
+.chart{height:430px}.controls{display:flex;gap:7px;overflow:auto;padding:6px 0 10px}.controls button,.filter button{border:1px solid #2b3850;background:#111927;color:#ccd7e8;padding:7px 10px;border-radius:9px;white-space:nowrap}
+.controls button.on,.filter button.on{background:#1c3152;border-color:#5e86c7;color:#fff}.filter{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.tablewrap{overflow:auto;max-height:780px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 8px;border-bottom:1px solid #202c3f;text-align:right;vertical-align:top;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#101824;color:var(--m);z-index:1}.wrapcell{white-space:normal!important;min-width:260px;text-align:left!important}
+.pill{display:inline-block;padding:3px 7px;border:1px solid #40516d;border-radius:999px;font-size:10px}.good{color:var(--g);border-color:#2f6954}.warn{color:var(--w);border-color:#67572d}.bad{color:var(--r);border-color:#71333d}.info{color:var(--a);border-color:#3c5e8d}.legacy{color:#cfb9ff;border-color:#624d87}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.item{border:1px solid #26344a;border-radius:13px;background:#0b121d;padding:12px}.item h3{font-size:14px;margin:0 0 7px}.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;border-bottom:1px solid #1e2939;padding:5px 0}.kv:last-child{border-bottom:0}
+.note{border-left:3px solid #4f72a4;background:#0a111c;border-radius:0 10px 10px 0;padding:10px 12px;color:#aebbd0;line-height:1.6}.empty{border:1px dashed #334158;border-radius:12px;padding:24px;color:var(--m);text-align:center}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:850px){.two,.grid2{grid-template-columns:1fr}.chart{height:360px}}@media(max-width:560px){.wrap{padding:12px}.cards{grid-template-columns:repeat(2,1fr)}.card{padding:12px}.v{font-size:20px}.chart{height:330px}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="top">
+  <div>
+    <div class="eyebrow">Frozen V4 · Unified Prospective Validation</div>
+    <h1>Forward OOS Center</h1>
+    <div class="muted">把 Frozen V4、Task 1/4 / Market Structure、Market Indicators 的所有可验证 Forward / Shadow / Observer 接到同一盘面。历史回测不计入这里。</div>
+  </div>
+  <div class="links"><a href="./">← Live Dashboard</a><a href="historical-backtests.html">Historical →</a></div>
+</div>
+
+<div id="summaryCards" class="cards"></div>
+
+<div class="section card">
+  <div class="k">Account-style Forward equity · only real prospective account ledgers</div>
+  <div id="laneButtons" class="controls"></div>
+  <div id="accountChart" class="chart"></div>
+  <div class="note section">只有真正存在 Forward 账户净值账本的 lane 才画线。事件型 Observer 不会被伪造成“策略收益曲线”。</div>
+</div>
+
+<div class="section two">
+  <div class="card">
+    <div class="k">Frozen V4 · private Forward validators</div>
+    <div class="filter" id="privateFilters"></div>
+    <div id="privateTable" class="tablewrap"></div>
+  </div>
+  <div class="card">
+    <div class="k">Selected validator detail</div>
+    <div id="detail" class="empty">点左侧任意一条 Forward 验证查看状态与门槛。</div>
+  </div>
+</div>
+
+<div class="section card">
+  <div class="k">Task 1/4 / Market Structure · live public Forward-OOS</div>
+  <div class="muted" id="task14Meta">Loading market-structure-lab…</div>
+  <div id="task14Grid" class="grid2 section"></div>
+</div>
+
+<div class="section card">
+  <div class="k">Market Indicators · source-invariant Forward representatives</div>
+  <div class="muted" id="factorMeta">Loading market-indicators-v1…</div>
+  <div id="factorGrid" class="grid2 section"></div>
+</div>
+
+<div class="section card">
+  <div class="k">Cross-repo Forward governance</div>
+  <div class="note">Forward 样本必须在冻结后、结果未知前首次记录。PENDING 不是失败；Legacy/T3 可以继续审计，但不能凭当前历史证据晋级。任何 PASS 都不会自动改 MAIN-B。</div>
+</div>
+</div>
+
+<script>
+const COMMON={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#cdd7e8'},margin:{l:52,r:15,t:24,b:45},hovermode:'x unified',legend:{orientation:'h',y:1.08,x:0},xaxis:{gridcolor:'#192438'},yaxis:{gridcolor:'#192438'}};
+let CENTER={account_lanes:[],extra_account_lanes:[],validators:[]}, selectedLane='ALL', privateFilter='ALL';
+
+const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+const num=(v,d=2)=>v==null||Number.isNaN(Number(v))?'—':Number(v).toFixed(d);
+const pct=(v,d=2)=>v==null||Number.isNaN(Number(v))?'—':Number(v).toFixed(d)+'%';
+function statusClass(s){
+  const x=String(s||'').toUpperCase();
+  if(x.includes('OK')||x.includes('LIVE')||x.includes('EXACT'))return 'good';
+  if(x.includes('LEGACY')||x.includes('DESCRIPTIVE'))return 'legacy';
+  if(x.includes('PENDING')||x.includes('AWAIT')||x.includes('OBSERVE'))return 'warn';
+  if(x.includes('FAIL')||x.includes('REJECT'))return 'bad';
+  return 'info';
+}
+async function fetchJson(url){
+  const r=await fetch(url+(url.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error(url+' HTTP '+r.status);
+  return r.json();
+}
+function allAccountLanes(){return [...(CENTER.account_lanes||[]),...(CENTER.extra_account_lanes||[])].filter(x=>x.curve?.date?.length);}
+function renderSummary(){
+  const a=allAccountLanes(), v=CENTER.validators||[];
+  const pending=v.filter(x=>String(x.status||'').match(/PENDING|AWAIT|OBSERVE/i)).length;
+  const ready=v.filter(x=>x.ready===true).length;
+  const obs=v.reduce((s,x)=>s+(Number(x.observations)||0),0);
+  document.getElementById('summaryCards').innerHTML=[
+    ['Private market as-of',CENTER.latest_private_market_date||'—','Frozen V4 EOD'],
+    ['Account lanes',a.length,'真实 Forward 曲线'],
+    ['Private validators',v.length,'Shadow / Observer'],
+    ['Observed samples',obs,'私有验证累计'],
+    ['Pending / observing',pending,'等待更多未来样本'],
+    ['Ready for review',ready,'不等于自动晋级']
+  ].map(x=>'<div class="card"><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1])+'</div><div class="muted">'+esc(x[2])+'</div></div>').join('');
+}
+function renderAccount(){
+  const lanes=allAccountLanes();
+  const ids=lanes.map(x=>x.id);
+  const host=document.getElementById('laneButtons');
+  host.innerHTML=['ALL',...ids].map(id=>'<button data-lane="'+esc(id)+'" class="'+(id===selectedLane?'on':'')+'">'+esc(id)+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{selectedLane=b.dataset.lane;renderAccount()}));
+  const show=selectedLane==='ALL'?lanes:lanes.filter(x=>x.id===selectedLane);
+  const traces=show.map(x=>({x:x.curve.date,y:x.curve.equity,name:x.id,type:'scatter',mode:'lines'}));
+  if(!traces.length){
+    document.getElementById('accountChart').innerHTML='<div class="empty">还没有可画的 Forward 账户曲线。</div>';
+    return;
+  }
+  Plotly.react('accountChart',traces,{...COMMON,yaxis:{...COMMON.yaxis,title:'Equity multiple'}},{responsive:true,displaylogo:false});
+}
+function validatorGroup(v){
+  if(v.type?.includes('ACCOUNT')||v.type?.includes('SIZING'))return 'ACCOUNT';
+  if(v.family?.includes('Hedge')||v.type?.includes('RISK'))return 'RISK';
+  if(v.family?.includes('Box'))return 'BOX';
+  return 'OBSERVER';
+}
+function renderPrivate(){
+  const filters=['ALL','ACCOUNT','RISK','BOX','OBSERVER'];
+  const fh=document.getElementById('privateFilters');
+  fh.innerHTML=filters.map(x=>'<button data-f="'+x+'" class="'+(x===privateFilter?'on':'')+'">'+x+'</button>').join('');
+  fh.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{privateFilter=b.dataset.f;renderPrivate()}));
+  const rows=(CENTER.validators||[]).filter(v=>privateFilter==='ALL'||validatorGroup(v)===privateFilter);
+  const html='<table><thead><tr><th>Validator</th><th>Status</th><th>Freeze</th><th>Obs</th><th>Mature/Closed</th><th>Ready</th></tr></thead><tbody>'+
+    rows.map(v=>'<tr class="validator-row" data-id="'+esc(v.id)+'"><td>'+esc(v.id)+'</td><td><span class="pill '+statusClass(v.status)+'">'+esc(v.status)+'</span></td><td>'+esc(v.freeze_date||'—')+'</td><td>'+esc(v.observations??'—')+'</td><td>'+esc(v.matured??v.closed??'—')+'</td><td>'+esc(v.ready===true?'YES':v.ready===false?'NO':'—')+'</td></tr>').join('')+'</tbody></table>';
+  document.getElementById('privateTable').innerHTML=html;
+  document.querySelectorAll('.validator-row').forEach(r=>r.addEventListener('click',()=>showDetail(r.dataset.id)));
+}
+function showDetail(id){
+  const v=(CENTER.validators||[]).find(x=>x.id===id); if(!v)return;
+  const m=Object.entries(v.metrics||{});
+  const metricHtml=m.length?m.map(([k,val])=>'<div class="kv"><span class="muted">'+esc(k)+'</span><b>'+esc(typeof val==='object'?JSON.stringify(val):val)+'</b></div>').join(''):'<div class="muted">暂无成熟指标。</div>';
+  document.getElementById('detail').className='item';
+  document.getElementById('detail').innerHTML='<h3>'+esc(v.id)+' · '+esc(v.family)+'</h3>'+
+    '<div><span class="pill '+statusClass(v.status)+'">'+esc(v.status)+'</span> <span class="pill info">'+esc(v.type)+'</span></div>'+
+    '<div class="section">'+
+    '<div class="kv"><span class="muted">Freeze</span><b>'+esc(v.freeze_date||'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Latest</span><b>'+esc(v.latest_date||'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Observations</span><b>'+esc(v.observations??'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Matured / closed</span><b>'+esc(v.matured??v.closed??'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Triggered / tagged</span><b>'+esc(v.triggered??'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Priority</span><b>'+esc(v.priority||'—')+'</b></div>'+
+    '<div class="kv"><span class="muted">Promotion eligible</span><b>'+esc(v.promotion_eligible===true?'YES':v.promotion_eligible===false?'NO':'—')+'</b></div>'+
+    '</div><div class="section">'+metricHtml+'</div><div class="note section">'+esc(v.note||'')+'</div>';
+}
+function itemCard(title,status,rows,note){
+  return '<div class="item"><h3>'+esc(title)+'</h3><span class="pill '+statusClass(status)+'">'+esc(status)+'</span><div class="section">'+
+    rows.map(x=>'<div class="kv"><span class="muted">'+esc(x[0])+'</span><b>'+esc(x[1]??'—')+'</b></div>').join('')+
+    '</div>'+(note?'<div class="muted section">'+esc(note)+'</div>':'')+'</div>';
+}
+async function loadTask14(){
+  const meta=document.getElementById('task14Meta'), grid=document.getElementById('task14Grid');
+  try{
+    const src=CENTER.remote_sources.market_structure;
+    const [current,evals,chall,paper]=await Promise.all([fetchJson(src.current_strategies),fetchJson(src.evaluation),fetchJson(src.challengers),fetchJson(src.paper_stock)]);
+    meta.textContent='Latest market date '+(evals.latest_market_date||'—')+' · freeze through '+(evals.frozen_through_market_date||'—')+' · current strategy count '+(current.current_strategy_count||0);
+    const cards=[];
+    (current.current_strategies||[]).forEach(s=>{
+      let e=(evals.tests||{})[s.id]||null;
+      if(s.id==='rmd2_price_score')e=(chall.challengers||{}).rmd2_price_score||null;
+      if(s.id==='matched_control_relative_state_edge'){
+        cards.push(itemCard(s.label,s.status,[['Tier',s.tier],['Forward sample','Awaiting future Task1/4 events'],['Role','T1 core thesis']],s.role));
+      }else{
+        cards.push(itemCard(s.label,e?.status||e?.priority_status||s.status,[
+          ['Tier',s.tier||e?.research_priority_tier],
+          ['Forward events',e?.forward_event_count??e?.primary_sample_n??0],
+          ['Mature 10D',e?.mature_10d_event_count??e?.readiness?.mature_event_count??0],
+          ['Review ready',e?.promotion_gate?.ready??e?.readiness?.ready??false]
+        ],s.role));
+      }
+    });
+    ['rmd3','dual_severity_hazard'].forEach(id=>{
+      const e=(evals.tests||{})[id]||{};
+      cards.push(itemCard(id.toUpperCase(),e.status||'PENDING',[
+        ['Tier',e.research_priority_tier||'T3_LEGACY_LOW_PRIORITY'],
+        ['Primary N',e.primary_sample_n??0],
+        ['Mature events',e.readiness?.mature_event_count??0],
+        ['Promotion eligible',e.promotion_eligible_under_current_priority??false]
+      ],'Legacy low-priority audit remains append-only.'));
+    });
+    const p25=paper.portfolios?.fixed_25bps_rt||{};
+    cards.push(itemCard('Task1/4 stock paper · 25bps','PAPER_ONLY',[
+      ['Trade pool',paper.upstream_trade_pool_eligible_count??0],
+      ['Open',p25.open_positions?.length??0],
+      ['Return to date',pct(p25.return_to_date_pct)],
+      ['Max DD',pct(p25.max_drawdown_to_date_pct)]
+    ],'Next-open entry, signal+10 SPY sessions exit; no broker orders.'));
+    grid.innerHTML=cards.join('');
+    const curve=p25.equity_curve||[];
+    if(curve.length){
+      const lane={id:'TASK14-STOCK-PAPER-25BPS',curve:{date:curve.map(x=>x.date||x.market_date),equity:curve.map(x=>(x.equity_usd||x.equity||100000)/100000)}};
+      CENTER.extra_account_lanes.push(lane); renderSummary(); renderAccount();
+    }
+  }catch(e){
+    meta.textContent='Market-structure live fetch failed: '+e.message;
+    grid.innerHTML='<div class="empty">公开 Forward 数据暂时无法读取；Frozen V4 私有 Forward 盘面不受影响。</div>';
+  }
+}
+async function loadFactors(){
+  const meta=document.getElementById('factorMeta'), grid=document.getElementById('factorGrid');
+  try{
+    const d=await fetchJson(CENTER.remote_sources.market_indicators.representatives);
+    meta.textContent='Latest completed market date '+(d.latest_completed_market_date||'—')+' · freeze through '+(d.frozen_through_market_date||'—')+' · gate 252 matured daily observations + 12 months';
+    const counts=d.status?.counts||{};
+    grid.innerHTML=Object.entries(d.candidates||{}).map(([id,c])=>{
+      const s=counts[id]||{};
+      return itemCard(c.member||id,'FORWARD_OBSERVER',[
+        ['Candidate',id],
+        ['Forward observations',s.forward_observation_count??0],
+        ['Mature 10D',s.matured_10d_count??0],
+        ['Latest',s.latest_forward_market_date||'—'],
+        ['Expected IC10 sign',c.expected_ic10_sign||'—'],
+        ['Discrepancies',s.discrepancy_count??0]
+      ],'Source-invariant representative; BH-FDR family of exactly three candidates.');
+    }).join('');
+  }catch(e){
+    meta.textContent='Market-indicators live fetch failed: '+e.message;
+    grid.innerHTML='<div class="empty">公开指标 Forward 数据暂时无法读取。</div>';
+  }
+}
+(async()=>{
+  CENTER=await fetchJson('data/forward_oos_center.json');
+  renderSummary();renderAccount();renderPrivate();
+  await Promise.all([loadTask14(),loadFactors()]);
+})().catch(e=>{
+  document.getElementById('summaryCards').innerHTML='<div class="card"><div class="k">Load error</div><div class="v" style="font-size:15px;color:#ff7d89">'+esc(e.message)+'</div></div>';
+});
+</script>
+</body></html>
