@@ -164,14 +164,24 @@ async function loadTask14(){
   const meta=document.getElementById('task14Meta'), grid=document.getElementById('task14Grid');
   try{
     const src=CENTER.remote_sources.market_structure;
-    const [current,evals,chall,paper]=await Promise.all([fetchJson(src.current_strategies),fetchJson(src.evaluation),fetchJson(src.challengers),fetchJson(src.paper_stock)]);
+    const [current,matched,evals,chall,paper]=await Promise.all([fetchJson(src.current_strategies),fetchJson(src.matched_control),fetchJson(src.evaluation),fetchJson(src.challengers),fetchJson(src.paper_stock)]);
     meta.textContent='Latest market date '+(evals.latest_market_date||'—')+' · freeze through '+(evals.frozen_through_market_date||'—')+' · current strategy count '+(current.current_strategy_count||0);
     const cards=[];
     (current.current_strategies||[]).forEach(s=>{
       let e=(evals.tests||{})[s.id]||null;
       if(s.id==='rmd2_price_score')e=(chall.challengers||{}).rmd2_price_score||null;
       if(s.id==='matched_control_relative_state_edge'){
-        cards.push(itemCard(s.label,s.status,[['Tier',s.tier],['Forward sample','Awaiting future Task1/4 events'],['Role','T1 core thesis']],s.role));
+        const ms=matched.summary||{};
+        cards.push(itemCard(s.label,ms.ready_for_preregistered_review?'READY_FOR_REVIEW':'PENDING',[
+          ['Tier',s.tier],
+          ['Forward events',ms.forward_event_count??0],
+          ['Mature 10D',ms.mature_10d_event_count??0],
+          ['Mature 20D',ms.mature_20d_event_count??0],
+          ['10D mean lift',ms.ten_day?.mean_lift_pp==null?'—':num(ms.ten_day.mean_lift_pp,3)+' pp'],
+          ['20D mean lift',ms.twenty_day?.mean_lift_pp==null?'—':num(ms.twenty_day.mean_lift_pp,3)+' pp'],
+          ['Independent clusters',ms.independent_cluster_count_20sessions??0],
+          ['Review ready',ms.ready_for_preregistered_review??false]
+        ],s.role));
       }else{
         cards.push(itemCard(s.label,e?.status||e?.priority_status||s.status,[
           ['Tier',s.tier||e?.research_priority_tier],
