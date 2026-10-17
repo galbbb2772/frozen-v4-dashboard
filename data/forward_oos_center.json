@@ -1,18 +1,18 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-10-16T14:15:45.934452Z",
-  "latest_private_market_date": "2026-10-15",
+  "generated_at_utc": "2026-10-17T11:28:44.241343Z",
+  "latest_private_market_date": "2026-10-16",
   "account_lanes": [
     {
       "id": "MAIN-B",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 8,
-      "open": 2,
-      "equity": 1.0095156466259845,
-      "return_pct": 0.9515646625984475,
-      "latest_drawdown_pct": -5.0629485055625,
+      "latest_date": "2026-10-16",
+      "closed": 9,
+      "open": 1,
+      "equity": 1.0038166175507417,
+      "return_pct": 0.38166175507416966,
+      "latest_drawdown_pct": -5.59889761996494,
       "max_drawdown_pct": -6.8655466148040105,
       "win_rate_pct": 0.0,
       "mean_trade_pct": -2.0979510244877453,
@@ -38,7 +38,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.0,
@@ -60,7 +61,8 @@
           1.000368889492406,
           0.9903476719816028,
           0.9963379118190686,
-          1.0095156466259845
+          1.0095156466259845,
+          1.0038166175507417
         ],
         "drawdown": [
           0.0,
@@ -82,7 +84,8 @@
           -0.0592312948036949,
           -0.0686554661480401,
           -0.0630221140567256,
-          -0.050629485055625
+          -0.050629485055625,
+          -0.0559889761996494
         ]
       }
     },
@@ -90,15 +93,15 @@
       "id": "BENCH-A",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 6,
-      "open": 2,
-      "equity": 1.028822351876753,
-      "return_pct": 2.882235187675297,
-      "latest_drawdown_pct": -3.9714736669509496,
+      "latest_date": "2026-10-16",
+      "closed": 7,
+      "open": 1,
+      "equity": 1.0230143304595505,
+      "return_pct": 2.301433045955048,
+      "latest_drawdown_pct": -4.51358449549911,
       "max_drawdown_pct": -6.27662018472686,
       "win_rate_pct": 0.0,
-      "mean_trade_pct": -2.097951024487745,
+      "mean_trade_pct": -2.0979510244877453,
       "profit_factor": 0.0,
       "curve": {
         "date": [
@@ -121,7 +124,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.0,
@@ -143,7 +147,8 @@
           1.019500665563455,
           1.0092877950620502,
           1.0153925965661033,
-          1.028822351876753
+          1.028822351876753,
+          1.0230143304595505
         ],
         "drawdown": [
           0.0,
@@ -165,7 +170,8 @@
           -0.0484154399344808,
           -0.0579479593445729,
           -0.0522498415799209,
-          -0.0397147366695095
+          -0.0397147366695095,
+          -0.0451358449549911
         ]
       }
     },
@@ -173,16 +179,16 @@
       "id": "SHADOW-3S",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 10,
-      "open": 2,
-      "equity": 1.0208343816893,
-      "return_pct": 2.0834381689299963,
-      "latest_drawdown_pct": -3.99850999274764,
+      "latest_date": "2026-10-16",
+      "closed": 11,
+      "open": 1,
+      "equity": 1.015071454842451,
+      "return_pct": 1.5071454842451093,
+      "latest_drawdown_pct": -4.540468192847389,
       "max_drawdown_pct": -5.8213189134732,
-      "win_rate_pct": 10.0,
-      "mean_trade_pct": -1.852878998567168,
-      "profit_factor": 0.018683268187780495,
+      "win_rate_pct": 9.090909090909092,
+      "mean_trade_pct": -1.875158273650857,
+      "profit_factor": 0.01681494136900244,
       "curve": {
         "date": [
           "2026-09-18",
@@ -204,7 +210,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.0,
@@ -226,7 +233,8 @@
           1.014986076651368,
           1.0014514948467514,
           1.0075088975240534,
-          1.0208343816893
+          1.0208343816893,
+          1.015071454842451
         ],
         "drawdown": [
           0.0,
@@ -248,7 +256,8 @@
           -0.0454849734400565,
           -0.058213189134732,
           -0.0525166756451238,
-          -0.0399850999274764
+          -0.0399850999274764,
+          -0.0454046819284739
         ]
       }
     },
@@ -256,12 +265,12 @@
       "id": "SHADOW-SAT20",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 8,
-      "open": 2,
-      "equity": 1.0095156466259845,
-      "return_pct": 0.9515646625984475,
-      "latest_drawdown_pct": -5.0629485055625,
+      "latest_date": "2026-10-16",
+      "closed": 9,
+      "open": 1,
+      "equity": 1.0038166175507417,
+      "return_pct": 0.38166175507416966,
+      "latest_drawdown_pct": -5.59889761996494,
       "max_drawdown_pct": -6.8655466148040105,
       "win_rate_pct": 0.0,
       "mean_trade_pct": -2.0979510244877453,
@@ -287,7 +296,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.0,
@@ -309,7 +319,8 @@
           1.000368889492406,
           0.9903476719816028,
           0.9963379118190686,
-          1.0095156466259845
+          1.0095156466259845,
+          1.0038166175507417
         ],
         "drawdown": [
           0.0,
@@ -331,7 +342,8 @@
           -0.0592312948036949,
           -0.0686554661480401,
           -0.0630221140567256,
-          -0.050629485055625
+          -0.050629485055625,
+          -0.0559889761996494
         ]
       }
     },
@@ -339,12 +351,12 @@
       "id": "REGIME-COMBO50",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 8,
-      "open": 2,
-      "equity": 1.0167271179774289,
-      "return_pct": 1.6727117977428874,
-      "latest_drawdown_pct": -4.384766023368241,
+      "latest_date": "2026-10-16",
+      "closed": 9,
+      "open": 1,
+      "equity": 1.0202269925725038,
+      "return_pct": 2.022699257250382,
+      "latest_drawdown_pct": -4.0556301890033,
       "max_drawdown_pct": -6.09401752311357,
       "win_rate_pct": 0.0,
       "mean_trade_pct": -2.0979510244877453,
@@ -370,7 +382,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.0,
@@ -392,7 +405,8 @@
           1.005621715715908,
           1.001373775355,
           1.00298543716436,
-          1.0167271179774289
+          1.0167271179774289,
+          1.0202269925725038
         ],
         "drawdown": [
           0.0,
@@ -414,7 +428,8 @@
           -0.0542914225457594,
           -0.0582862782385531,
           -0.0567706363493144,
-          -0.0438476602336824
+          -0.0438476602336824,
+          -0.040556301890033
         ]
       }
     },
@@ -422,12 +437,12 @@
       "id": "UPPER-BOX50",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-10-15",
-      "closed": 8,
-      "open": 2,
-      "equity": 1.045766566261909,
-      "return_pct": 4.576656626190889,
-      "latest_drawdown_pct": -2.35571992089583,
+      "latest_date": "2026-10-16",
+      "closed": 9,
+      "open": 1,
+      "equity": 1.0493664032023455,
+      "return_pct": 4.936640320234553,
+      "latest_drawdown_pct": -2.01959951143625,
       "max_drawdown_pct": -4.10124336130862,
       "win_rate_pct": 0.0,
       "mean_trade_pct": -2.0979510244877453,
@@ -452,7 +467,8 @@
           "2026-10-12",
           "2026-10-13",
           "2026-10-14",
-          "2026-10-15"
+          "2026-10-15",
+          "2026-10-16"
         ],
         "equity": [
           1.012281995474031,
@@ -473,7 +489,8 @@
           1.0343439749051533,
           1.029974706173786,
           1.0316323997737191,
-          1.045766566261909
+          1.045766566261909,
+          1.0493664032023455
         ],
         "drawdown": [
           0.0,
@@ -494,7 +511,8 @@
           -0.0342225880792014,
           -0.038302218405035,
           -0.0367544131549992,
-          -0.0235571992089583
+          -0.0235571992089583,
+          -0.0201959951143625
         ]
       }
     }
@@ -504,14 +522,56 @@
       "id": "PURE-BOX-FROZEN-V1",
       "label": "Pure Box Frozen V1",
       "type": "ACCOUNT_FORWARD",
-      "status": "INITIALIZED",
-      "freeze_date": "2026-10-06",
+      "status": "GAP_DETECTED",
+      "freeze_date": null,
       "latest_date": "2026-10-05",
       "curve": {
         "date": [
           "2026-10-05"
         ],
         "equity": [
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PURE-BOX-SCALE-SHADOWS",
+      "label": "Pure Box Scale Shadows",
+      "type": "ACCOUNT_FORWARD",
+      "status": "FORWARD_OOS",
+      "freeze_date": null,
+      "latest_date": "2026-10-16",
+      "curve": {
+        "date": [
+          "2026-10-16",
+          "2026-10-16",
+          "2026-10-16"
+        ],
+        "equity": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "PURE-BOX-SIMPLE-CORE",
+      "label": "Pure Box Simple Core",
+      "type": "ACCOUNT_FORWARD",
+      "status": "FORWARD_OOS",
+      "freeze_date": null,
+      "latest_date": "2026-10-07",
+      "curve": {
+        "date": [
+          "2026-10-07",
+          "2026-10-07",
+          "2026-10-07",
+          "2026-10-07"
+        ],
+        "equity": [
+          1.0,
+          1.0,
+          1.0,
           1.0
         ]
       }
@@ -524,16 +584,16 @@
       "type": "SIZING_SHADOW",
       "status": "REGIME_SHADOW_OK",
       "freeze_date": "2026-09-21",
-      "latest_date": "2026-10-15",
-      "observations": 16,
+      "latest_date": "2026-10-16",
+      "observations": 17,
       "matured": null,
-      "closed": 8,
+      "closed": 9,
       "triggered": 4,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "target_multiplier": 0.5
+        "target_multiplier": 1.0
       },
       "note": "Forward sizing overlay; MAIN-B selection/exit unchanged.",
       "source": "frozen-v4"
@@ -544,17 +604,17 @@
       "type": "SIZING_SHADOW",
       "status": "UPPER_BOX_OK",
       "freeze_date": "2026-09-22",
-      "latest_date": "2026-10-15",
-      "observations": 16,
+      "latest_date": "2026-10-16",
+      "observations": 17,
       "matured": null,
-      "closed": 8,
+      "closed": 9,
       "triggered": 10,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "shadow_return_pct": -1.6538,
-        "relative_advantage_pct": 3.5909,
+        "shadow_return_pct": -1.3153,
+        "relative_advantage_pct": 4.5377,
         "shadow_mdd_pct": -4.1012,
         "closed_triggered_mean_pct": -2.098
       },
@@ -567,8 +627,8 @@
       "type": "HEDGE_CONTROL",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-05",
-      "observations": 7,
+      "latest_date": "2026-10-16",
+      "observations": 8,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -576,8 +636,8 @@
       "promotion_eligible": false,
       "priority": "FIXED_FORWARD_CONTROL",
       "metrics": {
-        "portfolio_beta120": 0.43238432398000815,
-        "beta_coverage": 0.5,
+        "portfolio_beta120": 0.44930833771097245,
+        "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
       },
@@ -590,8 +650,8 @@
       "type": "HEDGE_SHADOW",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-05",
-      "observations": 7,
+      "latest_date": "2026-10-16",
+      "observations": 8,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -599,8 +659,8 @@
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "portfolio_beta120": 0.43238432398000815,
-        "beta_coverage": 0.5,
+        "portfolio_beta120": 0.44930833771097245,
+        "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
       },
@@ -613,8 +673,8 @@
       "type": "HEDGE_CONTROL",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-05",
-      "observations": 7,
+      "latest_date": "2026-10-16",
+      "observations": 8,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -622,8 +682,8 @@
       "promotion_eligible": false,
       "priority": "FIXED_FORWARD_CONTROL",
       "metrics": {
-        "portfolio_beta120": 0.43238432398000815,
-        "beta_coverage": 0.5,
+        "portfolio_beta120": 0.44930833771097245,
+        "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
       },
@@ -636,17 +696,17 @@
       "type": "DIAGNOSTIC_SHADOW",
       "status": "SECTOR_EXPOSURE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-05",
-      "observations": 7,
+      "latest_date": "2026-10-16",
+      "observations": 8,
       "matured": null,
-      "closed": 5,
+      "closed": 7,
       "triggered": 0,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "mapping_coverage": 0.5,
-        "mapping_stability_rate": 0.6666666666666667,
+        "mapping_coverage": 1.0,
+        "mapping_stability_rate": 0.7142857142857143,
         "base_net_return_pct": 0.0
       },
       "note": "Sector exposure mapping/concentration diagnostic.",
@@ -658,16 +718,16 @@
       "type": "PAPER_ECONOMICS",
       "status": "SECTOR_HEDGE_ECONOMICS_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-01",
-      "observations": 7,
-      "matured": 5,
-      "closed": 5,
+      "latest_date": "2026-10-05",
+      "observations": 8,
+      "matured": 7,
+      "closed": 7,
       "triggered": 0,
       "ready": false,
       "promotion_eligible": false,
       "priority": "FIXED_FORWARD_CONTROL",
       "metrics": {
-        "pending_intervals": 2,
+        "pending_intervals": 1,
         "gross_return_pct": 0.0,
         "base_net_return_pct": 0.0,
         "stress_net_return_pct": 0.0
@@ -725,7 +785,7 @@
       "type": "RISK_OBSERVER",
       "status": "IMMEDIATE_STOP_FORWARD_RISK_SHADOW_OK",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-16T01:42:39.910457Z",
+      "latest_date": "2026-10-17T01:34:05.372991Z",
       "observations": 2,
       "matured": 0,
       "closed": 0,
@@ -748,18 +808,18 @@
       "type": "FORWARD_OBSERVER",
       "status": "NEXT_FACTOR_FORWARD_SHADOWS_OK",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-06T06:13:35.448831Z",
-      "observations": 0,
-      "matured": 0,
-      "closed": 0,
+      "latest_date": "2026-10-17T11:28:31.027642Z",
+      "observations": 4,
+      "matured": 4,
+      "closed": 4,
       "triggered": null,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FORWARD_OBSERVER",
       "metrics": {
         "checkpoints": {
-          "day1": 0,
-          "day2": 0,
+          "day1": 1,
+          "day2": 1,
           "day3": 0
         }
       },
@@ -772,24 +832,24 @@
       "type": "FORWARD_OBSERVER",
       "status": "ENTRY_GREEN_DAY1_PASS_FORWARD_V1_OK",
       "freeze_date": "2026-10-07",
-      "latest_date": "2026-10-05",
-      "observations": 0,
-      "matured": 0,
-      "closed": 0,
-      "triggered": 0,
+      "latest_date": "2026-10-16",
+      "observations": 3,
+      "matured": 1,
+      "closed": 3,
+      "triggered": 1,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FORWARD_OBSERVER",
       "metrics": {
         "primary_day1_pass_comparison": {
           "green": {
-            "mean": null,
-            "median": null,
-            "n": 0,
-            "pf": null,
-            "positive_rate": null,
-            "right10_rate": null,
-            "right20_rate": null
+            "mean": -0.02097951024487754,
+            "median": -0.02097951024487754,
+            "n": 1,
+            "pf": 0.0,
+            "positive_rate": 0.0,
+            "right10_rate": 0.0,
+            "right20_rate": 0.0
           },
           "non_green": {
             "mean": null,
@@ -850,7 +910,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "AWAITING_TASK14_FORWARD_EVENT",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-16T11:50:12.127285+00:00",
+      "latest_date": "2026-10-16T12:27:51.799654+00:00",
       "observations": 0,
       "matured": 0,
       "closed": 0,
@@ -869,9 +929,9 @@
       "id": "PURE-BOX-FROZEN-V1",
       "family": "Independent Box",
       "type": "FORWARD_ACCOUNT",
-      "status": "INITIALIZED",
-      "freeze_date": "2026-10-06",
-      "latest_date": "2026-10-05",
+      "status": "GAP_DETECTED",
+      "freeze_date": null,
+      "latest_date": null,
       "observations": 0,
       "matured": 0,
       "closed": 0,
@@ -880,16 +940,16 @@
       "promotion_eligible": true,
       "priority": "FORWARD_OOS_PENDING",
       "metrics": {},
-      "note": "No historical forward trades were created.",
+      "note": "Pure Box all-scale frozen forward lane.",
       "source": "frozen-v4"
     },
     {
       "id": "PURE-BOX-SIMPLE-CORE",
       "family": "Independent Box",
       "type": "FORWARD_ACCOUNT",
-      "status": "AWAITING_ANCHOR",
-      "freeze_date": "2026-10-07",
-      "latest_date": "2026-10-05",
+      "status": "GAP_DETECTED",
+      "freeze_date": null,
+      "latest_date": null,
       "observations": 0,
       "matured": 0,
       "closed": 0,
@@ -898,10 +958,10 @@
       "promotion_eligible": true,
       "priority": "FORWARD_OOS_PENDING",
       "metrics": {
-        "promotion_trade_gate": 100,
-        "promotion_month_gate": 12
+        "promotion_trade_gate": null,
+        "promotion_month_gate": null
       },
-      "note": "Observer code passed smoke validation. No historical or pre-freeze trades have been created. Official EOD cache must reach the freeze anchor before initialization.",
+      "note": "Simple-core prospective account lane.",
       "source": "frozen-v4"
     },
     {
@@ -910,7 +970,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "FORWARD_OOS_PENDING",
       "freeze_date": "2026-10-07",
-      "latest_date": "2026-10-05",
+      "latest_date": "2026-10-16",
       "observations": 0,
       "matured": 0,
       "closed": 0,
