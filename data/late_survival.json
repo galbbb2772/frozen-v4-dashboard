@@ -21,12 +21,12 @@
       }
     },
     "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
-    "last_official_close_date": "2026-10-16",
-    "main_b_rows_seen": 10,
+    "last_official_close_date": "2026-10-19",
+    "main_b_rows_seen": 11,
     "pre_freeze_rows_excluded": 6,
-    "post_freeze_rows": 4,
+    "post_freeze_rows": 5,
     "post_freeze_day1_failed_excluded": 0,
-    "awaiting_checkpoint_rows": 4,
+    "awaiting_checkpoint_rows": 5,
     "checkpoint_reached_missing_open_rows": 0,
     "promotion_events": 0,
     "settled_promotion_events": 0,
@@ -67,6 +67,16 @@
         "arm67_current_multiplier": 0.6666666666666666
       },
       {
+        "trade_id": "MAIN-B|bd005d66e977e3363c937418",
+        "symbol": "XENE",
+        "signal_date": "2026-10-16",
+        "entry_date": "2026-10-19",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
+      {
         "trade_id": "MAIN-B|daf07224f568f0e6c038d183",
         "symbol": "OBX",
         "signal_date": "2026-10-07",
@@ -85,7 +95,7 @@
       "Do not select the historically better arm; both arms remain frozen prospectively.",
       "Trade-level staged returns are diagnostic and are not an account-level substitute."
     ],
-    "updated_at_utc": "2026-10-17T12:12:12.538417Z"
+    "updated_at_utc": "2026-10-20T13:34:18.668563Z"
   },
   "history": [],
   "historical_reference": {
