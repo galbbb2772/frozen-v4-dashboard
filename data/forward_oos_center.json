@@ -1,6 +1,6 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-10-24T11:43:47.515395Z",
+  "generated_at_utc": "2026-10-25T07:41:26.013897Z",
   "latest_private_market_date": "2026-10-23",
   "account_lanes": [
     {
@@ -609,22 +609,6 @@
   ],
   "extra_account_lanes": [
     {
-      "id": "PURE-BOX-FROZEN-V1",
-      "label": "Pure Box Frozen V1",
-      "type": "ACCOUNT_FORWARD",
-      "status": "GAP_DETECTED",
-      "freeze_date": null,
-      "latest_date": "2026-10-05",
-      "curve": {
-        "date": [
-          "2026-10-05"
-        ],
-        "equity": [
-          1.0
-        ]
-      }
-    },
-    {
       "id": "PURE-BOX-SCALE-SHADOWS",
       "label": "Pure Box Scale Shadows",
       "type": "ACCOUNT_FORWARD",
@@ -861,7 +845,7 @@
       "type": "STAGED_SIZING_SHADOW",
       "status": "OBSERVE_ONLY",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-10-22",
+      "latest_date": "2026-10-23",
       "observations": 5,
       "matured": 0,
       "closed": 0,
@@ -883,7 +867,7 @@
       "type": "STAGED_SIZING_SHADOW",
       "status": "OBSERVE_ONLY",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-10-22",
+      "latest_date": "2026-10-23",
       "observations": 5,
       "matured": 0,
       "closed": 0,
@@ -991,7 +975,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "OK",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-10-22",
+      "latest_date": "2026-10-23",
       "observations": 2,
       "matured": 0,
       "closed": null,
@@ -1030,7 +1014,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "AWAITING_TASK14_FORWARD_EVENT",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-23T12:39:06.247652+00:00",
+      "latest_date": "2026-10-24T12:02:12.278482+00:00",
       "observations": 0,
       "matured": 0,
       "closed": 0,
@@ -1049,7 +1033,7 @@
       "id": "PURE-BOX-FROZEN-V1",
       "family": "Independent Box",
       "type": "FORWARD_ACCOUNT",
-      "status": "GAP_DETECTED",
+      "status": "UNKNOWN",
       "freeze_date": null,
       "latest_date": null,
       "observations": 0,
