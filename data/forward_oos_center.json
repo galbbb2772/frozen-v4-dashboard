@@ -1,7 +1,15 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-10-25T07:41:26.013897Z",
+  "generated_at_utc": "2026-11-06T01:36:34.489977Z",
   "latest_private_market_date": "2026-10-23",
+  "freshness": {
+    "status": "UNKNOWN",
+    "monitor_status": "OK",
+    "latest_official_eod_date": "2026-10-23",
+    "latest_expected_provider_safe_date": null,
+    "stale_nyse_sessions": null,
+    "alerts": []
+  },
   "account_lanes": [
     {
       "id": "MAIN-B",
@@ -889,8 +897,8 @@
       "type": "RISK_OBSERVER",
       "status": "IMMEDIATE_STOP_FORWARD_RISK_SHADOW_OK",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-24T02:03:17.604027Z",
-      "observations": 20,
+      "latest_date": "2026-11-05T03:47:29.081108Z",
+      "observations": 24,
       "matured": 0,
       "closed": 0,
       "triggered": null,
@@ -898,10 +906,10 @@
       "promotion_eligible": true,
       "priority": "FORWARD_OBSERVER",
       "metrics": {
-        "mean_feature_coverage": 0.8785714285714287,
-        "low": 5,
-        "mid": 7,
-        "high": 8
+        "mean_feature_coverage": 0.8839285714285713,
+        "low": 6,
+        "mid": 9,
+        "high": 9
       },
       "note": "Append-only immediate-stop risk score; observation-only.",
       "source": "frozen-v4"
@@ -997,9 +1005,9 @@
       "status": "ACCUMULATING",
       "freeze_date": "2026-09-19",
       "latest_date": "2026-09-19",
-      "observations": 2,
-      "matured": 2,
-      "closed": 2,
+      "observations": 4,
+      "matured": 3,
+      "closed": 3,
       "triggered": null,
       "ready": false,
       "promotion_eligible": false,
@@ -1014,7 +1022,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "AWAITING_TASK14_FORWARD_EVENT",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-10-24T12:02:12.278482+00:00",
+      "latest_date": "2026-11-05T15:30:04.411153+00:00",
       "observations": 0,
       "matured": 0,
       "closed": 0,
