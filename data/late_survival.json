@@ -21,12 +21,12 @@
       }
     },
     "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
-    "last_official_close_date": "2026-10-23",
-    "main_b_rows_seen": 11,
+    "last_official_close_date": "2026-11-05",
+    "main_b_rows_seen": 15,
     "pre_freeze_rows_excluded": 6,
-    "post_freeze_rows": 5,
+    "post_freeze_rows": 9,
     "post_freeze_day1_failed_excluded": 0,
-    "awaiting_checkpoint_rows": 5,
+    "awaiting_checkpoint_rows": 9,
     "checkpoint_reached_missing_open_rows": 0,
     "promotion_events": 0,
     "settled_promotion_events": 0,
@@ -36,6 +36,36 @@
       "win_rate": null
     },
     "current_trade_states": [
+      {
+        "trade_id": "MAIN-B|023040e090b0e2fc0cedf27e",
+        "symbol": "PSQL",
+        "signal_date": "2026-10-28",
+        "entry_date": "2026-10-29",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
+      {
+        "trade_id": "MAIN-B|2b5e096eb7d35d6502b6203c",
+        "symbol": "TNXP",
+        "signal_date": "2026-11-03",
+        "entry_date": "2026-11-04",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
+      {
+        "trade_id": "MAIN-B|5701e932aa955a2f6b1d9de1",
+        "symbol": "CYD",
+        "signal_date": "2026-10-29",
+        "entry_date": "2026-10-30",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
       {
         "trade_id": "MAIN-B|6a81f811df389930a9dd9332",
         "symbol": "XENE",
@@ -57,6 +87,16 @@
         "arm67_current_multiplier": 0.6666666666666666
       },
       {
+        "trade_id": "MAIN-B|7e7bb81b4174a369059aa569",
+        "symbol": "CTVA",
+        "signal_date": "2026-10-27",
+        "entry_date": "2026-10-28",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
+      {
         "trade_id": "MAIN-B|acc059b46c95d69fccf89a03",
         "symbol": "OBX",
         "signal_date": "2026-10-13",
@@ -71,7 +111,7 @@
         "symbol": "XENE",
         "signal_date": "2026-10-16",
         "entry_date": "2026-10-19",
-        "post_entry_bars": 4,
+        "post_entry_bars": 13,
         "state": "AWAITING_21ST_POST_ENTRY_OPEN",
         "arm50_current_multiplier": 0.5,
         "arm67_current_multiplier": 0.6666666666666666
@@ -95,7 +135,7 @@
       "Do not select the historically better arm; both arms remain frozen prospectively.",
       "Trade-level staged returns are diagnostic and are not an account-level substitute."
     ],
-    "updated_at_utc": "2026-11-05T17:06:26.727382Z"
+    "updated_at_utc": "2026-11-06T15:56:12.862336Z"
   },
   "history": [],
   "historical_reference": {
