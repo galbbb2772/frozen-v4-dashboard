@@ -261,17 +261,23 @@ function kv(k,v,cls=""){return '<div class="kv"><span class="small">'+esc(k)+'</
    fetch("data/historical.json").then(r=>r.json()),
    fetch("data/live.json?x="+Date.now()).then(r=>r.json())
  ]);
- const st=live.statuses||{}, main=live.lanes?.["MAIN-B"]||{}, reg=st.regime_shadow||{}, upper=st.upper_box_shadow||{}, prev=st.market_preview||{}, eod=st.eod_replay||{};
+ const st=live.statuses||{}, main=live.lanes?.["MAIN-B"]||{}, reg=st.regime_shadow||{}, upper=st.upper_box_shadow||{}, prev=st.market_preview||{}, eod=st.eod_replay||{}, drift=st.drift||{};
  const current=live.current_candidates||[];
  const eligible=current.filter(x=>Number(x.eligible)===1).length;
 
  const hero=document.getElementById("heroBadge");
- hero.textContent=(eod.status||"NOT RUN")+" · "+(eod.market_date||"—");
- hero.className="badge "+(statusClass(eod.status)==="good"?"":statusClass(eod.status));
+ const forwardStale=String(drift.freshness||"").toUpperCase()==="STALE" || Number(drift.stale_nyse_sessions||0)>0;
+ if(forwardStale){
+   hero.textContent="FORWARD STALE · "+(drift.stale_nyse_sessions??"—")+" sessions · EOD "+(drift.latest_official_eod_date||eod.market_date||"—");
+   hero.className="badge bad";
+ }else{
+   hero.textContent=(eod.status||"NOT RUN")+" · "+(eod.market_date||"—");
+   hero.className="badge "+(statusClass(eod.status)==="good"?"":statusClass(eod.status));
+ }
 
  const regimeText=reg.combo50_flag?"50% CAP":"FULL SIZE";
  document.getElementById("topCards").innerHTML=[
-   ["Latest EOD",eod.market_date||"—",eod.status||"NOT RUN"],
+   ["Latest EOD",eod.market_date||"—",(eod.status||"NOT RUN")+(forwardStale?" · STALE "+(drift.stale_nyse_sessions??"—")+" sessions":"")],
    ["MAIN-B OOS",main.latest_equity==null?"—":main.latest_equity.toFixed(4)+"x","累计 "+pct(main.cumulative_return)],
    ["Latest Daily",pct(main.latest_daily_return),"MAIN-B"],
    ["Open Positions",main.open_positions||0,"Target exposure "+pct(main.active_target_exposure)],
@@ -411,7 +417,8 @@ function kv(k,v,cls=""){return '<div class="kv"><span class="small">'+esc(k)+'</
    ["Historical","EXACT"],["Market Preview",st.market_preview?.status||"NOT RUN"],["Free EOD",st.eod_replay?.status||"NOT RUN"],
    ["Open Phase",st.open_phase?.status||"NOT RUN"],["Close Phase",st.close_phase?.status||"NOT RUN"],
    ["Regime Shadow",st.regime_shadow?.status||"NOT RUN"],["Upper-Box Shadow",st.upper_box_shadow?.status||"NOT RUN"],["Drift",st.drift?.status||"NO DATA"],
-   ["Ledger market date",st.eod_replay?.market_date||"—"]
+   ["Forward freshness",(st.drift?.freshness||"UNKNOWN")+" · "+(st.drift?.stale_nyse_sessions??"—")+" stale"],
+   ["Expected EOD",st.drift?.latest_expected_provider_safe_date||"—"],["Ledger market date",st.eod_replay?.market_date||"—"]
  ];
  document.getElementById("systemGrid").innerHTML=statuses.map(x=>'<div class="status"><span class="label">'+esc(x[0])+'</span><b class="'+statusClass(x[1])+'">'+esc(x[1])+'</b></div>').join("");
  const os=live.oos_summary||{};
