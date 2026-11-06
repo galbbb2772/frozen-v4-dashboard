@@ -94,12 +94,13 @@ async function fetchJson(url){
 }
 function allAccountLanes(){return [...(CENTER.account_lanes||[]),...(CENTER.extra_account_lanes||[])].filter(x=>x.curve?.date?.length);}
 function renderSummary(){
-  const a=allAccountLanes(), v=CENTER.validators||[];
+  const a=allAccountLanes(), v=CENTER.validators||[], fr=CENTER.freshness||{};
   const pending=v.filter(x=>String(x.status||'').match(/PENDING|AWAIT|OBSERVE/i)).length;
   const ready=v.filter(x=>x.ready===true).length;
   const obs=v.reduce((s,x)=>s+(Number(x.observations)||0),0);
   document.getElementById('summaryCards').innerHTML=[
     ['Private market as-of',CENTER.latest_private_market_date||'—','Frozen V4 EOD'],
+    ['Official freshness',fr.status||'UNKNOWN',(fr.stale_nyse_sessions??'—')+' NYSE session(s) stale'],
     ['Account lanes',a.length,'真实 Forward 曲线'],
     ['Private validators',v.length,'Shadow / Observer'],
     ['Observed samples',obs,'私有验证累计'],
