@@ -21,12 +21,12 @@
       }
     },
     "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
-    "last_official_close_date": "2026-11-05",
+    "last_official_close_date": "2026-11-06",
     "main_b_rows_seen": 15,
     "pre_freeze_rows_excluded": 6,
     "post_freeze_rows": 9,
     "post_freeze_day1_failed_excluded": 0,
-    "awaiting_checkpoint_rows": 9,
+    "awaiting_checkpoint_rows": 8,
     "checkpoint_reached_missing_open_rows": 0,
     "promotion_events": 0,
     "settled_promotion_events": 0,
@@ -111,7 +111,7 @@
         "symbol": "XENE",
         "signal_date": "2026-10-16",
         "entry_date": "2026-10-19",
-        "post_entry_bars": 13,
+        "post_entry_bars": 14,
         "state": "AWAITING_21ST_POST_ENTRY_OPEN",
         "arm50_current_multiplier": 0.5,
         "arm67_current_multiplier": 0.6666666666666666
@@ -122,9 +122,10 @@
         "signal_date": "2026-10-07",
         "entry_date": "2026-10-08",
         "post_entry_bars": 0,
-        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
-        "arm50_current_multiplier": 0.5,
-        "arm67_current_multiplier": 0.6666666666666666
+        "promotion_date": "2026-11-06",
+        "state": "EXITED_BEFORE_PROMOTION",
+        "arm50_current_multiplier": 0.0,
+        "arm67_current_multiplier": 0.0
       }
     ],
     "guardrails": [
@@ -135,7 +136,7 @@
       "Do not select the historically better arm; both arms remain frozen prospectively.",
       "Trade-level staged returns are diagnostic and are not an account-level substitute."
     ],
-    "updated_at_utc": "2026-11-06T15:56:12.862336Z"
+    "updated_at_utc": "2026-11-07T14:54:51.141357Z"
   },
   "history": [],
   "historical_reference": {
