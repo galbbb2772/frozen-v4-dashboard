@@ -1,12 +1,12 @@
 {
   "schema": "UNIFIED-FORWARD-OOS-CENTER-V1",
-  "generated_at_utc": "2026-11-07T13:55:30.929868Z",
-  "latest_private_market_date": "2026-11-06",
+  "generated_at_utc": "2026-11-10T15:40:45.029008Z",
+  "latest_private_market_date": "2026-11-09",
   "freshness": {
     "status": "FRESH",
     "monitor_status": "OK",
-    "latest_official_eod_date": "2026-11-06",
-    "latest_expected_provider_safe_date": "2026-11-06",
+    "latest_official_eod_date": "2026-11-09",
+    "latest_expected_provider_safe_date": "2026-11-09",
     "stale_nyse_sessions": 0,
     "alerts": []
   },
@@ -15,16 +15,16 @@
       "id": "MAIN-B",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 14,
+      "latest_date": "2026-11-09",
+      "closed": 15,
       "open": 1,
-      "equity": 1.0240540786665695,
-      "return_pct": 2.40540786665695,
-      "latest_drawdown_pct": -3.6957226721656133,
+      "equity": 1.0312561600922703,
+      "return_pct": 3.125616009227028,
+      "latest_drawdown_pct": -3.0184232390522037,
       "max_drawdown_pct": -6.8655466148040105,
-      "win_rate_pct": 7.142857142857142,
-      "mean_trade_pct": -0.8008167087839713,
-      "profit_factor": 0.5889236764782813,
+      "win_rate_pct": 6.666666666666667,
+      "mean_trade_pct": -0.8872923298308903,
+      "profit_factor": 0.5468576995869753,
       "curve": {
         "date": [
           "2026-09-18",
@@ -62,7 +62,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.0,
@@ -100,7 +101,8 @@
           1.0192269040086486,
           1.0243677406438014,
           1.0006862613627787,
-          1.0240540786665695
+          1.0240540786665695,
+          1.0312561600922703
         ],
         "drawdown": [
           0.0,
@@ -138,7 +140,8 @@
           -0.041496806970890865,
           -0.036662252162481646,
           -0.05893283138015937,
-          -0.03695722672165613
+          -0.03695722672165613,
+          -0.030184232390522037
         ]
       }
     },
@@ -146,16 +149,16 @@
       "id": "BENCH-A",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 12,
+      "latest_date": "2026-11-09",
+      "closed": 13,
       "open": 1,
-      "equity": 1.0436388273762525,
-      "return_pct": 4.3638827376252465,
-      "latest_drawdown_pct": -3.167896413535598,
+      "equity": 1.0509786466010085,
+      "return_pct": 5.097864660100848,
+      "latest_drawdown_pct": -2.4868848252025955,
       "max_drawdown_pct": -6.27662018472686,
-      "win_rate_pct": 8.333333333333332,
-      "mean_trade_pct": -0.5846276561666758,
-      "profit_factor": 0.6960007085652413,
+      "win_rate_pct": 7.6923076923076925,
+      "mean_trade_pct": -0.701037146037528,
+      "profit_factor": 0.6380006495181376,
       "curve": {
         "date": [
           "2026-09-18",
@@ -193,7 +196,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.0,
@@ -231,7 +235,8 @@
           1.0387193343489967,
           1.0439584880513384,
           1.0198241070823535,
-          1.0436388273762525
+          1.0436388273762525,
+          1.0509786466010085
         ],
         "drawdown": [
           0.0,
@@ -269,7 +274,8 @@
           -0.036243424999712004,
           -0.03138237287417944,
           -0.05377501309301069,
-          -0.03167896413535598
+          -0.03167896413535598,
+          -0.024868848252025955
         ]
       }
     },
@@ -277,16 +283,16 @@
       "id": "SHADOW-3S",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 22,
-      "open": 1,
-      "equity": 0.9684204432933541,
-      "return_pct": -3.1579556706645917,
-      "latest_drawdown_pct": -8.927630987705093,
+      "latest_date": "2026-11-09",
+      "closed": 23,
+      "open": 2,
+      "equity": 1.0413445825705123,
+      "return_pct": 4.134458257051232,
+      "latest_drawdown_pct": -2.069686003016724,
       "max_drawdown_pct": -11.038345404073402,
-      "win_rate_pct": 9.090909090909092,
-      "mean_trade_pct": -1.1611055390759917,
-      "profit_factor": 0.3912078603953841,
+      "win_rate_pct": 8.695652173913043,
+      "mean_trade_pct": -1.201837951485199,
+      "profit_factor": 0.37257891466227044,
       "curve": {
         "date": [
           "2026-09-18",
@@ -324,7 +330,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.0,
@@ -362,7 +369,8 @@
           1.011728229184644,
           1.0046291736949022,
           0.9459761057524132,
-          0.9684204432933541
+          0.9684204432933541,
+          1.0413445825705123
         ],
         "drawdown": [
           0.0,
@@ -400,7 +408,8 @@
           -0.04854872419759171,
           -0.05522483069325623,
           -0.11038345404073402,
-          -0.08927630987705093
+          -0.08927630987705093,
+          -0.02069686003016724
         ]
       }
     },
@@ -408,16 +417,16 @@
       "id": "SHADOW-SAT20",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 14,
+      "latest_date": "2026-11-09",
+      "closed": 15,
       "open": 1,
-      "equity": 1.0240540786665695,
-      "return_pct": 2.40540786665695,
-      "latest_drawdown_pct": -3.6957226721656133,
+      "equity": 1.0312561600922703,
+      "return_pct": 3.125616009227028,
+      "latest_drawdown_pct": -3.0184232390522037,
       "max_drawdown_pct": -6.8655466148040105,
-      "win_rate_pct": 7.142857142857142,
-      "mean_trade_pct": -0.8008167087839713,
-      "profit_factor": 0.5889236764782813,
+      "win_rate_pct": 6.666666666666667,
+      "mean_trade_pct": -0.8872923298308903,
+      "profit_factor": 0.5468576995869753,
       "curve": {
         "date": [
           "2026-09-18",
@@ -455,7 +464,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.0,
@@ -493,7 +503,8 @@
           1.0192269040086486,
           1.0243677406438014,
           1.0006862613627787,
-          1.0240540786665695
+          1.0240540786665695,
+          1.0312561600922703
         ],
         "drawdown": [
           0.0,
@@ -531,7 +542,8 @@
           -0.041496806970890865,
           -0.036662252162481646,
           -0.05893283138015937,
-          -0.03695722672165613
+          -0.03695722672165613,
+          -0.030184232390522037
         ]
       }
     },
@@ -539,16 +551,16 @@
       "id": "REGIME-COMBO50",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 14,
+      "latest_date": "2026-11-09",
+      "closed": 15,
       "open": 1,
-      "equity": 1.0534753996395494,
-      "return_pct": 5.347539963954939,
-      "latest_drawdown_pct": -1.988182034924757,
+      "equity": 1.0608843986037995,
+      "return_pct": 6.088439860379946,
+      "latest_drawdown_pct": -1.2988736200951645,
       "max_drawdown_pct": -6.09401752311357,
-      "win_rate_pct": 7.142857142857142,
-      "mean_trade_pct": -0.8008167087839713,
-      "profit_factor": 0.5889236764782813,
+      "win_rate_pct": 6.666666666666667,
+      "mean_trade_pct": -0.8872923298308903,
+      "profit_factor": 0.5468576995869753,
       "curve": {
         "date": [
           "2026-09-18",
@@ -586,7 +598,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.0,
@@ -624,7 +637,8 @@
           1.04850953908802,
           1.0537980732011318,
           1.0294362193016617,
-          1.0534753996395494
+          1.0534753996395494,
+          1.0608843986037995
         ],
         "drawdown": [
           0.0,
@@ -662,7 +676,8 @@
           -0.024501890457984676,
           -0.019581615689596488,
           -0.042247067493251245,
-          -0.01988182034924757
+          -0.01988182034924757,
+          -0.012988736200951645
         ]
       }
     },
@@ -670,16 +685,16 @@
       "id": "UPPER-BOX50",
       "type": "ACCOUNT_LANE",
       "status": "LIVE_FORWARD_LEDGER",
-      "latest_date": "2026-11-06",
-      "closed": 14,
+      "latest_date": "2026-11-09",
+      "closed": 15,
       "open": 1,
-      "equity": 1.0767496575147406,
-      "return_pct": 7.674965751474061,
-      "latest_drawdown_pct": -2.6046006815514056,
+      "equity": 1.0843223422684738,
+      "return_pct": 8.43223422684738,
+      "latest_drawdown_pct": -1.9196274843414685,
       "max_drawdown_pct": -4.827059382625809,
-      "win_rate_pct": 7.142857142857142,
-      "mean_trade_pct": -0.8008167087839713,
-      "profit_factor": 0.5889236764782813,
+      "win_rate_pct": 6.666666666666667,
+      "mean_trade_pct": -0.8872923298308903,
+      "profit_factor": 0.5468576995869753,
       "curve": {
         "date": [
           "2026-09-21",
@@ -716,7 +731,8 @@
           "2026-11-03",
           "2026-11-04",
           "2026-11-05",
-          "2026-11-06"
+          "2026-11-06",
+          "2026-11-09"
         ],
         "equity": [
           1.012281995474031,
@@ -753,7 +769,8 @@
           1.0716740870268535,
           1.0770794598499842,
           1.0521793835390865,
-          1.0767496575147406
+          1.0767496575147406,
+          1.0843223422684738
         ],
         "drawdown": [
           0.0,
@@ -790,7 +807,8 @@
           -0.030637020251057412,
           -0.025747690211343044,
           -0.04827059382625809,
-          -0.026046006815514056
+          -0.026046006815514056,
+          -0.019196274843414685
         ]
       }
     }
@@ -876,10 +894,10 @@
       "type": "SIZING_SHADOW",
       "status": "REGIME_SHADOW_OK",
       "freeze_date": "2026-09-21",
-      "latest_date": "2026-11-06",
-      "observations": 32,
+      "latest_date": "2026-11-09",
+      "observations": 33,
       "matured": null,
-      "closed": 13,
+      "closed": 14,
       "triggered": 7,
       "ready": false,
       "promotion_eligible": true,
@@ -896,16 +914,16 @@
       "type": "SIZING_SHADOW",
       "status": "UPPER_BOX_OK",
       "freeze_date": "2026-09-22",
-      "latest_date": "2026-11-06",
-      "observations": 32,
+      "latest_date": "2026-11-09",
+      "observations": 33,
       "matured": null,
-      "closed": 13,
+      "closed": 14,
       "triggered": 11,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "shadow_return_pct": 1.2599,
+        "shadow_return_pct": 1.972,
         "relative_advantage_pct": 5.1458,
         "shadow_mdd_pct": -4.8271,
         "closed_triggered_mean_pct": -2.098
@@ -919,8 +937,8 @@
       "type": "HEDGE_CONTROL",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-11-06",
-      "observations": 15,
+      "latest_date": "2026-11-09",
+      "observations": 16,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -928,7 +946,7 @@
       "promotion_eligible": false,
       "priority": "FIXED_FORWARD_CONTROL",
       "metrics": {
-        "portfolio_beta120": 0.32892323354926617,
+        "portfolio_beta120": 0.36543285747904314,
         "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
@@ -942,8 +960,8 @@
       "type": "HEDGE_SHADOW",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-11-06",
-      "observations": 15,
+      "latest_date": "2026-11-09",
+      "observations": 16,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -951,7 +969,7 @@
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
-        "portfolio_beta120": 0.32892323354926617,
+        "portfolio_beta120": 0.36543285747904314,
         "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
@@ -965,8 +983,8 @@
       "type": "HEDGE_CONTROL",
       "status": "BETA_HEDGE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-11-06",
-      "observations": 15,
+      "latest_date": "2026-11-09",
+      "observations": 16,
       "matured": null,
       "closed": null,
       "triggered": 0,
@@ -974,7 +992,7 @@
       "promotion_eligible": false,
       "priority": "FIXED_FORWARD_CONTROL",
       "metrics": {
-        "portfolio_beta120": 0.32892323354926617,
+        "portfolio_beta120": 0.36543285747904314,
         "beta_coverage": 1.0,
         "target_short_spy_nav": 0.0,
         "regime_multiplier": 0.0
@@ -988,17 +1006,17 @@
       "type": "DIAGNOSTIC_SHADOW",
       "status": "SECTOR_EXPOSURE_SHADOW_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-11-06",
-      "observations": 15,
+      "latest_date": "2026-11-09",
+      "observations": 16,
       "matured": null,
-      "closed": 13,
+      "closed": 14,
       "triggered": 0,
       "ready": false,
       "promotion_eligible": true,
       "priority": "FROZEN_SHADOW",
       "metrics": {
         "mapping_coverage": 1.0,
-        "mapping_stability_rate": 0.8888888888888888,
+        "mapping_stability_rate": 0.8947368421052632,
         "base_net_return_pct": 0.0
       },
       "note": "Sector exposure mapping/concentration diagnostic.",
@@ -1010,10 +1028,10 @@
       "type": "PAPER_ECONOMICS",
       "status": "SECTOR_HEDGE_ECONOMICS_OK",
       "freeze_date": "2026-09-24",
-      "latest_date": "2026-10-23",
-      "observations": 15,
-      "matured": 13,
-      "closed": 13,
+      "latest_date": "2026-11-05",
+      "observations": 16,
+      "matured": 14,
+      "closed": 14,
       "triggered": 0,
       "ready": false,
       "promotion_eligible": false,
@@ -1033,7 +1051,7 @@
       "type": "STAGED_SIZING_SHADOW",
       "status": "OBSERVE_ONLY",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-11-05",
+      "latest_date": "2026-11-06",
       "observations": 9,
       "matured": 0,
       "closed": 0,
@@ -1055,7 +1073,7 @@
       "type": "STAGED_SIZING_SHADOW",
       "status": "OBSERVE_ONLY",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-11-05",
+      "latest_date": "2026-11-06",
       "observations": 9,
       "matured": 0,
       "closed": 0,
@@ -1077,8 +1095,8 @@
       "type": "RISK_OBSERVER",
       "status": "IMMEDIATE_STOP_FORWARD_RISK_SHADOW_OK",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-11-07T03:13:39.930312Z",
-      "observations": 24,
+      "latest_date": "2026-11-10T04:50:15.701775Z",
+      "observations": 26,
       "matured": 0,
       "closed": 0,
       "triggered": null,
@@ -1086,9 +1104,9 @@
       "promotion_eligible": true,
       "priority": "FORWARD_OBSERVER",
       "metrics": {
-        "mean_feature_coverage": 0.8839285714285713,
-        "low": 6,
-        "mid": 9,
+        "mean_feature_coverage": 0.8928571428571428,
+        "low": 7,
+        "mid": 10,
         "high": 9
       },
       "note": "Append-only immediate-stop risk score; observation-only.",
@@ -1124,10 +1142,10 @@
       "type": "FORWARD_OBSERVER",
       "status": "ENTRY_GREEN_DAY1_PASS_FORWARD_V1_OK",
       "freeze_date": "2026-10-07",
-      "latest_date": "2026-11-06",
-      "observations": 8,
+      "latest_date": "2026-11-09",
+      "observations": 9,
       "matured": 1,
-      "closed": 7,
+      "closed": 8,
       "triggered": 2,
       "ready": false,
       "promotion_eligible": true,
@@ -1163,7 +1181,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "OK",
       "freeze_date": "2026-10-03",
-      "latest_date": "2026-11-05",
+      "latest_date": "2026-11-06",
       "observations": 2,
       "matured": 0,
       "closed": null,
@@ -1202,7 +1220,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "AWAITING_TASK14_FORWARD_EVENT",
       "freeze_date": "2026-10-02",
-      "latest_date": "2026-11-06T15:05:59.384370+00:00",
+      "latest_date": "2026-11-07T14:05:18.363452+00:00",
       "observations": 0,
       "matured": 0,
       "closed": 0,
@@ -1262,7 +1280,7 @@
       "type": "FORWARD_OBSERVER",
       "status": "FORWARD_OOS_PENDING",
       "freeze_date": "2026-10-07",
-      "latest_date": "2026-11-06",
+      "latest_date": "2026-11-09",
       "observations": 0,
       "matured": 0,
       "closed": 0,
