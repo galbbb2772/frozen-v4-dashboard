@@ -21,12 +21,12 @@
       }
     },
     "day1_failed_policy": "never promote; frozen 25%-of-normal-target quarantine remains authoritative",
-    "last_official_close_date": "2026-11-06",
-    "main_b_rows_seen": 15,
+    "last_official_close_date": "2026-11-09",
+    "main_b_rows_seen": 16,
     "pre_freeze_rows_excluded": 6,
-    "post_freeze_rows": 9,
+    "post_freeze_rows": 10,
     "post_freeze_day1_failed_excluded": 0,
-    "awaiting_checkpoint_rows": 8,
+    "awaiting_checkpoint_rows": 9,
     "checkpoint_reached_missing_open_rows": 0,
     "promotion_events": 0,
     "settled_promotion_events": 0,
@@ -97,6 +97,16 @@
         "arm67_current_multiplier": 0.6666666666666666
       },
       {
+        "trade_id": "MAIN-B|a136283d90b57ad4ae84e36c",
+        "symbol": "AVTX",
+        "signal_date": "2026-11-06",
+        "entry_date": "2026-11-09",
+        "post_entry_bars": 0,
+        "state": "AWAITING_21ST_POST_ENTRY_OPEN",
+        "arm50_current_multiplier": 0.5,
+        "arm67_current_multiplier": 0.6666666666666666
+      },
+      {
         "trade_id": "MAIN-B|acc059b46c95d69fccf89a03",
         "symbol": "OBX",
         "signal_date": "2026-10-13",
@@ -111,7 +121,7 @@
         "symbol": "XENE",
         "signal_date": "2026-10-16",
         "entry_date": "2026-10-19",
-        "post_entry_bars": 14,
+        "post_entry_bars": 15,
         "state": "AWAITING_21ST_POST_ENTRY_OPEN",
         "arm50_current_multiplier": 0.5,
         "arm67_current_multiplier": 0.6666666666666666
@@ -136,7 +146,7 @@
       "Do not select the historically better arm; both arms remain frozen prospectively.",
       "Trade-level staged returns are diagnostic and are not an account-level substitute."
     ],
-    "updated_at_utc": "2026-11-07T14:54:51.141357Z"
+    "updated_at_utc": "2026-11-10T16:26:43.945580Z"
   },
   "history": [],
   "historical_reference": {
