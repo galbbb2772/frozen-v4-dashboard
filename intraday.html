@@ -10,7 +10,7 @@
 :root{--bg:#070a10;--panel:#0f1520;--line:#253047;--text:#eef4ff;--muted:#8d9ab0;--good:#56d6a4;--bad:#ff7d89;--warn:#f3c76b;--accent:#8cb8ff}*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--text);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{padding:16px}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.title{font-size:28px;font-weight:780;letter-spacing:-.03em}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.5}.badge{padding:7px 11px;border-radius:999px;border:1px solid #2d5e4d;background:#10251e;color:var(--good);font-size:12px;font-weight:750}.badge.warn{border-color:#5c4d29;background:#251e0e;color:var(--warn)}.badge.bad{border-color:#65313a;background:#261116;color:var(--bad)}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:14px}.card{background:linear-gradient(180deg,#121927,#0f1420);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.label{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:22px;font-weight:780;margin:6px 0;overflow:hidden;text-overflow:ellipsis}.two{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:10px}.twoequal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.chart{height:390px}.chart.smallchart{height:315px}.note{border-left:3px solid #466995;background:#0c111b;color:#aeb8c9;padding:10px 12px;border-radius:0 10px 10px 0;line-height:1.55}.tablewrap{overflow:auto;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 7px;border-bottom:1px solid #202a3b;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{position:sticky;top:0;background:#0f1520;color:var(--muted);z-index:2}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;padding:6px 0;border-bottom:1px solid #1c2637}.empty{border:1px dashed #2b374c;border-radius:13px;padding:30px 14px;text-align:center;color:var(--muted)}@media(max-width:1150px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:850px){.two,.twoequal{grid-template-columns:1fr}.chart{height:350px}}@media(max-width:560px){.wrap{padding:10px}.grid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.value{font-size:19px}.chart{height:320px}}
 </style></head>
 <body><div class="wrap">
-<div class="top"><div><div class="title">Intraday Realtime Monitor</div><div class="muted">Alpaca IEX WebSocket · target 1–2s live updates · automatic 10-minute JSON fallback · research only</div></div><div id="health" class="badge warn">CONNECTING</div></div>
+<div class="top"><div><div class="title">Intraday Realtime Monitor</div><div class="muted">Alpaca IEX WebSocket · target 1–2s live updates · automatic hourly JSON fallback · research only</div></div><div id="health" class="badge warn">CONNECTING</div></div>
 <div id="cards" class="grid"></div>
 <div class="two">
   <div class="card"><div class="label">Projected MAIN-B intraday equity</div><div id="equityChart" class="chart"></div></div>
@@ -44,10 +44,10 @@ function render(d,mode){
  const hb=document.getElementById('health');
  if(live){hb.textContent='LIVE · '+(c.broadcast_interval_seconds||1.5)+'s';hb.className='badge'}
  else if(c.status==='MARKET_CLOSED'){hb.textContent='MARKET CLOSED';hb.className='badge warn'}
- else if(fallback){hb.textContent='10 MIN FALLBACK';hb.className='badge warn'}
+ else if(fallback){hb.textContent='60 MIN FALLBACK';hb.className='badge warn'}
  else if(c.status==='REALTIME_ERROR'){hb.textContent='REALTIME ERROR';hb.className='badge bad'}
- else{hb.textContent=wsUrl?'RECONNECTING':'10 MIN MODE';hb.className='badge warn'}
- const cadence=live?((c.broadcast_interval_seconds||1.5)+' SEC'):(c.backend_cadence_minutes||p.backend_cadence_minutes||10)+' MIN';
+ else{hb.textContent=wsUrl?'RECONNECTING':'60 MIN MODE';hb.className='badge warn'}
+ const cadence=live?((c.broadcast_interval_seconds||1.5)+' SEC'):(c.backend_cadence_minutes||p.backend_cadence_minutes||60)+' MIN';
  document.getElementById('cards').innerHTML=[
   ['Mode',live?'WEBSOCKET':fallback?'FALLBACK':'WAITING',c.transport||c.data_source||'Alpaca Basic / IEX'],
   ['Update',cadence,live?'push from realtime relay':'GitHub snapshot cadence'],
@@ -79,7 +79,7 @@ function render(d,mode){
  document.getElementById('historyTable').innerHTML=table(rev,[['UTC',x=>x.generated_at_utc],['Equity',x=>num(x.projected_main_b_equity,5)],['MAIN-B',x=>pct(x.intraday_return_vs_last_eod)],['SPY',x=>pct(x.spy_return_vs_prev_close)],['QQQ',x=>pct(x.qqq_return_vs_prev_close)]]);
  const b=c.latest_beta_reference||{},s=c.latest_sector_reference||{};
  document.getElementById('reference').innerHTML=kv('Last official EOD',c.last_official_eod_date||'—')+kv('Official EOD equity',c.last_official_eod_equity==null?'—':num(c.last_official_eod_equity,5)+'x')+kv('Beta as-of',b.market_date||'—')+kv('Portfolio beta',num(b.portfolio_beta,3))+kv('Beta coverage',pct(b.beta_coverage))+kv('Sector as-of',s.market_date||'—')+kv('Shared sector',s.shared_sector_concentration?(s.shared_sector_etf||'YES'):'NO')+kv('Sector mapping coverage',pct(s.mapping_coverage));
- document.getElementById('protocol').innerHTML='当前模式：<b>'+esc(live?'WebSocket realtime':'10-minute fallback')+'</b>。实时模式由 Alpaca Basic / IEX trade stream 驱动，目标约1–2秒刷新；断线会指数退避重连，并自动退回 GitHub JSON。IEX 是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中状态只在内存里投影 Frozen V4 开盘逻辑；Official EOD、Beta 与 Sector 的正式参考仍由 Massive Basic 完整日线决定。<br><br>最后更新：'+esc(c.generated_at_utc||d.generated_at_utc||'—');
+ document.getElementById('protocol').innerHTML='当前模式：<b>'+esc(live?'WebSocket realtime':'hourly fallback')+'</b>。实时模式由 Alpaca Basic / IEX trade stream 驱动，目标约1–2秒刷新；断线会指数退避重连，并自动退回 GitHub JSON。IEX 是免费单交易所行情，可能与 consolidated SIP 略有差异。盘中状态只在内存里投影 Frozen V4 开盘逻辑；Official EOD、Beta 与 Sector 的正式参考仍由 Massive Basic 完整日线决定。<br><br>最后更新：'+esc(c.generated_at_utc||d.generated_at_utc||'—');
 }
 
 async function loadFallback(){
